@@ -4,7 +4,7 @@ assignment-2-3-3-liming65 created by GitHub Classroom
 In this database focused assignment, We want to implement the “exercise progress information” feature on the exercise/home page. 
 This feature would help patients to pause their exercise when they feel tired and get back to it later. 
 
-Click the URL below to see how the database works without downloading the code and setting up enviroment:
+👇Click the URL below to see how the database works without downloading the code and setting up enviroment:
 
 [UHN-FE Website](https://uhn-fe.azurewebsites.net)
 
