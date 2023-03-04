@@ -1,5 +1,5 @@
 import Menu from "../Component/Menu"
-import Avatar_displayer from "./avatar/Avatar_displayer"
+import Avatar_displayer from "./avatar/avatar_displayer"
 import Recorder from "./Recorder"
 import "./record_page.css"
 function Recording_page(){
