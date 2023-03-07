@@ -1,8 +1,8 @@
 Member Number,Student Number,Student Name,GitHub ID,Status,Role(s)
-1,999216423,chengshuo zhang ,vanessa-sissi,enrolled,"Product Management, Database Management"
-2,1005915734,Yide Ma,mayide1,enrolled,"Backend Development"
+1,999216423,chengshuo zhang ,vanessa-sissi,enrolled,"Frontend Development"
+2,1005915734,Yide Ma,mayide1,enrolled,"Product Management,Backend Development,Database Management"
 3,1006931652,Canyang Wang,Richard202019Wang,enrolled,"Frontend Development"
 4,1006843196,Nicole Zhou,nzhou27,enrolled,"Frontend Development"
-5,1006750810,Yiteng Sun,Haarowww,enrolled,"Backend Development"
+5,1006750810,Yiteng Sun,Haarowww,enrolled,"Backend Development,Database Management"
 6,1006785105,Darcy Wang,DarcyWang1,enrolled,"Full Stack  Development"
-7,1005976099,Mingyang Li,MeeskaM00ska,enrolled,"Frontend, Database Management"
+7,1005976099,Mingyang Li,MeeskaM00ska,enrolled,"Backend Development,Database Management"
