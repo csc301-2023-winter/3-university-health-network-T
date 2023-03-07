@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Montserrat', sans-serif; /* Use a nice font */
+  }
+  
+  h2 {
+    text-align: center;
+    margin: 30px auto; /* Center the element and add some spacing */
+    font-family: 'Playfair Display', serif; /* Use a nice font */
+    font-size: 36px; /* Increase the font size */
+    font-weight: bold; /* Make the font bold */
+    color: #333; /* Use a nice color */
+  }
+  
