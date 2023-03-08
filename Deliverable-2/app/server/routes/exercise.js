@@ -9,10 +9,11 @@ router.get('/exercise', (req, res) => {
   
     if (pid < 0) {
         res.sendStatus(403);
+        return;
     }
 
-    const exercise = req.params.exercise;
-    const character = req.params.character;
+    const exercise = req.body.exercise;
+    const character = req.body.character;
     const dow = new Date().getDay();
     var resdata = { exercise: exercise, character: character };
 
@@ -54,3 +55,5 @@ router.get('/exercise', (req, res) => {
         });
     });
 });
+
+module.exports = router;
