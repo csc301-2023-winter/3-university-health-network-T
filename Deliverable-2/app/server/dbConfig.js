@@ -8,7 +8,7 @@ const pool = new pg.Pool({
     password: `${process.env.DB_PASSWORD}`,
     database: `${process.env.DB_NAME}`,
     port: `${process.env.DB_PORT}}`,
-    ssl: `${process.env.DB_ssh}}`
+    ssl: `${process.env.DB_SSL}}`
 });
 
 module.exports = {pool};
