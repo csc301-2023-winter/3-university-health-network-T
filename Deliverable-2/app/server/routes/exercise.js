@@ -56,4 +56,8 @@ router.get('/exercise', (req, res) => {
     });
 });
 
+router.post('/complete_exercise', (req, res) => {
+    // TODO: need to ask
+});
+
 module.exports = router;
