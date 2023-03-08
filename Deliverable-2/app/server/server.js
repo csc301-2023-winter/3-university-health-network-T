@@ -21,6 +21,9 @@ app.use("/blog", blogRouter)
 const popRouter = require('./routes/pop_up')
 app.use("/", popRouter)
 
+// const tableSetup = require('./table_setup')
+// app.use("/table_setup", tableSetup)
+
 
 server.listen(port,  () => {
   console.log(`Server listening at http://localhost:${port}`);
