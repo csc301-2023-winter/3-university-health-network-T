@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const pg = require('pg');
 const { pool } = require('../dbConfig');
 const ver_tools = require('../tools/verifiers');
 
