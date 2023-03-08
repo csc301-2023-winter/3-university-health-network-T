@@ -2,20 +2,12 @@ const express = require('express');
 const router = express.Router();
 const pg = require('pg');
 const jwt = require('jsonwebtoken');
-
+const { pool } = require('../dbConfig');
 // fake user data, since we have linked to database, this is not needed.
 const users = [
   { id: 1, username: 'user1', password: 'password1' },
   { id: 2, username: 'user2', password: 'password2' },
 ];
-
-const pool = new pg.Pool({
-  user: 'lewis',
-  host: 'localhost',
-  database: 'lewis',
-  password: '',
-  port: 5432,
-});
 
 router.get('/login', (req, res) => {
   return res.send({ message: 'Login page' });
