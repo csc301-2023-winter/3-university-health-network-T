@@ -1,17 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const pg = require('pg');
+const { pool } = require('../dbConfig');
 
-// below is the connection to the database. Currently we set the connection to local database
-const pool = new pg.Pool({
-    user: 'lewis',
-    host: 'localhost',
-    database: 'lewis',
-    password: '',
-    port: 5432,
-    // ssl: true // when we connect to cloud, activate the ssl connection.
-});
-
+// below is the connection to the database. Currently we set the connection to local database.
+// const pool = new pg.Pool({
+//     user: 'lewis',
+//     host: 'localhost',
+//     database: 'lewis',
+//     password: '',
+//     port: 5432,
+//     // ssl: true // when we connect to cloud, activate the ssl connection.
+// });
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+// below post method is for testing purposes only. It will add some information to the database.
 router.post('/popup', (req, res) => {
     const query = `
     CREATE TABLE IF NOT EXISTS PrescribedExercise(
@@ -34,11 +36,11 @@ router.post('/popup', (req, res) => {
     }).catch((err) => console.log(err));
     const meetingquery = `
     CREATE TABLE IF NOT EXISTS Meeting(
-        userId INTEGER,
-        date text NOT NULL,
-        time text NOT NULL,
-        meetingId INTEGER,
-        meetingPasscode text
+        userId INT,
+        date DATE,
+        time TIME,
+        meetingId INT,
+        meetingPasscode VARCHAR(50)
     )`;
     pool.query(meetingquery).then(
         () => {
@@ -56,9 +58,18 @@ router.post('/popup', (req, res) => {
 router.get('/popup', async (req, res) => {
     try {
         const { userId } = req.body;
+        //form the date data in the format YYYY-MM-DD
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+        const day = ('0' + currentDate.getDate()).slice(-2);
+        const dateString = year + '-' + month + '-' + day;
+        // get the weekday
+        const weekdayIndex = currentDate.getDay();
+        const weekday = weekdays[weekdayIndex];
 
-        const prescribedExercisesQuery = pool.query('select * from PrescribedExercise where userId = $1', [userId]);
-        const meetingsQuery = pool.query('select * from Meeting where userId = $1', [userId]);
+        const prescribedExercisesQuery = pool.query('select * from PrescribedExercise where userId = $1 and day_of_week = $2', [userId, weekday]);
+        const meetingsQuery = pool.query('SELECT * FROM Meeting WHERE userId = $1 AND date >= NOW()', [userId]);
 
         const [prescribedExercisesResult, meetingsResult] = await Promise.all([prescribedExercisesQuery, meetingsQuery]);
 
@@ -78,7 +89,7 @@ router.get('/popup', async (req, res) => {
         console.log(exercisesList);
         console.log(meetingList);
 
-        return res.status(200).send({ exercise: exercisesList, meeting: meetingList });
+        return res.status(200).send({ date: dateString, exercise: exercisesList, meeting: meetingList[0] });
     } catch (err) {
         console.log(err);
         return res.status(500).send('An error occured while trying to get exercise or meeting information');
