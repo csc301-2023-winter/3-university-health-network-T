@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './Register.css';
 import uhn_logo from "../uhn_logo.svg";
 import { AiOutlineQuestion } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); 
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -20,6 +22,10 @@ function Register() {
   const handleConfirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
   };
+
+  const handleHelpClick = () => {
+    navigate('/help');
+  }
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -35,7 +41,7 @@ function Register() {
       return;
     }
 
-    fetch('host/account/signup', {
+    fetch('http://localhost:5000/account/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
@@ -46,7 +52,8 @@ function Register() {
     .then(data => {
       if (data.success) {
         // Register successful
-        console.log("Register successful")
+        console.log("Register successful");
+        navigate('/login'); 
       } else {
         // Register failed
         console.log(data.message);
@@ -65,7 +72,7 @@ function Register() {
         <img src={uhn_logo} alt="Login" style={{ width: '100%', height: '100%' }}/>
       </div>
       <div style={{ position: 'absolute', top: '0', left: '0' }}>
-        <AiOutlineQuestion className="menu-button2" size={38} />
+        <AiOutlineQuestion className="menu-button2" size={38} onClick = {handleHelpClick} />
       </div>
       <form>
         <h1>Register</h1>
@@ -98,3 +105,4 @@ function Register() {
 }
 
 export default Register;
+

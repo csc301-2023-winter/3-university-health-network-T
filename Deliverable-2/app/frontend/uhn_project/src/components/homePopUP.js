@@ -10,6 +10,7 @@ const HomePopUP = () => {
     let path = `/video`; 
     navigate(path);
   }
+  
 
   return (
     <>

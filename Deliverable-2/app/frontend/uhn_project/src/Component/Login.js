@@ -3,11 +3,13 @@ import './Login.css';
 import uhn_logo from "../uhn_logo.svg";
 import { AiOutlineQuestion } from "react-icons/ai";
 import './Menu.css';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); 
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -24,7 +26,7 @@ function Login() {
       return;
     }
     
-    fetch('host/account/signin', {
+    fetch('http://localhost:5000/account/signin', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
@@ -37,6 +39,7 @@ function Login() {
         // Login successful
         localStorage.setItem('token', data.data.token);
         localStorage.setItem('userId', data.data.user.id);
+        navigate('/rectify'); 
       } else {
         // Login failed
         console.log(data.message);
@@ -56,13 +59,17 @@ function Login() {
     console.log('Forgot password for email:', email);
   };
 
+  const handleHelpClick = () => {
+    navigate('/help');
+  }
+
   return (
     <div className="login-container">
       <div style={{ width: '500px', height: '500px' ,marginRight: '20px'}}>
         <img src={uhn_logo} alt="Login" style={{ width: '100%', height: '100%' }}/>
       </div>
       <div style={{ position: 'absolute', top: '0', left: '0' }}>
-        <AiOutlineQuestion className="menu-button2" size={38} />
+        <AiOutlineQuestion className="menu-button2" size={38} onClick={handleHelpClick}  />
       </div>
       <form>
         <h1>Login</h1>
@@ -80,7 +87,7 @@ function Login() {
         <a href="/register">
             <button type="button" onClick={handleRegister}>Register</button>
         </a>
-        <a href="#" onClick={handleForgotPassword}>Forgot Password?</a>
+        <a href="/reset" onClick={handleForgotPassword}>Forgot Password?</a>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
@@ -88,6 +95,7 @@ function Login() {
 }
 
 export default Login;
+
 
 
 

@@ -25,7 +25,8 @@ router.post('/', async (req, res) => {
     try {
         await transporter.sendMail(mailOptions);
         res.status(200).json({
-            message: 'Verification code has been sent to your email'
+            message: 'Verification code has been sent to your email',
+            code: code 
         });
     } catch (error) {
         console.log(error);

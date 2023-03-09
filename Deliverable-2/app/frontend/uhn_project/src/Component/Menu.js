@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './Menu.css';
 import { AiOutlineQuestion } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom';
 
 function Menu() {
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
 
   const handleMenuClick = () => {
     setShowMenu(!showMenu);
@@ -13,38 +15,42 @@ function Menu() {
     setShowMenu(false);
   };
 
+  const handleHelpClick = () => {
+    navigate('/help');
+  }
+
   return (
     <div className="menu">
       <div className="buttons-container">
         <button className="menu-button" onClick={handleMenuClick}>
           Menu
         </button>
-        <AiOutlineQuestion className="menu-button2" size={38} />
+        <AiOutlineQuestion className="menu-button2" size={38} onClick = {handleHelpClick}/>
       </div>
       
       {showMenu && (
         <div className="menu-overlay">
           <ul className="menu-list">
             <li>
-              <a href="/home">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
               <a href="#">Rehab Program</a>
             </li>
             <li>
-              <a href="#">Meeting</a>
+              <a href="/video">Meeting</a>
             </li>
             <li>
-              <a href="#">Blog</a>
+              <a href="/blog">Blog</a>
             </li>
             <li>
               <a href="#">Settings</a>
             </li>
             <li>
-              <a href="#">Help</a>
+              <a href="/help">Help</a>
             </li>
             <li>
-              <a href="#">Contact us</a>
+              <a href="/contact">Contact us</a>
             </li>
           </ul>
           <button className="menu-close" onClick={handleCloseClick}>

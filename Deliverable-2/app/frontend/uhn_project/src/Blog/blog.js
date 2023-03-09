@@ -1,67 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import "./blog.css"
-
+import './blog.css';
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
   const fetchBlogs = async (page) => {
-    const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
-
-    const response = await fetch(`/host/blog?page=${page}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ userId }),
+    const response = await fetch(`http://localhost:5000/blog/blogs/${page}`, {
+      method: 'GET',
     });
 
     if (response.ok) {
       const result = await response.json();
       setBlogs(result.data);
-      setTotalPages(result.totalPages);
+    }
+  };
+
+  const fetchBlogDetails = async (bid) => {
+    const response = await fetch(`http://localhost:5000/blog/detail/${bid}`, {
+      method: 'GET',
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      setSelectedBlog(result.data);
     }
   };
 
   useEffect(() => {
-    fetchBlogs(currentPage);
-  }, [currentPage]);
+    fetchBlogs(1); // load the first page of blogs by default
+  }, []);
 
-  const handlePrevClick = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+  const handleBlogClick = (blog) => {
+    fetchBlogDetails(blog.bid);
   };
 
-  const handleNextClick = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+  const handleCloseClick = () => {
+    setSelectedBlog(null);
   };
 
   return (
-    <div>
+    <div className="blog-container">
       <h1>Blog</h1>
-      {blogs.map((blog) => (
-        <div key={blog.id}>
-          <h2>{blog.title}</h2>
-          <p>{blog.date}</p>
-          <p>{blog.content}</p>
+      {selectedBlog ? (
+        <div className="blog-details">
+          <h2>{selectedBlog.title}</h2>
+          <div className="tag-container">
+            {/* {selectedBlog.tags.map((tag) => (
+              <div key={tag} className="tag">{tag}</div>
+            ))} */}
+            <div className="date">{selectedBlog.date}</div>
+          </div>
+          <p>{selectedBlog.context}</p>
+          <button onClick={handleCloseClick}>Close</button>
         </div>
-      ))}
-      <div>
-        <button disabled={currentPage === 1} onClick={handlePrevClick}>
-          Previous
-        </button>
-        <button disabled={currentPage === totalPages} onClick={handleNextClick}>
-          Next
-        </button>
-      </div>
+      ) : (
+        <div className="blog-overview">
+          <h2>Overview</h2>
+          {blogs.map((blog) => (
+            <div key={blog.bid} className="blog-preview" onClick={() => handleBlogClick(blog)}>
+              <div className="tag-container">
+                {/* {blog.tags.map((tag) => (
+                  <div key={tag} className="tag">{tag}</div>
+                ))} */}
+                <div className="date">{blog.date}</div>
+              </div>
+              <h3>{blog.title}</h3>
+              <p>{blog.context.substring(0, 50)}...</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
 export default Blog;
+

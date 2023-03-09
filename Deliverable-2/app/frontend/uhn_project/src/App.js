@@ -23,8 +23,7 @@ function App() {
     <div>
     <BrowserRouter>
      <Routes>
-       <Route path="/" element={<Menu/>}></Route>
-       <Route path="/home" element={<HomeMove/>}></Route>
+       <Route path="/" element={<HomeMove/>}></Route>
        <Route path="/video" element = {<Recording_page/>}></Route>
        <Route path="/register" element = {<Register/>}></Route>
        <Route path="/login" element = {<Login/>}></Route>

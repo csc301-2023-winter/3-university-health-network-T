@@ -1,15 +1,104 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Blog container styles */
+.blog-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Blog title styles */
 h1 {
-    text-align: center;
-    margin-top: 50px;
-    font-family: 'Montserrat', sans-serif; /* Use a nice font */
-  }
-  
-  h2 {
-    text-align: center;
-    margin: 30px auto; /* Center the element and add some spacing */
-    font-family: 'Playfair Display', serif; /* Use a nice font */
-    font-size: 36px; /* Increase the font size */
-    font-weight: bold; /* Make the font bold */
-    color: #333; /* Use a nice color */
-  }
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Blog overview styles */
+.blog-overview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.blog-preview {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  width: calc(50% - 10px);
+}
+
+/* Tag styles */
+.tag-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tag {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Date styles */
+.date {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Blog content styles */
+h2 {
+  text-align: center;
+  margin: 30px auto;
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+}
+
+.blog-details {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Close button styles */
+button {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #666;
+}
+
+
   
