@@ -13,6 +13,10 @@ import ForgotPassword from "./Component/Reset_pass";
 import BlogC from './Blog/combine';
 import ContactC from './Contact/combine';
 import HelpC from './Help/combine';
+import CameraChecker from './Settings/cameraCheck';
+import MicrophoneChecker from './Settings/microphoneChecker';
+import SpeakerChecker from './Settings/speakertest';
+import SettingsPopUP from './Settings/settingsPopUp';
 
 function App() {
   return (
@@ -28,6 +32,10 @@ function App() {
        <Route path="/blog" element = {<BlogC/>}> </Route>
        <Route path="/contact" element = {<ContactC/>}> </Route>
        <Route path="/help" element = {<HelpC/>}> </Route>
+       <Route path="/camerachecker" element = {<CameraChecker/>}> </Route>
+       <Route path="/microphonechecker" element = {<MicrophoneChecker/>}> </Route>
+       <Route path="/speakerchecker" element = {<SpeakerChecker/>}> </Route>
+       <Route path="/settings" element = {<SettingsPopUP/>}> </Route>
       </Routes>
     </BrowserRouter>
     </div>
