@@ -9,11 +9,11 @@ const users = [
   { id: 2, username: 'user2', password: 'password2' },
 ];
 
-router.get('/login', (req, res) => {
+router.get('/signin', (req, res) => {
   return res.send({ message: 'Login page' });
 });
 
-router.post('/login', (req, res) => {
+router.post('/signin', (req, res) => {
   const { email, password } = req.body;
   let count = 0; // this count is used to check if the user exists in the database.
   pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password])
@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
    })
   .catch(error => {
      console.log(error);
-     return res.status(500).send({ message: 'Error querying the database' });
+     return res.status(500).json({ message: 'Error querying the database' });
   });
 });
 
@@ -57,10 +57,10 @@ router.post('/signup', (req, res) => {
       };
     });
     if (error_flag) {
-      return res.status(409).send({ message: 'Email already exists' });
+      return res.status(409).json({ message: 'Email already exists' });
     }
     const newUser = pool.query('INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id', [email, password]);
-    return res.status(201).send({ message: 'Signup successful' });
+    return res.status(201).json({ message: 'Signup successful' });
   });
 
 module.exports = router;
