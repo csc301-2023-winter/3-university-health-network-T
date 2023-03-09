@@ -17,15 +17,11 @@ const accountRouter = require('./routes/account')
 app.use("/account", accountRouter)
 const authRouter = require('./routes/send_auth')
 app.use("/auth", authRouter)
-const recordRouter = require("./routes/record")
-app.use("/record", recordRouter)
 const blogRouter = require("./routes/blog")
 app.use("/blog", blogRouter)
 const popRouter = require('./routes/pop_up')
 app.use("/", popRouter)
 
-// const tableSetup = require('./table_setup')
-// app.use("/table_setup", tableSetup)
 
 
 server.listen(port,  () => {
