@@ -24,7 +24,7 @@ function Login() {
       return;
     }
     
-    fetch('host/account/signin', {
+    fetch('http://localhost:5000/account/signin', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {

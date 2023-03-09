@@ -11,7 +11,7 @@ function Blog() {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
 
-    const response = await fetch(`/host/blog?page=${page}`, {
+    const response = await fetch(`/blog?page=${page}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',

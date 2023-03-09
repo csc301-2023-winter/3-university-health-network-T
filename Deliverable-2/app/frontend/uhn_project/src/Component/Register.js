@@ -35,7 +35,7 @@ function Register() {
       return;
     }
 
-    fetch('host/account/signup', {
+    fetch('http://localhost:5000/account/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
