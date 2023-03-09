@@ -46,9 +46,9 @@ function Blog() {
         <div className="blog-details">
           <h2>{selectedBlog.title}</h2>
           <div className="tag-container">
-            {selectedBlog.tags.map((tag) => (
+            {/* {selectedBlog.tags.map((tag) => (
               <div key={tag} className="tag">{tag}</div>
-            ))}
+            ))} */}
             <div className="date">{selectedBlog.date}</div>
           </div>
           <p>{selectedBlog.context}</p>
@@ -60,9 +60,9 @@ function Blog() {
           {blogs.map((blog) => (
             <div key={blog.bid} className="blog-preview" onClick={() => handleBlogClick(blog)}>
               <div className="tag-container">
-                {blog.tags.map((tag) => (
+                {/* {blog.tags.map((tag) => (
                   <div key={tag} className="tag">{tag}</div>
-                ))}
+                ))} */}
                 <div className="date">{blog.date}</div>
               </div>
               <h3>{blog.title}</h3>
