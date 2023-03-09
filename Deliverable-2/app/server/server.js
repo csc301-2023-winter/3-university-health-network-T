@@ -5,7 +5,7 @@ const server = require('http').Server(app)
 // const io = require('socket.io')(server)
 app.use(bodyParser.json())
 app.set("view engine", 'ejs')
-const port = process.env.PROT || 5000;
+const port = process.env.PROT || 3000;
 
 const table_init = require('./table_setup');
 table_init.table_init();
@@ -25,8 +25,8 @@ const blogRouter = require("./routes/blog")
 app.use("/blog", blogRouter)
 const exeRouter = require("./routes/exercise")
 app.use("/exercise", exeRouter)
-// const recordRouter = require("./routes/recordings")
-// app.use("/record", recordRouter)
+const recordRouter = require("./routes/recordings")
+app.use("/record", recordRouter)
 const popRouter = require('./routes/pop_up')
 app.use("/", popRouter)
 
