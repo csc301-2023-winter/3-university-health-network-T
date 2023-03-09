@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../dbConfig');
 
-router.get('/blog/:bid', (req, res) => {
+router.get('/detail/:bid', (req, res) => {
   const bid = req.params.bid;
 
   pool.query('SELECT * FROM Blog WHERE bid = $1', [bid], (err, result) => {
