@@ -1,0 +1,70 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Global styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    
+  }
+  
+  /* Search bar */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-left: 500px;
+    width: 30%;
+  }
+  
+  .search-bar input[type='text'] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px;
+    
+  }
+  
+  .search-bar i.fa {
+    font-size: 20px;
+    color: #999;
+    margin-left: 10px;
+    
+  }
+  
+  /* FAQ section */
+  .faq-section {
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .faq-section h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .faq-section p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
