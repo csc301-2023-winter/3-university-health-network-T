@@ -50,7 +50,7 @@ router.post('/signup', (req, res) => {
     if (error_flag) {
       return res.status(409).json({ message: 'Email already exists' });
     }
-    const newUser = pool.query('INSERT INTO Patient (Email, Password) VALUES ($1, $2) RETURNING id', [email, password]);
+    const newUser = pool.query('INSERT INTO Patient (Email, Password) VALUES ($1, $2) RETURNING PatientId', [email, password]);
     return res.status(201).json({ message: 'Signup successful' });
   });
 
