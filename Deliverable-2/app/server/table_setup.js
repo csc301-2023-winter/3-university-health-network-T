@@ -122,5 +122,23 @@ module.exports = {
         console.log("Error creating table:", err);
       }
     });
+
+    pool.query(`
+    CREATE TABLE IF NOT EXISTS Blog (
+      bid serial PRIMARY KEY,
+      title varchar(100) NOT NULL,
+      context text NOT NULL,
+      tags varchar(100) NOT NULL,
+      writer varchar(50) NOT NULL,
+      date date NOT NULL
+    );
+    `, (err, res) => {
+      if (!err) {
+        console.log("Table 'Blog' created successfully.");
+      } else {
+        console.log("Error creating table:", err);
+      }
+});
+    
   }
 }
