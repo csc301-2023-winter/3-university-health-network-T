@@ -7,6 +7,9 @@ app.use(bodyParser.json())
 app.set("view engine", 'ejs')
 const port = process.env.PROT || 3000;
 
+const table_init = require('./table_setup');
+table_init.table_init();
+
 const meetingRouter = require('./routes/meeting')
 meetingRouter.setupSocket(io)
 app.use("/meeting", meetingRouter)
