@@ -1,38 +1,44 @@
 const express = require('express');
 const router = express.Router();
+const { pool } = require('../dbConfig');
 
-const blogPosts = [
-    {
-      id: 1,
-      title: 'Blog post 1',
-      createdAt: new Date(),
-      content: 'This is the first blog post.',
-      tags: ['tag1', 'tag2']
-    },
-    {
-      id: 2,
-      title: 'Blog post 2',
-      createdAt: new Date(),
-      content: 'This is the second blog post.',
-      tags: ['tag2', 'tag3']
-    },
-    {
-      id: 3,
-      title: 'Blog post 3',
-      createdAt: new Date(),
-      content: 'This is the third blog post.',
-      tags: ['tag1', 'tag3']
-    }
-];
+router.get('/blog/:bid', (req, res) => {
+  const bid = req.params.bid;
 
-router.get('/', (req, res) => {
-    // TODO: after connection, need to replace this with real db
-    const tag = req.query.tag;
-    let filteredBlogPosts = blogPosts;
-    if (tag) {
-      filteredBlogPosts = blogPosts.filter(post => post.tags.includes(tag));
+  pool.query('SELECT * FROM Blog WHERE bid = $1', [bid], (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+      return;
     }
-    res.render('blog', { blogPosts: filteredBlogPosts });
+
+    if (result.rows.length === 0) {
+      res.status(404).send({ message: 'Blog not found' });
+      return;
+    }
+
+    res.status(200).json({
+      message: 'Retrieved blog successfully',
+      data: result.rows[0]
+    });
   });
+});
+
+router.get('/blogs/:page', (req, res) => {
+  const page = req.params.page;
+  const limit = 10;
+  const offset = (page - 1) * limit;
+
+  pool.query('SELECT * FROM Blog ORDER BY bid LIMIT $1 OFFSET $2', [limit, offset], (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+
+    res.status(200).json({
+      message: 'Retrieved blogs successfully',
+      data: result.rows
+    });
+  });
+});
 
 module.exports = router;
