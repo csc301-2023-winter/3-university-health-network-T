@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState} from 'react';
+import { saveAs } from 'file-saver';
 
 function Recorder() {
   const sourceVideoRef = useRef(null);
@@ -41,6 +42,8 @@ function Recorder() {
       videoBlob = new Blob([event.data], {type: 'video/mp4'});
      let u = URL.createObjectURL(videoBlob)
   // Save the video blob to a file or upload it to a server
+      saveAs(videoBlob, 'recording.mp4');
+
   updateUrl(u);
   console.log(videoBlob)
 };
