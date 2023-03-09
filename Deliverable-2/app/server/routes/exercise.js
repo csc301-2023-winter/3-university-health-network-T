@@ -67,7 +67,7 @@ router.get('/getexes-by-dow', (req, res) => {
     
         res.status(200).json({
             message: 'Retrieved exercises successfully',
-            data: {data}
+            data: data
         });
     });
 })
@@ -116,7 +116,7 @@ router.get('/avatar-for-exes', (req, res) => {
                 resdata.path = avatarData.Path;
 
                 res.status(200).json({
-                    message: "get info successfully",
+                    message: "Get Info Successfully",
                     data: resdata
                 });
             });
