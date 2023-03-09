@@ -4,8 +4,7 @@ const { pool } = require('../dbConfig');
 const multer = require('multer');
 const azure = require('azure-storage');
 const ver_tools = require('../tools/verifiers');
-
-const blobService = azure.createBlobService();
+const blobService = azure.createBlobService(// TODO: after setup server part, fill here); 
 const videoContainerName = 'videos';
 const jointContainerName = 'joints';
 
