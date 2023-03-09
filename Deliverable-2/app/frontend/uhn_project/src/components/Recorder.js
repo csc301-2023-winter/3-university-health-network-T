@@ -1,13 +1,20 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState} from 'react';
 
 function Recorder() {
   const sourceVideoRef = useRef(null);
   const mirrorVideoRef = useRef(null);
   const peerConnectionRef = useRef(null);
+  const [url, updateUrl] = useState("");
+  let mediaRecorder = null;
+  let videoBlob = null
 
   const startMirror = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    console.log(navigator.mediaDevices)
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true});
+    
     sourceVideoRef.current.srcObject = stream;
+    const options = { mimeType: 'video/webm;codecs=vp9' };
+    mediaRecorder = new MediaRecorder(stream,options);
 
     const configuration = { iceServers: [] };
     const peerConnection = new RTCPeerConnection(configuration);
@@ -21,11 +28,30 @@ function Recorder() {
     await peerConnection.setLocalDescription(offer);
 
     peerConnectionRef.current = peerConnection;
+
+
+
+
+
+// Start recording the video track
+    mediaRecorder.start();
+
+// When the recording is finished, save the video to a file or a blob
+    mediaRecorder.ondataavailable = (event) => {
+      videoBlob = new Blob([event.data], {type: 'video/mp4'});
+     let u = URL.createObjectURL(videoBlob)
+  // Save the video blob to a file or upload it to a server
+  updateUrl(u);
+  console.log(videoBlob)
+};
   };
 
   const stopMirror = () => {
     peerConnectionRef.current.close();
+    mediaRecorder.stop();
+    console.log("a")
     sourceVideoRef.current.srcObject.getTracks().forEach(function(track) {
+      console.log(track)
       track.stop();
     });
   };
@@ -43,7 +69,8 @@ function Recorder() {
       
       <div>
         <video ref={sourceVideoRef} autoPlay />
-        {//<video ref={mirrorVideoRef} autoPlay />
+        {//<video src={url} autoPlay />
+        url?<button><link download={'video.mp4'} href={url}></link></button>:"b"
         }
       </div>
       <div>

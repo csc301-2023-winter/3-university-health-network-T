@@ -3,96 +3,71 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import model from "./models/air-squat.fbx"
+import Avatar_player from './Avatar_player';
+const server_url = " http://localhost:5000"
 
 class Avatar_displayer extends Component {
 
-    componentDidMount() {
-        // Scene
-        this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0xffffff);
-
-        // Camera
-        this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight);
-        this.camera.position.set(5, 1, 1);
-        this.scene.add(this.camera);
-
-        // Renderer
-        this.renderer = new THREE.WebGLRenderer({ antialias: true });
-        this.renderer.setSize(window.innerWidth/2, window.innerHeight/2);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.mount.appendChild(this.renderer.domElement);
-
-        // Controls
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-        this.controls.enableDamping = true;
-        this.controls.enablePan = false;
-        this.controls.enableZoom = true;
-        this.controls.autoRotate = false;
-        this.controls.autoRotateSpeed = 5;
-        this.controls.enableRotate = true;
-
-        // Light
-        this.pointLight  = new THREE.PointLight(0xffffff, 3, 100);
-        this.pointLight.position.set(10, 20, 20);
-        this.scene.add(this.pointLight);
-
-        // Load FBX model
-        const loader = new FBXLoader();
-        loader.load(
-            model,
-            (object) => {
-                console.log(this.scene.children)
-                this.scene.remove(this.scene.children.filter(child => child !== this.camera && child !== this.pointLight)[0]);
-                object.scale.set(0.016, 0.016, 0.016);
-                object.position.set(0, -1.5, 0);
-                object.rotation.y = Math.PI * .4;
-
-                this.mixer = new THREE.AnimationMixer(object);
-                this.mixer.timeScale = 1;
-                const action = this.mixer.clipAction(object.animations[0]);
-                action.play();
-
-                this.scene.add(object);
+    constructor(props){
+        super(props)
+        this.state={
+            all_avatars:[{
+                path:model,
+                times:3
             },
-            (xhr) => {
-                console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
-
-        // Animate
-        this.clock = new THREE.Clock();
-        this.animate();
-    }
-
-    animate = () => {
-        this.frameId = requestAnimationFrame(this.animate);
-
-        // Update controls
-        this.controls.update();
-
-        // Update animation
-        if (this.mixer) {
-            const delta = this.clock.getDelta();
-            this.mixer.update(delta);
-            
+            {
+                path:model,
+                times:2
+            }],
+            index:0
         }
-
-        // Render
-        this.renderer.render(this.scene, this.camera);
+        this.onfinsh=this.onfinsh.bind(this)
     }
 
-    componentWillUnmount() {
-        cancelAnimationFrame(this.frameId);
-        this.mount.removeChild(this.renderer.domElement);
+load_data(){
+        const myHeaders = new Headers();
+        const token = localStorage.getItem("authToken");
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        var mybody = new FormData()
+        mybody.append("Day_Of_Week",""+(new Date()).getDay())
+        const requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow',
+            
+        };
+        
+        fetch(server_url+ "/exercise/getexes-by-dow?Day_Of_Week="+(new Date()).getDay(),requestOptions)
+        .then(reponse=>reponse.json).then(
+            data=>{
+                console.log(data.message)
+                return data.data
+            }
+        ).then((data)=>{
+            return data.map((d)=>{
+                return {path:d.fbx.robort_path,times:d.Number_Repetitions}
+            })
+        }).then((data)=>{
+            this.setState({["all_avatars"]:data,["index"]:0})
+        })
+        //this.setState({['data']:[model]})
+    }
+
+
+    onfinsh(){
+        console.log(this.state.index)
+        if(this.state.index+1<this.state.all_avatars.length){
+            this.setState({["index"]:this.state.index+1})
+        }
     }
 
     render() {
         return (
-            <div style={{width:"100%"}}>
-            <div ref={mount => { this.mount = mount }} style={{width:"100%"}}/>
+            <div>
+            <div>
+                {this.state.index}
+            </div>
+            <Avatar_player path={this.state.all_avatars[this.state.index].path} total={this.state.all_avatars[this.state.index].times} onfinsh={this.onfinsh} index={this.state.index}></Avatar_player>
             </div>
         );
     }
