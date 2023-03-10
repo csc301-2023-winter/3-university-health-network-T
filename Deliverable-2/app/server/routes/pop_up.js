@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const pg = require('pg');
 const { pool } = require('../dbConfig');
+const ver_tools = require('../tools/verifiers');
 
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 // below post method is for testing purposes only. It will add some information to the database.
 
 router.get('/popup', async (req, res) => {
     try {
-        const { userId } = req.body;
+        const pid = ver_tools.login_ver(req.token);
         //form the date data in the format YYYY-MM-DD
         const currentDate = new Date();
         const year = currentDate.getFullYear();
@@ -19,28 +19,30 @@ router.get('/popup', async (req, res) => {
         const weekdayIndex = currentDate.getDay();
         const weekday = weekdays[weekdayIndex];
 
-        const prescribedExercisesQuery = pool.query('select * from PrescribedExercise where userId = $1 and day_of_week = $2', [userId, weekday]);
-        const meetingsQuery = pool.query('SELECT * FROM Meeting WHERE userId = $1 AND date >= NOW()', [userId]);
+        const prescribedExercisesQuery = pool.query('select * from PrescribedExercise where PatientID = $1', [pid]);
+        const meetingsQuery = pool.query('SELECT * FROM Meeting WHERE PatientID = $1', [pid]);
 
         const [prescribedExercisesResult, meetingsResult] = await Promise.all([prescribedExercisesQuery, meetingsQuery]);
 
         const exercisesList = prescribedExercisesResult.rows.map((row) => ({
-            exercise: row.exercise,
-            number_sets: row.number_sets,
-            number_repetitions: row.number_repetitions,
-            day_of_week: row.day_of_week
+            exercise: row.Exercise,
+            number_sets: row.Number_Sets,
+            number_repetitions: row.Number_Repetitions,
+            day_of_week: row.Day_Of_Week
         }));
 
         const meetingList = meetingsResult.rows.map((row) => ({
-            date: row.date,
-            time: row.time,
-            meetingId: row.meetingId
+            date: row.Date,
+            start_time: row.StartTime,
+            end_time: row.EndTime,
+            meetingId: row.MeetingID,
+            meetingPassword: row.MeetingPassword
         }));
 
         console.log(exercisesList);
         console.log(meetingList);
 
-        return res.status(200).send({ date: dateString, exercise: exercisesList, meeting: meetingList[0] });
+        return res.status(200).send({ date: dateString, weekday: weekday, exercise: exercisesList, meeting: meetingList });
     } catch (err) {
         console.log(err);
         return res.status(500).send('An error occured while trying to get exercise or meeting information');
