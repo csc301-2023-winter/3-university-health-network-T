@@ -111,7 +111,8 @@ module.exports = {
     CREATE TABLE IF NOT EXISTS Meeting (
       PatientID integer REFERENCES Patient(PatientID),
       Date date NOT NULL,
-      Time time NOT NULL,
+      StartTime time NOT NULL,
+      EndTime time NOT NULL,
       MeetingID serial PRIMARY KEY,
       MeetingPasscode varchar(255) NOT NULL
     );
