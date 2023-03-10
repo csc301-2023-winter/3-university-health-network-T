@@ -17,6 +17,7 @@ import CameraChecker from './Settings/cameraCheck';
 import MicrophoneChecker from './Settings/microphoneChecker';
 import SpeakerChecker from './Settings/speakertest';
 import SettingsPopUP from './Settings/settingsPopUp';
+import Rehab from './Rehab/rehab';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
        <Route path="/microphonechecker" element = {<MicrophoneChecker/>}> </Route>
        <Route path="/speakerchecker" element = {<SpeakerChecker/>}> </Route>
        <Route path="/settings" element = {<SettingsPopUP/>}> </Route>
+       <Route path="/rehab" element = {<Rehab/>}> </Route>
       </Routes>
     </BrowserRouter>
     </div>
