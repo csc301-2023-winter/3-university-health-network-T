@@ -15,7 +15,7 @@ function MicrophoneChecker() {
       <br/>
       <audio src={audioURL} controls />
 
-      {!isRecording ? (<button onClick={startRecording} disabled={isRecording}>
+      {!isRecording ? (<button className="" onClick={startRecording} disabled={isRecording}>
         start recording
       </button>) : (<button onClick={stopRecording} disabled={!isRecording}>
         stop recording

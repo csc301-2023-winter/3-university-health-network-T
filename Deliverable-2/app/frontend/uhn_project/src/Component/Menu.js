@@ -44,7 +44,7 @@ function Menu() {
               <a href="/blog">Blog</a>
             </li>
             <li>
-              <a href="#">Settings</a>
+              <a href="/settings">Settings</a>
             </li>
             <li>
               <a href="/help">Help</a>

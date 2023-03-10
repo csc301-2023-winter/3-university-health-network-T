@@ -39,6 +39,7 @@ function Login() {
         // Login successful
         localStorage.setItem('token', data.data.token);
         localStorage.setItem('userId', data.data.user.id);
+        localStorage.setItem('email', data.data.user.email);
         navigate('/rectify'); 
       } else {
         // Login failed
