@@ -8,11 +8,31 @@ function Rectify() {
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoggedIn(true);
-    navigate('/');
+    try {
+      const response = await fetch('http://localhost:5000/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: localStorage.getItem('email') })
+      });
+      const data = await response.json();
+      if (response.ok) {
+        // success case
+        setLoggedIn(true);
+        navigate('/');
+      } else {
+        // failure case
+        alert(data.message); // or display the error message in some other way
+      }
+    } catch (error) {
+      // network error or other error
+      console.error(error);
+    }
   };
+  
 
   const handleHelpClick = () => {
     navigate('/help');
