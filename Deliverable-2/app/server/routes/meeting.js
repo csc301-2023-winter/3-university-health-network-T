@@ -79,6 +79,7 @@ async function createRoom(){
   
   await roomsClient.getRoom(roomId);
   console.log(`Retrieved Room with ID ${roomId}`);
+  return roomId;
 }
 
 router.get('/meeting-room', (req, res) => {
@@ -86,8 +87,13 @@ router.get('/meeting-room', (req, res) => {
   if (pid < 0){
     return res.status(403).send({ message: 'Invalid credentials' });
   }
-  createRoom();
-  return res.send('create room');
+  createRoom().then((roomId) => {
+    console.log(roomId);
+    return res.status(200).send({ message: 'Created room successfully', roomId: roomId });
+  }).catch((err) => {
+    console.log(err);
+    return res.status(403).send({ message: 'There is a error in creating room' });
+  });
 });
 
 module.exports = router;
