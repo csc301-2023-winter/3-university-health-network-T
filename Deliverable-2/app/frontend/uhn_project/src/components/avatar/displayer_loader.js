@@ -21,7 +21,7 @@ class Displayer_loader extends Component{
       load_avator(){
         const myHeaders = new Headers();
         const token = localStorage.getItem("authToken");
-        myHeaders.append("token", `Bearer ${token}`);
+        myHeaders.append("Authorization", `Bearer ${token}`);
         var mybody = new FormData()
         mybody.append("Day_Of_Week",""+(new Date()).getDay())
         const requestOptions = {
