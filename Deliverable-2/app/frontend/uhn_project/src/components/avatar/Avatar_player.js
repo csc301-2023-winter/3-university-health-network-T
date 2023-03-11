@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import model from "./models/air-squat.fbx"
-const server_url = " http://localhost:5000"
+const server_url = " http://localhost:3000"
 
 class Avatar_player extends Component {
 
