@@ -11,14 +11,7 @@ class Avatar_displayer extends Component {
     constructor(props){
         super(props)
         this.state={
-            all_exercise:[{
-                path:model,
-                times:3
-            },
-            {
-                path:model,
-                times:2
-            }],
+            all_exercise:[],
             index:0
         }
         this.onfinsh=this.onfinsh.bind(this)
