@@ -30,8 +30,8 @@ router.get('/avatar-for-exe', (req, res) => {
         return;
     }
 
-    const exercise = req.body.exercise;
-    const character = req.body.character;
+    const exercise = req.query.exercise;
+    const character = req.query.character;
     var resdata = { exercise: exercise, character: character };
 
     pool.connect((err, client, done) => {
@@ -49,8 +49,8 @@ router.get('/avatar-for-exe', (req, res) => {
             }
 
             const avatarData = result.rows[0];
-            resdata.format = avatarData.Format;
-            resdata.path = avatarData.Path;
+            resdata.format = avatarData.format;
+            resdata.path = avatarData.path;
 
             res.status(200).json({
                 message: "Get Info Successfully",

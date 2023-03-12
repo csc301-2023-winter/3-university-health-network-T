@@ -6,15 +6,19 @@ const exes_helper = require('../tools/pre_comp_exes');
 // below post method is for testing purposes only. It will add some information to the database.
 
 router.get('/popup', (req, res) => {
-    const pid = ver_tools.login_ver(req.token);
-  
+    
+    const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+    console.log(pid);
     if (pid < 0) {
         res.sendStatus(403);
         return;
     }
-    const etodo = exes_helper.exe_todo(pid);
+    exes_helper.exe_todo(pid).then((result) => {
+        console.log(result);
+        const etodo = result;
+    
     if (etodo === -1) {
-        res.status(500).send("error: Failed to get exercise");
+        res.sendstatus(500).send("error: Failed to get exercise");
         return;
     }
     try {
@@ -26,7 +30,8 @@ router.get('/popup', (req, res) => {
         pool.query(query, [pid], (error, result) => {
             if (error) {
                 console.error(error);
-                return null;
+                res.status(500).send(error);
+                return;
             }
             const meeting = result.rows[0];
             res.status(200).json({
@@ -43,7 +48,7 @@ router.get('/popup', (req, res) => {
         return;
     }
 
-    
+});
 });
 
 // router.get('/popup', async (req, res) => {
