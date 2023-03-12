@@ -20,16 +20,19 @@ router.get('/year', (req, res) => {
             const both = [];
 
             for (const date in result1) {
-                exercises.push(new Date(date).toDateString());
+                const formattedDate = new Date(date).toISOString().slice(0,10);
+                exercises.push(formattedDate);
             }
             for (const date in result2) {
-                meetings.push(new Date(date).toDateString());
+                const formattedDate = new Date(date).toISOString().slice(0,10);
+                meetings.push(formattedDate);
             }
             for (const date of exercises) {
                 if (meetings.includes(date)) {
                     both.push(date);
                 }
             }
+
             res.status(200).json({
                 message:"Success",
                 data:{
