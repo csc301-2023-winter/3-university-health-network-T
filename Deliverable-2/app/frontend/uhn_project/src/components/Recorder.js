@@ -102,7 +102,6 @@ const UploadRecordingExerciseVideo = () => {
 };
 
       
-export default UploadRecordingExerciseVideo;
 
       
       

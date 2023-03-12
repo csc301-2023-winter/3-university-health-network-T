@@ -1,11 +1,9 @@
-import { CommunicationIdentityClient } from '@azure/communication-identity';
-import { CommunicationUserKind } from '@azure/communication-common';
-import { AzureCommunicationTokenCredential } from '@azure/communication-common';
-import { MeetingDetails, MeetingParticipant } from '@azure/communication-calling';
-import { CallClient, CallAgent } from '@azure/communication-calling';
+
 import { Component } from 'react';
 import { AzureCommunicationUserCredential } from '@azure/communication-common';
 import { MeetingComposite } from '@azure/communication-react';
+import { server_url } from '../global';
+import { useParams } from 'react-router';
 
 class Meeting_room extends Component{
     
@@ -79,7 +77,7 @@ class Meeting_room extends Component{
             <div>
               <MeetingComposite 
                 credential={this.state.credential}
-                meetingLink={`https://meeting-service.communication.azure.com/?id=${this.props.meetingId}`}
+                meetingLink={"https://uhn-meeting.azurewebsites.net/?groupId=4289f430-c113-11ed-b3d9-fb127a76869c"}
               />
             </div>
           );
@@ -90,6 +88,6 @@ class Meeting_room extends Component{
 export function Meeting_room_with_rotter(){
     let c=useParams()
     return(
-        <Meeting_room meetingId={c.Id}/>
+        <Meeting_room meetingId={c.Id} userToken="eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOmU3NDhiNmFiLTRiZTgtNDdjYi1hMGRkLTI5ZDcyNGI3YjM4ZF8wMDAwMDAxNy03NzA1LWRmMjItMGNmOS05YzNhMGQwMDY3MmUiLCJzY3AiOjE3OTIsImNzaSI6IjE2Nzg2NDY3MjEiLCJleHAiOjE2Nzg3MzMxMjEsInJnbiI6ImNhIiwiYWNzU2NvcGUiOiJ2b2lwIiwicmVzb3VyY2VJZCI6ImU3NDhiNmFiLTRiZTgtNDdjYi1hMGRkLTI5ZDcyNGI3YjM4ZCIsInJlc291cmNlTG9jYXRpb24iOiJjYW5hZGEiLCJpYXQiOjE2Nzg2NDY3MjF9.o83bYTNTxnZQ07zhAmHuiBLVAcruecjdcqfCIm0BUoW6nZnNIqgT8ZwjHmlHtpStRT5sibgrx2CZEpzteiosEXhYl_KCuq1qQnEKiJwgGDZlQpnVYpQ_XCvO7hDt72vdIjWBF0VOqEwGYL3cvPjWpUXRZZjamLx2r1n9pwj3cO2KhqOfapZLFH5Ygd-OuOx02BHk6VvC8wvXa0NvdcB4l2DrQyZU68eENoVOiZ7oBhYWKgX6ZzbhRrWvXO6pJJYHLkvBbdgA2QKjhTlknL9zzX8Yv2li4C8Ncc2asFUw01TQuPbbaizWSrvzbQ_7pPH18NKj4l7dcLp0HlM1g_q8Kw"/>
     )
   }
