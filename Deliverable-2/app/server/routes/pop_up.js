@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../dbConfig');
 const ver_tools = require('../tools/verifiers');
-const exes_helper = require('../tools/per_comp_exes');
+const exes_helper = require('../tools/pre_comp_exes');
 // below post method is for testing purposes only. It will add some information to the database.
 
 router.get('/popup', (req, res) => {
