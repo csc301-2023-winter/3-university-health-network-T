@@ -18,6 +18,7 @@ import MicrophoneChecker from './Settings/microphoneChecker';
 import SpeakerChecker from './Settings/speakertest';
 import SettingsPopUP from './Settings/settingsPopUp';
 import Rehab from './Rehab/rehab';
+import InternetCheck from './Settings/internetCheck';
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
        <Route path="/speakerchecker" element = {<SpeakerChecker/>}> </Route>
        <Route path="/settings" element = {<SettingsPopUP/>}> </Route>
        <Route path="/rehab" element = {<Rehab/>}> </Route>
+       <Route path="/internetchecker" element = {<InternetCheck/>}> </Route>
+      
       </Routes>
     </BrowserRouter>
     </div>

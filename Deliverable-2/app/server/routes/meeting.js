@@ -6,6 +6,7 @@ const { RoomsClient }= require('@azure/communication-rooms');
 const { CommunicationIdentityClient } = require("@azure/communication-identity");
 const connectionString = "endpoint=https://meeting-service.communication.azure.com/;accesskey=sIb5y7vrxfo8M6fdkE03yCb5GGcj0BkUnDMv5VwoAsZXze3jY5iO3hNMkVPEI3XDBFshp9sHF9plE+2DiTgzgA==";
 const roomsClient = new RoomsClient(connectionString);
+const identityClient = new CommunicationIdentityClient(connectionString);
 
 router.get('/get-all-meetings', (req, res) => {
   const pid = ver_tools.login_ver(req.token);
@@ -53,7 +54,6 @@ router.get('/get-upcoming-meetings', (req, res) => {
 
 async function createRoom(){
   // initialize a room client.
-  const identityClient = new CommunicationIdentityClient(connectionString);
   const user1 = await identityClient.createUserAndToken(["voip"]);
   const user2 = await identityClient.createUserAndToken(["voip"]);
 
@@ -77,9 +77,10 @@ async function createRoom(){
   const roomId = createRoom.id;
   console.log('create room');
   
-  await roomsClient.getRoom(roomId);
+  const getRoom = await roomsClient.getRoom(roomId);
   console.log(`Retrieved Room with ID ${roomId}`);
-  return roomId;
+  const double = [getRoom, user1.token];
+  return Promise.resolve(double);
 }
 
 router.get('/meeting-room', (req, res) => {
@@ -87,9 +88,19 @@ router.get('/meeting-room', (req, res) => {
   if (pid < 0){
     return res.status(403).send({ message: 'Invalid credentials' });
   }
-  createRoom().then((roomId) => {
-    console.log(roomId);
-    return res.status(200).send({ message: 'Created room successfully', roomId: roomId });
+  createRoom().then(([getRoom, token]) => {
+    const year = getRoom.validFrom.getFullYear();
+    const month = getRoom.validFrom.getMonth() + 1;
+    const day = getRoom.validFrom.getDay();
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+    const startTimeHour = String(getRoom.validFrom.getHours()).padStart(2, '0');
+    const startTimeMinute = String(getRoom.validFrom.getMinutes()).padStart(2, '0');
+    const startTime = `${startTimeHour}:${startTimeMinute}`;
+    const endTimeHour = String(getRoom.validUntil.getHours()).padStart(2, '0');
+    const endTimeMinute = String(getRoom.validUntil.getMinutes()).padStart(2, '0');
+    const endTime = `${endTimeHour}:${endTimeMinute}`;
+    pool.query('INSERT INTO Meeting (PatientID, Date, StartTime, EndTime, MeetingID, MeetingPasscode) VALUES ($1, $2, $3, $4, $5, $6)', [pid, formattedDate, startTime, endTime, getRoom.id, '25001200']);
+    return res.status(200).send({ message: 'Created room successfully', roomId: getRoom.id, meetingToken : token});
   }).catch((err) => {
     console.log(err);
     return res.status(403).send({ message: 'There is a error in creating room' });

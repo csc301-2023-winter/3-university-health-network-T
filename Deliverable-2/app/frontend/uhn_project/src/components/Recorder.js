@@ -43,6 +43,72 @@ function Recorder() {
      let u = URL.createObjectURL(videoBlob)
   // Save the video blob to a file or upload it to a server
       saveAs(videoBlob, 'recording.mp4');
+const UploadRecordingExerciseVideo = () => {
+  const [file, setFile] = useState(videoBlob);
+  const [token, setToken] = useState('');
+  const [message, setMessage] = useState('');
+      
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+      
+  const handleTokenChange = (event) => {
+    setToken(event.target.value);
+  };
+      
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+      
+    const formData = new FormData();
+    formData.append('token', token);
+    formData.append('file', file);
+      
+    try {
+      const response = await fetch('host/home/exercise', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setMessage(data.message);
+      } else {
+        setMessage('Failed to upload file');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+      
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Token:
+          <input type="text" value={token} onChange={handleTokenChange} />
+        </label>
+        <br />
+        <label>
+          File:
+          <input type="file" onChange={handleFileChange} />
+        </label>
+        <br />
+        <button type="submit">Upload</button>
+      </form>
+      {message && <p>{message}</p>}
+    </div>
+  );
+};
+
+      
+export default UploadRecordingExerciseVideo;
+
+      
+      
+      
+      
+
 
   updateUrl(u);
   console.log(videoBlob)
