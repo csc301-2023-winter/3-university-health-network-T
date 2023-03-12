@@ -13,26 +13,23 @@ router.get('/year', (req, res) => {
     }
     exes_helper.get_all_compe(pid).then((result1) => {
         exes_helper.getAllMeetings(pid).then((result2) => {
-            const exercises = new Set();
-            const meetings = new Set();
-            const both = new Set();
+            console.log(result1);
+            console.log(result2);
+            const exercises = [];
+            const meetings = [];
+            const both = [];
 
-            for (const exercise of result1) {
-                const date = exercise.date;
-                if (!result2.has(date)) {
-                    exercises.add(date);
-                } else {
-                    both.add(date);
+            for (const date in result1) {
+                exercises.push(new Date(date));
+            }
+            for (const date in result2) {
+                meetings.push(new Date(date));
+            }
+            for (const date of exercises) {
+                if (meetings.includes(new Date(date))) {
+                    both.push(new Date(date));
                 }
             }
-
-            for (const meeting of result2) {
-                const date = meeting.date;
-                if (!result1.has(date)) {
-                    meetings.add(date);
-                }
-            }
-
             res.status(200).json({
                 message:"Success",
                 data:{
@@ -51,3 +48,5 @@ router.get('/year', (req, res) => {
         res.status(500).send(err);
     });
 });
+
+module.exports = router;
