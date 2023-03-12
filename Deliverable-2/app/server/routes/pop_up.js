@@ -13,7 +13,10 @@ router.get('/popup', (req, res) => {
         res.sendStatus(403);
         return;
     }
-    const etodo = exes_helper.exe_todo(pid);
+    exes_helper.exe_todo(pid).then((result) => {
+        console.log(result);
+        const etodo = result;
+    
     if (etodo === -1) {
         res.sendstatus(500).send("error: Failed to get exercise");
         return;
@@ -45,7 +48,7 @@ router.get('/popup', (req, res) => {
         return;
     }
 
-    
+});
 });
 
 // router.get('/popup', async (req, res) => {
