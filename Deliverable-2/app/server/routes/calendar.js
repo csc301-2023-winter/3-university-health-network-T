@@ -20,14 +20,14 @@ router.get('/year', (req, res) => {
             const both = [];
 
             for (const date in result1) {
-                exercises.push(new Date(date));
+                exercises.push(new Date(date).toDateString());
             }
             for (const date in result2) {
-                meetings.push(new Date(date));
+                meetings.push(new Date(date).toDateString());
             }
             for (const date of exercises) {
-                if (meetings.includes(new Date(date))) {
-                    both.push(new Date(date));
+                if (meetings.includes(date)) {
+                    both.push(date);
                 }
             }
             res.status(200).json({
@@ -49,4 +49,8 @@ router.get('/year', (req, res) => {
     });
 });
 
+
+// router.get('/day', (req, res) => {
+
+// });
 module.exports = router;

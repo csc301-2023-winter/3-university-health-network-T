@@ -102,14 +102,14 @@ module.exports = {
             const meetings = result.rows;
             const meetingsByDate = {};
             for (const meeting of meetings) {
-                if (!meetingsByDate[meeting.date]) {
-                    meetingsByDate[meeting.date] = [];
-                }
-                meetingsByDate[meeting.date].push({
-                    starttime: meeting.starttime,
-                    endtime: meeting.endtime,
-                    meetingid: meeting.meetingid
-                });
+            if (!meetingsByDate[meeting.date]) {
+                meetingsByDate[meeting.date] = [];
+            }
+            meetingsByDate[meeting.date].push({
+                starttime: meeting.starttime,
+                endtime: meeting.endtime,
+                meetingid: meeting.meetingid
+            });
             }
             return resolve(meetingsByDate);
         });
