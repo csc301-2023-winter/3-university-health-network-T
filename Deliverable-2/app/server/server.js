@@ -26,6 +26,8 @@ const exeRouter = require("./routes/exercise")
 app.use("/exercise", exeRouter)
 const recordRouter = require("./routes/recordings")
 app.use("/record", recordRouter)
+const calendarRouter = require("./routes/calendar")
+app.use("/calendar", calendarRouter)
 const popRouter = require('./routes/pop_up')
 app.use("/", popRouter)
 

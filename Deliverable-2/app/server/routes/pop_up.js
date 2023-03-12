@@ -13,7 +13,8 @@ router.get('/popup', (req, res) => {
         res.sendStatus(403);
         return;
     }
-    exes_helper.exe_todo(pid).then((result) => {
+    exes_helper.exe_todo(pid)
+    .then((result) => {
         console.log(result);
         const etodo = result;
     
@@ -48,7 +49,11 @@ router.get('/popup', (req, res) => {
         return;
     }
 
-});
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).send(err);
+    });
 });
 
 // router.get('/popup', async (req, res) => {
