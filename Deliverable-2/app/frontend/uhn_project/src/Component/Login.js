@@ -35,6 +35,10 @@ function Login() {
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data)
+      if(data.token){
+        localStorage.setItem('token', data.token);
+      }
       if (data.success) {
         // Login successful
         localStorage.setItem('token', data.data.token);
