@@ -4,7 +4,7 @@ const { pool } = require('../dbConfig');
 const ver_tools = require('../tools/verifiers');
 const exes_helper = require('../tools/pre_comp_exes');
 
-router.get('/calendar/year', (req, res) => {
+router.get('/year', (req, res) => {
     const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
     console.log(pid);
     if (pid < 0) {
