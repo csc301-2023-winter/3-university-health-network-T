@@ -19,7 +19,7 @@ router.get('/get-all-meetings', (req, res) => {
         date: row.date,
         startTime: row.starttime,
         Endtime: row.endtime,
-        meetingId: row.meetingId,
+        meetingId: row.meetingid,
         meetingPasscode: row.meetingpasscode
       }));
       console.log(meetingsList);
@@ -58,7 +58,8 @@ async function createRoom(){
   const user2 = await identityClient.createUserAndToken(["voip"]);
 
   var validFrom = new Date(Date.now());
-  var validUntil = new Date(validFrom.getTime() + 5 * 60 * 1000);
+  validFrom.setHours(validFrom.getHours() + 1);
+  var validUntil = new Date(validFrom.getTime() + 30 * 60 * 1000);
 
   //create a room 
   const createRoomOptions = {
@@ -84,15 +85,17 @@ async function createRoom(){
 }
 
 router.get('/meeting-room', (req, res) => {
-  const pid = ver_tools.login_ver(req.token);
+  const header = req.headers['authorization']
+  const token = header && header.split(' ')[1];
+  const pid = ver_tools.login_ver(token);
   if (pid < 0){
     return res.status(403).send({ message: 'Invalid credentials' });
   }
   createRoom().then(([getRoom, token]) => {
     const year = getRoom.validFrom.getFullYear();
     const month = getRoom.validFrom.getMonth() + 1;
-    const day = getRoom.validFrom.getDay();
-    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+    const day = getRoom.validFrom.getDate();
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
     const startTimeHour = String(getRoom.validFrom.getHours()).padStart(2, '0');
     const startTimeMinute = String(getRoom.validFrom.getMinutes()).padStart(2, '0');
     const startTime = `${startTimeHour}:${startTimeMinute}`;

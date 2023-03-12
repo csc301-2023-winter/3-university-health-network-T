@@ -34,12 +34,9 @@ function App() {
        <Route path="/blog" element = {<BlogC/>}> </Route>
        <Route path="/contact" element = {<ContactC/>}> </Route>
        <Route path="/help" element = {<HelpC/>}> </Route>
-       <Route path="/camerachecker" element = {<CameraChecker/>}> </Route>
-       <Route path="/microphonechecker" element = {<MicrophoneChecker/>}> </Route>
-       <Route path="/speakerchecker" element = {<SpeakerChecker/>}> </Route>
        <Route path="/settings" element = {<SettingsPopUP/>}> </Route>
        <Route path="/rehab" element = {<Rehab/>}> </Route>
-       <Route path="/internetchecker" element = {<InternetCheck/>}> </Route>
+
       
       </Routes>
     </BrowserRouter>
