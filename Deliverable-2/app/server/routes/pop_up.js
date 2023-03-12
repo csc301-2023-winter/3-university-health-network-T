@@ -36,7 +36,8 @@ router.get('/popup', async (req, res) => {
             start_time: row.StartTime,
             end_time: row.EndTime,
             meetingId: row.MeetingID,
-            meetingPassword: row.MeetingPassword
+            meetingPassword: row.MeetingPassword,
+            meetingLink: `https://meeting-service.communication.azure.com/?id=${row.MeetingID}`
         }));
 
         console.log(exercisesList);
