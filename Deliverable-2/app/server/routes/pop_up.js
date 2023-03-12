@@ -20,23 +20,30 @@ router.get('/popup', (req, res) => {
     try {
         const query = `SELECT Date, StartTime, EndTime, MeetingID, MeetingPasscode
                     FROM Meeting
-                    WHERE PatinetID = $1 AND Date + StartTime > NOW()
+                    WHERE PatientID = $1 AND Date + StartTime > NOW()
                     ORDER BY Date + StartTime
                     LIMIT 1`;
-        const result = pool.querySync(query, [patientId]);
-    } catch (error) {
+        pool.query(query, [pid], (error, result) => {
+            if (error) {
+                console.error(error);
+                return null;
+            }
+            const meeting = result.rows[0];
+            res.status(200).json({
+                message: "Get Info Successfully",
+                data: {
+                    exercises: etodo,
+                    upcoming_m: meeting
+                }
+            });
+            });
+        } catch (error) {
         console.error(error);
-        res.status(500).send(err);
+        res.status(500).send(error);
         return;
     }
-    const meeting = result.rows[0];
-    res.status(200).json({
-        message: "Get Info Successfully",
-        data: {
-            exercises: etodo,
-            upcoming_m: meeting
-        }
-    });
+
+    
 });
 
 // router.get('/popup', async (req, res) => {
