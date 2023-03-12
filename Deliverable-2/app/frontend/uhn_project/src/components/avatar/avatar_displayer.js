@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import model from "./models/air-squat.fbx"
 import Displayer_loader from './displayer_loader';
-const server_url = " http://localhost:3000"
+import { server_url } from '../../global';
 
 class Avatar_displayer extends Component {
 

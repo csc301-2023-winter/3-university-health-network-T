@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Avatar_player from './Avatar_player';
-const server_url = " http://localhost:3000"
+import { server_url } from '../../global';
 
 class Displayer_loader extends Component{
     constructor(props){
