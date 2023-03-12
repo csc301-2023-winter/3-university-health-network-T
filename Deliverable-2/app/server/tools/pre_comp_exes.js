@@ -13,7 +13,7 @@ module.exports = {
     pool.query(query, [startOfWeek, endOfWeek, patientId], (err, result) => {
         if (err) {
         console.error(err);
-        return callback([]);
+        return -1;
         }
         const completedExercises = result.rows;
 
@@ -23,7 +23,7 @@ module.exports = {
         pool.query(prescribedExerciseQuery, [patientId], (err, result) => {
         if (err) {
             console.error(err);
-            return callback([]);
+            return -1;
         }
         const prescribedExercises = result.rows;
 
@@ -52,5 +52,24 @@ module.exports = {
         return callback(shouldDoExercises);
         });
     });
-    }
+    },
+    get_all_compe: function (patientId) {
+        return new Promise((resolve, reject) => {
+          const currentDate = new Date();
+          const startOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay());
+          const endOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + (6 - currentDate.getDay()));
+      
+          const query = `SELECT Exercise, Number_Sets, Number_Repetitions, Date, COUNT(*) AS Counter
+                         FROM CompletedExercise
+                         WHERE PatinetID = $3
+                         GROUP BY Exercise, Number_Sets, Number_Repetitions`;
+          pool.query(query, [startOfWeek, endOfWeek, patientId], (err, result) => {
+            if (err) {
+              console.error(err);
+              return reject([]);
+            }
+            return resolve(result.rows);
+          });
+        });
+      }
 }
