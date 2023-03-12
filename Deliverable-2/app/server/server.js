@@ -10,9 +10,8 @@ const port = process.env.PROT || 5000;
 const table_init = require('./table_setup');
 table_init.table_init();
 
-// const meetingRouter = require('./routes/meeting')
-// meetingRouter.setupSocket(io)
-// app.use("/meeting", meetingRouter)
+const meetingRouter = require('./routes/meeting')
+app.use("/meeting", meetingRouter)
 const cors = require('cors')
 app.use(cors({
   origin: "*"

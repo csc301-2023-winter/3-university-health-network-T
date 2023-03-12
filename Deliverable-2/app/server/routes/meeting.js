@@ -2,16 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../dbConfig');
 const ver_tools = require('../tools/verifiers');
-const CommunicationIdentityClient = require("@azure/communication-administration").CommunicationIdentityClient;
-const {
-  AzureCommunicationTokenCredential,
-  CommunicationRelayClient,
-  CommunicationUserIdentifier
-} = require("@azure/communication-network-traversal");
-const { CommunicationIdentityCredential } = require('@azure/communication-common');
-const endpointUrl = "https://<endpoint_url>.communication.azure.com";
-const apiKey = "<api_key>";
-const communicationRelayClient = new CommunicationRelayClient(endpointUrl, new AzureCommunicationTokenCredential(apiKey));
+const { RoomsClient }= require('@azure/communication-rooms');
+const { CommunicationIdentityClient } = require("@azure/communication-identity");
+const connectionString = "endpoint=https://meeting-service.communication.azure.com/;accesskey=sIb5y7vrxfo8M6fdkE03yCb5GGcj0BkUnDMv5VwoAsZXze3jY5iO3hNMkVPEI3XDBFshp9sHF9plE+2DiTgzgA==";
+const roomsClient = new RoomsClient(connectionString);
 
 router.get('/get-all-meetings', (req, res) => {
   const pid = ver_tools.login_ver(req.token);
@@ -57,48 +51,49 @@ router.get('/get-upcoming-meetings', (req, res) => {
   });
 });
 
-async function createRoom(meetingId, meetingPassword) {
-  try {
-    const communicationIdentityClient = new CommunicationIdentityClient(apiKey);
-    const userResponse = await communicationIdentityClient.createUserAndToken(["voip"]);
-    const id = userResponse.user.communicationUserId;
-    const token = userResponse.token;
+async function createRoom(){
+  // initialize a room client.
+  const identityClient = new CommunicationIdentityClient(connectionString);
+  const user1 = await identityClient.createUserAndToken(["voip"]);
+  const user2 = await identityClient.createUserAndToken(["voip"]);
 
-    const credential = new CommunicationIdentityCredential(token);
-    const meetingDetails = {};
-    meetingDetails.isBroadcast = true;
-    meetingDetails.subject = `Patient Meeting`;
-    meetingDetails.startDateTimeUtc = new Date().toISOString();
-    meetingDetails.expirationDateTimeUtc = new Date(Date.now() + 60 * 60 * 1000).toISOString();
-    meetingDetails.attendees = [{ communicationUserId: id }];
-    meetingDetails.participants = [{ userId: "patient", displayName: "Patient" }];
-    if(meetingPassword){
-      meetingDetails.policies = { lobbyBypassSettings: { scope: "organization", isDialInBypassEnabled: false },[password]: {scope: 'tenant', type: 'numericPassword', value: password}}
-    }
-    const meetingInfo = await communicationRelayClient.createMeeting({
-      meetingId: meetingId,
-      options: meetingDetails,
-      alternateEndpoint: undefined,
-      communicationUser: new CommunicationUserIdentifier(id),
-      accessToken: await credential.getToken(["voip"])
-    });
-    const joinLink = `https://${meetingInfo.links.communicationRelay.href}`;
+  var validFrom = new Date(Date.now());
+  var validUntil = new Date(validFrom.getTime() + 5 * 60 * 1000);
 
-    return joinLink;
-  } catch (e) {
-    console.error(`Failed to create meeting room: ${e}`);
-    throw e;
-  }
-} 
+  //create a room 
+  const createRoomOptions = {
+    validFrom: validFrom,
+    validUntil: validUntil,
+    roomJoinPolicy: "InviteOnly",
+    participants: [
+      {
+        id: user1.user,
+        role: "Attendee",
+      },
+    ]
+  };
+  //create a room with this payload.
+  const createRoom = await roomsClient.createRoom(createRoomOptions);
+  const roomId = createRoom.id;
+  console.log('create room');
+  
+  await roomsClient.getRoom(roomId);
+  console.log(`Retrieved Room with ID ${roomId}`);
+  return roomId;
+}
 
-router.get('meeting-room', (req, res) => {
+router.get('/meeting-room', (req, res) => {
   const pid = ver_tools.login_ver(req.token);
   if (pid < 0){
     return res.status(403).send({ message: 'Invalid credentials' });
   }
-  const { meetingId, meetingPassword } = req.body;
-  const link = createRoom(meetingId, meetingPassword);
-  return res.status(200).send({ meetingLink : link });
+  createRoom().then((roomId) => {
+    console.log(roomId);
+    return res.status(200).send({ message: 'Created room successfully', roomId: roomId });
+  }).catch((err) => {
+    console.log(err);
+    return res.status(403).send({ message: 'There is a error in creating room' });
+  });
 });
 
 module.exports = router;
