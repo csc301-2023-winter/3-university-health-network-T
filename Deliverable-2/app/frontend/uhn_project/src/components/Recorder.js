@@ -44,7 +44,7 @@ function Recorder() {
   // Save the video blob to a file or upload it to a server
       saveAs(videoBlob, 'recording.mp4');
 const UploadRecordingExerciseVideo = () => {
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState(videoBlob);
   const [token, setToken] = useState('');
   const [message, setMessage] = useState('');
       
