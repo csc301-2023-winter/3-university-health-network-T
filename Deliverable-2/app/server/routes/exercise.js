@@ -23,7 +23,6 @@ router.get('/get-comp-exes', (req, res) => {
         message: 'Retrieved exercises successfully',
         data: result
     });
-
 });
 
 router.get('/getexes-todo', (req, res) => {
@@ -38,13 +37,13 @@ router.get('/getexes-todo', (req, res) => {
         return;
     }
     res.status(200).json({
-        message: "Get Info Successfully",
+        message: "Retrieved exercises successfully",
         data: result
     });
     return;
 })
 
-router.get('/avatar-for-exes', (req, res) => {
+router.get('/avatar-for-exe', (req, res) => {
     const pid = ver_tools.login_ver(req.token);
   
     if (pid < 0) {
