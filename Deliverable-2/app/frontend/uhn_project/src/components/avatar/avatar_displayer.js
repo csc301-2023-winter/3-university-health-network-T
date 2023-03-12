@@ -36,7 +36,7 @@ class Avatar_displayer extends Component {
             token:`Bearer ${token}`
         };
         
-        fetch(server_url+ "/exercise/getexes-by-dow?Day_Of_Week="+(new Date()).getDay(),requestOptions)
+        fetch(server_url+ "/exercise/getexes_todo",requestOptions)
         .then(reponse=>reponse.json).then(
             (data)=>{
                 console.log("data:")
