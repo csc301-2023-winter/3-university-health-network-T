@@ -25,7 +25,7 @@ class Avatar_displayer extends Component {
 
     load_data(){
         const myHeaders = new Headers();
-        const token = localStorage.getItem("authToken");
+        const token = localStorage.getItem("token");
         myHeaders.append("Authorization", `Bearer ${token}`);
         var mybody = new FormData()
         mybody.append("Day_Of_Week",""+(new Date()).getDay())

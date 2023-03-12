@@ -4,7 +4,48 @@ import { AzureCommunicationTokenCredential } from '@azure/communication-common';
 import { MeetingDetails, MeetingParticipant } from '@azure/communication-calling';
 import { CallClient, CallAgent } from '@azure/communication-calling';
 import { Component } from 'react';
+import { AzureCommunicationUserCredential } from '@azure/communication-common';
+import { MeetingComposite } from '@azure/communication-react';
+
 class Meeting_room extends Component{
+    
+    constructor(props){
+        super(props)
+        this.state={
+            credential:NaN
+        }
+    }
+    componentDidMount(){
+        this.setState({["credential"]:new AzureCommunicationUserCredential(this.props.userToken)})
+    }
+    componentDidUpdate(prevProps){
+        if(this.props.userToken!=prevProps.userToken){
+            this.setState({["credential"]:new AzureCommunicationUserCredential(this.props.userToken)})
+        }
+    }
+
+    get_credential(){
+        const myHeaders = new Headers();
+        const token = localStorage.getItem("token");
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        const requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow',
+            
+        };
+        
+        fetch(server_url+ "/meeting/room?room_id="+this.prop.meetingId,requestOptions)
+        .then(reponse=>reponse.json).then(
+            data=>{
+                console.log(data.message)
+                return data.data
+            }
+        ).then((data)=>{
+            this.setState({["credential"]:new AzureCommunicationUserCredential(data.userToken)})
+        })
+      }
+    /**
     async getMeetingUrl() {
         // 1. Create an instance of CommunicationIdentityClient
         const communicationIdentityClient = new CommunicationIdentityClient('<connection string>');
@@ -32,14 +73,23 @@ class Meeting_room extends Component{
       
         this.setState({['meetingUrl']:meetingUrl})
       }
+      **/
       render(){
-        
+        return (
+            <div>
+              <MeetingComposite 
+                credential={this.state.credential}
+                meetingLink={`https://meeting-service.communication.azure.com/?id=${this.props.meetingId}`}
+              />
+            </div>
+          );
       }
 }
 
 
-// Call the function with the meeting ID
-const meetingId = '<your-meeting-id>';
-const meetingUrl = await getMeetingUrl(meetingId);
-console.log(meetingUrl); // The URL of the meeting
-
+export function Meeting_room_with_rotter(){
+    let c=useParams()
+    return(
+        <Meeting_room meetingId={c.Id}/>
+    )
+  }
