@@ -19,8 +19,9 @@ router.post('/signin', (req, res) => {
          return res.status(401).send({ message: 'Invalid username or password' });
       } else {
          const patient = result.rows[0];
+         console.log(patient.patientid);
          return res.send({message: 'Login successful',  
-                          token: jwt.sign({ id: patient.id }, 'secret_key', { expiresIn: '24h' })});
+                          token: jwt.sign({ id: patient.patientid }, 'secret_key', { expiresIn: '24h' })});
       }
    })
   .catch(error => {
