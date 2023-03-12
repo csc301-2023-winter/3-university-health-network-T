@@ -21,42 +21,33 @@ module.exports = {
             const prescribedExerciseQuery = `SELECT Exercise, Number_Sets, Number_Repetitions, Day_Of_Week
                                               FROM PrescribedExercise
                                               WHERE PatientID = $1`;
-            pool.query(prescribedExerciseQuery, [patientId], (err, result) => {
+            pool.query(prescribedExerciseQuery, [patientId], (err, presult) => {
               if (err) {
                 console.error(err);
                 return reject(err);
               }
-              const prescribedExercises = result.rows;
+              const prescribedExercises = presult.rows;
       
               const shouldDoExercises = [];
               for (const prescribedExercise of prescribedExercises) {
                 let completedCounter = 0;
                 for (const completedExercise of completedExercises) {
-                  if (prescribedExercise.Exercise === completedExercise.Exercise &&
-                      prescribedExercise.Number_Sets === completedExercise.Number_Sets &&
-                      prescribedExercise.Number_Repetitions === completedExercise.Number_Repetitions) {
+                  if (prescribedExercise.exercise === completedExercise.exercise &&
+                      prescribedExercise.number_Sets === completedExercise.number_sets &&
+                      prescribedExercise.number_Repetitions === completedExercise.number_repetitions) {
                     completedCounter = completedExercise.Counter;
                     break;
                   }
                 }
-                if (completedCounter < prescribedExercise.Day_Of_Week) {
+                if (completedCounter < prescribedExercise.day_of_week) {
                   shouldDoExercises.push({
-                    Exercise: prescribedExercise.Exercise,
+                    Exercise: prescribedExercise.exercise,
                     // Characters: [prescribedExercise.Character],
-                    Day_Of_Week: prescribedExercise.Day_Of_Week - completedCounter,
-                    Number_Sets: prescribedExercise.Number_Sets,
-                    Number_Repetitions: prescribedExercise.Number_Repetitions,
+                    Day_Of_Week: prescribedExercise.day_of_week - completedCounter,
+                    Number_Sets: prescribedExercise.number_sets,
+                    Number_Repetitions: prescribedExercise.number_repetitions,
                   });
                 }
-                if (completedCounter < prescribedExercise.Day_Of_Week) {
-                    shouldDoExercises.push({
-                      Exercise: prescribedExercise.Exercise,
-                      // Characters: [prescribedExercise.Character],
-                      Day_Of_Week: prescribedExercise.Day_Of_Week - completedCounter,
-                      Number_Sets: prescribedExercise.Number_Sets,
-                      Number_Repetitions: prescribedExercise.Number_Repetitions,
-                    });
-                  }
               }
               return resolve(shouldDoExercises);
             });
