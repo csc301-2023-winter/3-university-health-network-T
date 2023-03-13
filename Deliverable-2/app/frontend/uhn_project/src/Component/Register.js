@@ -50,7 +50,7 @@ function Register() {
     })
     .then(response => response.json())
     .then(data => {
-      if (data.success) {
+      if (data.message === 'Signup successful') {
         // Register successful
         console.log("Register successful");
         navigate('/login'); 

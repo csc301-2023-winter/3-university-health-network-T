@@ -78,7 +78,7 @@ module.exports = {
                     }
                     exercisesByDate[date].push({
                         exercise: completedExercise.exercise,
-                        number_sets: completedExercise.number_Sets,
+                        number_sets: completedExercise.number_sets,
                         number_repetitions: completedExercise.number_repetitions
                     });
                 }

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
-import model from "./models/air-squat.fbx"
-const server_url = " http://localhost:3000"
+import { FBXLoader} from 'three/examples/jsm/loaders/FBXLoader.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 class Avatar_player extends Component {
 
@@ -43,7 +42,10 @@ class Avatar_player extends Component {
     update_avtar(path){
 
         console.log("avtar updated")
-        const loader = new FBXLoader();
+        let loader = new FBXLoader();
+        if(this.props.format=='gltf'){
+            loader = new GLTFLoader();
+        }
         loader.load(
             path,
             (object) => {

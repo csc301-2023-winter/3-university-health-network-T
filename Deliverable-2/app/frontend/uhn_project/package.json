@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@azure/communication-calling": "^1.10.1",
+    "@azure/communication-calling": "^1.0.0",
+    "@azure/communication-common": "^2.0.0",
     "@material/web": "^1.0.0-pre.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

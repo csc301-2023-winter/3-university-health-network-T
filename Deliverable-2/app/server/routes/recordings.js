@@ -37,9 +37,10 @@ blobService.createContainerIfNotExists(jointContainerName, (err, result) => {
 });
 
 router.post('/upload/video', videoUpload.single('video'), (req, res) => {
-    const pid = ver_tools.login_ver(req.token);
-    if (pid < 0) { 
-        res.status(403); 
+    const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+    console.log(pid);
+    if (pid < 0) {
+        res.sendStatus(403);
         return;
     }
     const video = req.file;
@@ -71,9 +72,10 @@ router.post('/upload/video', videoUpload.single('video'), (req, res) => {
 });
 
 router.post('/upload/joints', jointUpload.single('joints'), (req, res) => {
-    const pid = ver_tools.login_ver(req.token);
-    if (pid < 0) { 
-        res.status(403); 
+    const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+    console.log(pid);
+    if (pid < 0) {
+        res.sendStatus(403);
         return;
     }
     const joints = req.file;
