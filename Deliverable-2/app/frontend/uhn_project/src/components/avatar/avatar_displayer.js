@@ -36,15 +36,19 @@ class Avatar_displayer extends Component {
             token:`Bearer ${token}`
         };
         
-        fetch(server_url+ "/exercise/getexes_todo",requestOptions)
-        .then(reponse=>reponse.json).then(
+        fetch(server_url+ "/exercise/getexes-todo",requestOptions)
+        .then(reponse=>{
+            console.log(reponse)
+            return reponse.json()}).then(
             (data)=>{
                 console.log("data:")
                 console.log(data)
                 return data.data
             }
         ).then((data)=>{
-            this.setState({["all_exercise"]:Object.keys(data),["index"]:0})
+            if(data){
+                this.setState({["all_exercise"]:data,["index"]:0})
+            }
         })
         //this.setState({['data']:[model]})
     }
@@ -52,10 +56,11 @@ class Avatar_displayer extends Component {
 
     onfinsh(){
         console.log(this.state.index)
-        if(this.state.index+1<this.state.all_avatars.length){
+        if(this.state.index+1<this.state.all_exercise.length){
             this.setState({["index"]:this.state.index+1})
         }
     }
+  
 
     render() {
         return (

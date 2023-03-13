@@ -33,12 +33,13 @@ function Login() {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
+    .then(response => {console.log(response.ok); return response.json()})
     .then(data => {
       console.log(data)
       if(data.token){
         localStorage.setItem('token', data.token);
       }
+      console.log(data.success)
       if (data.success) {
         // Login successful
         localStorage.setItem('token', data.data.token);
