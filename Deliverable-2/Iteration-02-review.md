@@ -41,6 +41,12 @@ List **process-related** (i.e. team organization and how you work) decisions and
 #### Q3(a). Planned changes
 
 List any **process-related** (i.e. team organization and/or how you work) changes you are planning to make (if there are any)
+* Improve communication: Ensure that team members are communicating regularly online. This could include daily stand-up meetings, weekly check-ins, and using tools like Wechat and Zoom to facilitate remote collaboration.
+* Foster a positive team culture: Create a positive team culture that encourages collaboration, communication, and a focus on quality. This can help keep team members motivated and engaged throughout the project.
+* Prioritize testing and quality assurance: Develop a comprehensive testing plan that includes automated testing, manual testing, and user acceptance testing. This will help ensure that the website functions properly and that the user experience is positive.
+* Document processes and procedures: Ensure that processes and procedures are documented effectively so that team members can reference them as needed. This will help ensure that everyone is on the same page and that new team members can get up to speed quickly.
+* Implement effective time management strategies: Develop strategies for effective time management, including setting realistic deadlines, breaking tasks down into smaller components, and prioritizing tasks based on importance and urgency.
+* Encourage collaboration and knowledge sharing: Encourage team members to collaborate and share their knowledge with UHN partners. This can help ensure that everyone is working towards the same goals and that the project benefits from everyone's input.
 
  * Ordered from most to least important, with supporting argument explaining a change.
 
