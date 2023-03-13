@@ -9,7 +9,7 @@ const roomsClient = new RoomsClient(connectionString);
 const identityClient = new CommunicationIdentityClient(connectionString);
 
 router.get('/get-all-meetings', (req, res) => {
-  const pid = ver_tools.login_ver(req.token);
+  const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
   if (pid < 0) {
     return res.status(403).send({ message: 'Invalid credentials' });
   }
@@ -22,7 +22,6 @@ router.get('/get-all-meetings', (req, res) => {
         meetingId: row.meetingid,
         meetingPasscode: row.meetingpasscode
       }));
-      console.log(meetingsList);
       return res.status(200).json({ message: 'Retrive All Meeting Info Successfully', meeting: meetingList });
   }).catch((err) => {
     console.log(err);
@@ -31,7 +30,7 @@ router.get('/get-all-meetings', (req, res) => {
 });
 
 router.get('/get-upcoming-meetings', (req, res) => {
-  const pid = ver_tools.login_ver(req.token);
+  const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
   if (pid < 0){
     return res.status(403).send({ message: 'Invalid credentials' });
   }
@@ -85,9 +84,7 @@ async function createRoom(){
 }
 
 router.get('/meeting-room', (req, res) => {
-  const header = req.headers['authorization']
-  const token = header && header.split(' ')[1];
-  const pid = ver_tools.login_ver(token);
+  const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
   if (pid < 0){
     return res.status(403).send({ message: 'Invalid credentials' });
   }
