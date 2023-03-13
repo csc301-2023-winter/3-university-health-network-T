@@ -27,6 +27,27 @@ const getAvatarUrl = async (exercise, character) => {
   return blobUrl;
 };
 
+async function get_characters_by_exercise() {
+    const query = `SELECT DISTINCT exercise, character FROM Avatar`;
+    try {
+        const { rows } = await pool.query(query);
+        const result = {};
+        for (let i = 0; i < rows.length; i++) {
+            const exercise = rows[i].exercise;
+            const character = rows[i].character;
+            if (!result[exercise]) {
+                result[exercise] = [];
+            }
+            result[exercise].push(character);
+        }
+        return result;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+} 
+
 module.exports = {
   getAvatarUrl,
+  get_characters_by_exercise,
 };

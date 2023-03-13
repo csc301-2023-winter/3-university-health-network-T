@@ -5,15 +5,23 @@ const ver_tools = require('../tools/verifiers');
 const exes_helper = require('../tools/pre_comp_exes');
 const avatarHelper = require('../tools/avatarHelper');
 
-router.get('/getexes-todo', (req, res) => {
+router.get('/getexes-todo', async (req, res) => {
     const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
     console.log(pid);
     if (pid < 0) {
         res.sendStatus(403);
         return;
     }
+    const charactersByExercise = await avatarHelper.get_characters_by_exercise();
+    
     exes_helper.exe_todo(pid).then((result) => {
-        console.log(result);
+        console.log(result[0]);
+        for (let i = 0; i < result.length; i++) {
+            let chs = charactersByExercise[result[i].exercise];
+            if (typeof chs !== 'undefined') {
+                result[i].characters = chs;
+            } 
+        }
         res.status(200).json({
             message: "Retrieved exercises successfully",
             data: result
@@ -42,6 +50,25 @@ router.get('/avatar-for-exe', async (req, res) => {
     res.send({ avatarUrl });
 });
 
+router.post('/complete_exercise', (req, res) => {
+    const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+    console.log(pid);
+    if (pid < 0) {
+        res.sendStatus(403);
+        return;
+    }
+    const { exercise, character, date, time, number_sets, number_repetitions } = req.body;
+
+    const query = `INSERT INTO CompletedExercise(PatientID, Exercise, Character, Number_Sets, Number_Repetitions, Date, Time)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+    pool.query(query, [pid, exercise, character, number_sets, number_repetitions, date, time], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Error inserting data into CompletedExercise table.");
+        }
+        return res.status(200).send("Data inserted successfully into CompletedExercise table.");
+    });
+});
 
 // router.get('/avatar-for-exe', (req, res) => {
 //     const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
@@ -67,10 +94,5 @@ router.get('/avatar-for-exe', async (req, res) => {
 //         });
 //     });
 // });
-
-
-router.post('/complete_exercise', (req, res) => {
-    // TODO: need to ask
-});
 
 module.exports = router;

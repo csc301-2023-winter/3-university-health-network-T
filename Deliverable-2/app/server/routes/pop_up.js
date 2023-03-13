@@ -56,48 +56,4 @@ router.get('/popup', (req, res) => {
     });
 });
 
-// router.get('/popup', async (req, res) => {
-//     try {
-//         const pid = ver_tools.login_ver(req.token);
-//         //form the date data in the format YYYY-MM-DD
-//         const currentDate = new Date();
-//         const year = currentDate.getFullYear();
-//         const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
-//         const day = ('0' + currentDate.getDate()).slice(-2);
-//         const dateString = year + '-' + month + '-' + day;
-//         // get the weekday
-//         const weekdayIndex = currentDate.getDay();
-//         const weekday = weekdays[weekdayIndex];
-
-//         const prescribedExercisesQuery = pool.query('select * from PrescribedExercise where PatientID = $1', [pid]);
-//         const meetingsQuery = pool.query('SELECT * FROM Meeting WHERE PatientID = $1', [pid]);
-
-//         const [prescribedExercisesResult, meetingsResult] = await Promise.all([prescribedExercisesQuery, meetingsQuery]);
-
-//         const exercisesList = prescribedExercisesResult.rows.map((row) => ({
-//             exercise: row.Exercise,
-//             number_sets: row.Number_Sets,
-//             number_repetitions: row.Number_Repetitions,
-//             day_of_week: row.Day_Of_Week
-//         }));
-
-//         const meetingList = meetingsResult.rows.map((row) => ({
-//             date: row.Date,
-//             start_time: row.StartTime,
-//             end_time: row.EndTime,
-//             meetingId: row.MeetingID,
-//             meetingPassword: row.MeetingPassword,
-//             meetingLink: `https://meeting-service.communication.azure.com/?id=${row.MeetingID}`
-//         }));
-
-//         console.log(exercisesList);
-//         console.log(meetingList);
-
-//         return res.status(200).send({ date: dateString, weekday: weekday, exercise: exercisesList, meeting: meetingList });
-//     } catch (err) {
-//         console.log(err);
-//         return res.status(500).send('An error occured while trying to get exercise or meeting information');
-//     }
-// });
-
 module.exports = router;
