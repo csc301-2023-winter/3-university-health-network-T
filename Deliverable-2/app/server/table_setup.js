@@ -57,6 +57,7 @@ module.exports = {
     CREATE TABLE IF NOT EXISTS CompletedExercise (
       PatientID integer REFERENCES Patient(PatientID),
       Exercise varchar(255) NOT NULL,
+      Character varchar(255) NOT NULL,
       Number_Sets integer NOT NULL,
       Number_Repetitions integer NOT NULL,
       Date date NOT NULL,

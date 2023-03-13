@@ -42,7 +42,7 @@ module.exports = {
                 if (completedCounter < prescribedExercise.day_of_week) {
                   shouldDoExercises.push({
                     exercise: prescribedExercise.exercise,
-                    // Characters: [prescribedExercise.Character],
+                    characters: [],
                     day_of_week: prescribedExercise.day_of_week - completedCounter,
                     number_sets: prescribedExercise.number_sets,
                     number_repetitions: prescribedExercise.number_repetitions,

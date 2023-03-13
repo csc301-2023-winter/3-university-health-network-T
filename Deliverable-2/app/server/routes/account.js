@@ -21,6 +21,7 @@ router.post('/signin', (req, res) => {
          const patient = result.rows[0];
          console.log(patient.patientid);
          return res.send({message: 'Login successful',  
+                          email: email,
                           token: jwt.sign({ id: patient.patientid }, 'secret_key', { expiresIn: '24h' })});
       }
    })
@@ -50,7 +51,7 @@ router.post('/signup', (req, res) => {
       if (error_flag) {
         return res.status(409).json({ message: 'Email already exists' });
       } else {
-        const newUser = pool.query('INSERT INTO Patient (Email, Password) VALUES ($1, $2) RETURNING PatientId', [email, password]);
+        const newUser = pool.query('INSERT INTO Patient (Email, Password) VALUES ($1, $2)', [email, password]);
         return res.status(201).json({ message: 'Signup successful' });
       }
     });
