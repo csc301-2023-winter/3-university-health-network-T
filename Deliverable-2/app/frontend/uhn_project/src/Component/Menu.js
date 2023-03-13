@@ -32,10 +32,10 @@ function Menu() {
         <div className="menu-overlay">
           <ul className="menu-list">
             <li>
-              <a href="/">Home</a>
+              <a href="/home">Home</a>
             </li>
             <li>
-              <a href="#">Rehab Program</a>
+              <a href="/rehab">Rehab Program</a>
             </li>
             <li>
               <a href="/video">Meeting</a>
