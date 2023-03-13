@@ -3,11 +3,12 @@
 > _Note:_ This document is intended to be relatively short. Be concise and precise. Assume the reader has no prior knowledge of your application and is non-technical. 
 ​
 ## Description 
-Keep this section very brief.
- * Provide a high-level description of your application and it's value from an end-user's perspective
- * What is the problem you're trying to solve? Is there any context required to understand **why** the application solves this problem?
+This is  a responsive website for stroke and cardiovascular patients to do rehabilitation exercises remotely. This website is going to overcome the location barriers for patients that live far from the rehabilitation stations, as well as to overcome the mobility barriers for patients that contain mobility issues with their body after strokes.
 ​
 ## Key Features
+ * Patients are able to do daily rehabilitation exercises viturally. 
+ * Patients are able to record their own exercising videos.
+ * Patients are able to do online consultation with physicians. 
  * Describe the key features in the application that the user can access.
  * Provide a breakdown or detail for each feature.
  * This section will be used to assess the value of the features built
