@@ -7,8 +7,14 @@ This is  a responsive website for stroke and cardiovascular patients to do rehab
 ​
 ## Key Features
  * Patients are able to do daily rehabilitation exercises viturally. 
+    * Patients can login their account to see their assinged exercises
+    * Patients can choose the avatar gender to do the exercises.
  * Patients are able to record their own exercising videos.
+    * Patients can press the record button to do the redording.
  * Patients are able to do online consultation with physicians. 
+    * Patients can find their appointments on the calender 
+    * Patients can set up their microphone, speaker and camera 
+    * Patents can do the meeting with the doctor.
  * Describe the key features in the application that the user can access.
  * Provide a breakdown or detail for each feature.
  * This section will be used to assess the value of the features built
