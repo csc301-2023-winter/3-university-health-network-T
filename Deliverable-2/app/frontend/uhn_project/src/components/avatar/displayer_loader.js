@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Avatar_player from './Avatar_player';
 import { server_url } from '../../global';
+import GLTF_player from './gltf_player';
 
 class Displayer_loader extends Component{
     constructor(props){
@@ -10,8 +11,9 @@ class Displayer_loader extends Component{
             path:"",
             no_sets:0,
             no_repetitions:0,
-            format:"glbx"
+            format:"gltf"
         }
+        this.onfinsh=this.onfinsh.bind(this)
     }
     componentDidUpdate(prevProps) {
         // Typical usage (don't forget to compare props):
@@ -32,20 +34,22 @@ class Displayer_loader extends Component{
             
         };
         console.log(this.props.exercise.exercise)
-        fetch(server_url+ "/exercise/avatar-for-exe?exercise="+this.props.exercise.exercise+"&character=male",requestOptions)
+        fetch(server_url+ "/exercise/avatar-for-exe?exercise="+this.props.exercise.exercise+"&character="+this.props.exercise.characters[0],requestOptions)
         .then(reponse=>reponse.json()).then(
             data=>{
                 console.log("d")
-                console.log(data)
-                return data.data
+                console.log(data.avatarUrl)
+                this.setState({["path"]:data.avatarUrl,["index"]:0})
             }
-        ).then((data)=>{
-            console.log("data 2")
-            console.log(data)
-            this.setState({["path"]:data.path,["index"]:0,["format"]:data.format})
-        })
+        )//.then((data)=>{
+           // console.log("data 2")
+            //console.log(data)
+            //this.setState({["path"]:data.path,["index"]:0,["format"]:data.format})
+        //})
       }
     onfinsh(){
+        console.log('number sets')
+        console.log(this.props.exercise.number_sets)
         console.log(this.state.index)
         if(this.state.index+1<this.props.exercise.number_sets){
             this.setState({["index"]:this.state.index+1})
@@ -88,7 +92,7 @@ class Displayer_loader extends Component{
             <div>
                 {this.state.index}
             </div>
-            <Avatar_player path={this.state.path} total={this.props.exercise.no_repetitions} format={this.state.format} onfinsh={this.onfinsh} index={this.state.index}></Avatar_player>
+            <GLTF_player path={server_url+`/exercise/avatar_provider?exercise=${this.props.exercise.exercise}&character=${this.props.exercise.characters[0]}`} total={2} format={this.state.format} onfinsh={this.onfinsh} index={this.state.index}></GLTF_player>
             </div>
         );
     }
