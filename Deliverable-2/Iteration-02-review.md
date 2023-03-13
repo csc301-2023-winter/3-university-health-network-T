@@ -30,6 +30,9 @@ List **process-related** (i.e. team organization and how you work) decisions and
 
 List **process-related** (i.e. team organization and how you work) decisions and actions that did not work well.
 
+ * Lack of clear communication: there is a lack of clear communication among team members. we are not able to meet in-person due to living far from each other. This leads to misunderstandings, missed deadlines, and low morale.
+ * Inadequate testing: The testing of the webiste is not very efficient due to the lack of communation bettwen the front end team and back end team. It results in bugs and errors that may impact the user experience and the success of the project.
+ * Failure to document processes: This confuses other memebrs and makes it difficult for new team members to get up to speed on the project.
  * 2 - 4 important decisions, processes, actions, or anything else that did not work well for you, ordered from most to least important.
  * Give a supporting argument about what makes you think that way.
  * Feel free to refer/link to process artifact(s).
