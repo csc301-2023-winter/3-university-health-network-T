@@ -68,7 +68,7 @@ class Avatar_displayer extends Component {
             <div>
                 {this.state.index}
             </div>
-            <Displayer_loader exercise={this.state.all_exercise[this.state.index]} onfinsh={this.onfinsh} index={this.state.index}></Displayer_loader>
+            {this.state.all_exercise.length>0?<Displayer_loader exercise={this.state.all_exercise[this.state.index]} onfinsh={this.onfinsh} index={this.state.index}></Displayer_loader>:<div></div>}
             </div>
         );
     }

@@ -31,14 +31,17 @@ class Displayer_loader extends Component{
             redirect: 'follow',
             
         };
-        
-        fetch(server_url+ "/exercise/avatar-for-exe?exercise="+this.prop.exercise.exercise+"&character=male",requestOptions)
-        .then(reponse=>reponse.json).then(
+        console.log(this.props.exercise.exercise)
+        fetch(server_url+ "/exercise/avatar-for-exe?exercise="+this.props.exercise.exercise+"&character=male",requestOptions)
+        .then(reponse=>reponse.json()).then(
             data=>{
-                console.log(data.message)
+                console.log("d")
+                console.log(data)
                 return data.data
             }
         ).then((data)=>{
+            console.log("data 2")
+            console.log(data)
             this.setState({["path"]:data.path,["index"]:0,["format"]:data.format})
         })
       }
@@ -79,12 +82,13 @@ class Displayer_loader extends Component{
     }
 
     render() {
+        console.log(this.props.exercise)
         return (
             <div>
             <div>
                 {this.state.index}
             </div>
-            <Avatar_player path={this.state.path} total={this.props.exercise.no_repetitions} format={this.props.exercise.format} onfinsh={this.onfinsh} index={this.state.index}></Avatar_player>
+            <Avatar_player path={this.state.path} total={this.props.exercise.no_repetitions} format={this.state.format} onfinsh={this.onfinsh} index={this.state.index}></Avatar_player>
             </div>
         );
     }

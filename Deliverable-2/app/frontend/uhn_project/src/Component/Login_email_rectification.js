@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineQuestion } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import "./rectify.css";
@@ -6,30 +6,51 @@ import "./rectify.css";
 function Rectify() {
   const [code, setCode] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/auth', {
-        method: 'POST',
+  useEffect(() => {
+    fetch('http://localhost:5000/auth', {
+      method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email: localStorage.getItem('email') })
-      });
-      const data = await response.json();
-      if (response.ok) {
-        // success case
-        setLoggedIn(true);
-        navigate('/');
-      } else {
-        // failure case
-        alert(data.message); // or display the error message in some other way
-      }
-    } catch (error) {
-      // network error or other error
-      console.error(error);
+    }).then(response => response.json())
+    .then(data => setData(data))
+    .catch(err => console.log(err));
+  }, []);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // try {
+    //   const response = await fetch('http://localhost:5000/auth', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ email: localStorage.getItem('email') })
+    //   });
+    //   const data = await response.json();
+    //   if (response.ok) {
+    //     // success case
+    //     setLoggedIn(true);
+    //     navigate('/');
+    //   } else {
+    //     // failure case
+    //     alert(data.message); // or display the error message in some other way
+    //   }
+    // } catch (error) {
+    //   // network error or other error
+    //   console.error(error);
+    // }
+    console.log(code);
+    console.log(data.code);
+    if (code == data.code) {
+      setLoggedIn(true);
+      navigate('/');
+    } else {
+      alert('The code you enter is uncorrect. Please check the latest email for auth code'); // or display the error message in some other way
     }
   };
   

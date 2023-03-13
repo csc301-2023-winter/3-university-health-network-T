@@ -43,9 +43,13 @@ class Avatar_player extends Component {
 
         console.log("avtar updated")
         let loader = new FBXLoader();
+        console.log("format")
+        console.log(this.props.format)
         if(this.props.format=='gltf'){
             loader = new GLTFLoader();
         }
+        console.log('path')
+        console.log(path)
         loader.load(
             path,
             (object) => {
@@ -134,7 +138,7 @@ class Avatar_player extends Component {
     }
     componentDidUpdate(prevProps) {
         // Typical usage (don't forget to compare props):
-        if (this.props.index !== prevProps.index) {
+        if (this.props.path!=prevProps.path) {
             this.update_avtar(this.props.path)
         }
       }

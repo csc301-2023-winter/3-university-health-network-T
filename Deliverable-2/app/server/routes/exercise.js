@@ -6,26 +6,28 @@ const exes_helper = require('../tools/pre_comp_exes');
 
 router.get('/getexes-todo', (req, res) => {
     const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+    console.log(pid);
     if (pid < 0) {
         res.sendStatus(403);
         return;
     }
-    console.log(req.headers.authorization.split(' ')[1])
-    const result = exes_helper.exe_todo(pid);
-    if (result === -1) {
-        res.status(500).send("error: Failed to get exercise");
+    exes_helper.exe_todo(pid).then((result) => {
+        console.log(result);
+        res.status(200).json({
+            message: "Retrieved exercises successfully",
+            data: result
+        });
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send(err);
         return;
-    }
-    res.status(200).json({
-        message: "Retrieved exercises successfully",
-        data: result
     });
-    return
 })
 
 router.get('/avatar-for-exe', (req, res) => {
-    const pid = ver_tools.login_ver(req.token);
-  
+    const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+    console.log(pid);
     if (pid < 0) {
         res.sendStatus(403);
         return;
