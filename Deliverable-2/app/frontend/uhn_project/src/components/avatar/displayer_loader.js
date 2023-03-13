@@ -32,7 +32,7 @@ class Displayer_loader extends Component{
             
         };
         
-        fetch(server_url+ "/exercise/avatar-for-exe?exercise="+this.prop.exercise.exercise+"&character="+this.props.exercise.characters[0],requestOptions)
+        fetch(server_url+ "/exercise/avatar-for-exe?exercise="+this.prop.exercise.exercise+"&character=male",requestOptions)
         .then(reponse=>reponse.json).then(
             data=>{
                 console.log(data.message)
