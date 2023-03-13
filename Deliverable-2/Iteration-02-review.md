@@ -18,6 +18,9 @@
 
 List **process-related** (i.e. team organization and how you work) decisions and actions that worked well.
 
+* Establish clear project goals: Define the purpose of the website, what features it should have, and what outcomes you hope to achieve.  We focus on the patient panel for the website and put the most effort on the exercise page and meeting page of the website. This will help guide the team's work and keep everyone focused on what needs to be done.
+* Define clear roles and responsibilities: We have four people to work on the frontend and three people to work on the server and database. Clearly define each team member's role and responsibilities so that everyone knows what is expected of them. This will help avoid confusion and ensure that tasks are completed on time.
+* Use a version control system: A version control system like Git can help ensure that changes to the code are tracked, reviewed, and approved by team members before being merged into the main codebase.
 
  * 2 - 4 important decisions, processes, actions, or anything else that worked well for you, ordered from most to least important.
  * Give a supporting argument about what makes you think that way.
