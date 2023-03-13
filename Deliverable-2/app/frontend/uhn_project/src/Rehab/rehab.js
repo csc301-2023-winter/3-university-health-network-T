@@ -9,55 +9,57 @@ import {RxSlash} from "react-icons/rx";
 import Agenda from "./agenda";
 
 const Rehab = () => {
-  // const [datesToHighlightGreen, setDatesToHighlightGreen] = useState([]);
-  // const [datesToHighlightRed, setDatesToHighlightRed] = useState([]);
+  const [datesToHighlightGreen, setDatesToHighlightGreen] = useState([]);
+  const [datesToHighlightRed, setDatesToHighlightRed] = useState([]);
+  
+  const [datesarray, setDatesArray] = useState([]);
+  const token = localStorage.getItem("token");
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:5000/home/popup", {
-  //         headers: {
-  //           Authorization: "Bearer {token}",
-  //         },
-  //       });
+  useEffect(() => {
+    axios.get('http://localhost:5000/calendar/year', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(response => {
+        const data = response.data.data;
+        setDatesArray(data);
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
-  //       if (response.data.success) {
-  //         const events = response.data.data;
 
-  //         const greenDates = [];
-  //         const redDates = [];
+  console.log(datesarray);
+  // const green = []
 
-  //         for (const event of events) {
-  //           if (event.meeting === null) {
-  //             greenDates.push(new Date(event.date));
-  //           } else {
-  //             redDates.push(new Date(event.date));
-  //           }
-  //         }
+  // for (const item of datesarray.exercise){
+  //   green.push(item.slice(0, 10));
+  // }
 
-  //         setDatesToHighlightGreen(greenDates);
-  //         setDatesToHighlightRed(redDates);
-  //       } else {
-  //         console.log(response.data.message);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  // setDatesToHighlightGreen(green);
 
-  //   fetchData();
-  // }, []);
 
-  const datesToHighlightGreen = [
-    new Date("2023-03-02"),
-    new Date("2023-04-08"),
-    new Date("2023-04-20"),
-  ];
-  const datesToHighlightRed = [
-    new Date("2023-03-20"),
-    new Date("2023-04-21"),
-    new Date("2023-04-25"),
-  ];
+  // const red = []
+
+  // for (const item of datesarray.meetings){
+  //   red.push(item.slice(0, 10));
+  // }
+
+  // setDatesToHighlightGreen(green);
+
+  // setDatesToHighlightRed(red);
+
+  // const datesToHighlightGreen = [
+  //   new Date("2023-03-02"),
+  //   new Date("2023-04-08"),
+  //   new Date("2023-04-20"),
+  // ];
+  // const datesToHighlightRed = [
+  //   new Date("2023-03-20"),
+  //   new Date("2023-04-21"),
+  //   new Date("2023-04-25"),
+  // ];
 
   const [showmonthly, setShowMonthly] = useState(true);
 
