@@ -92,7 +92,7 @@ class Displayer_loader extends Component{
             <div>
                 {this.state.index}
             </div>
-            <GLTF_player path={server_url+`/exercise/avatar_provider?exercise=${this.props.exercise.exercise}&character=${this.props.exercise.characters[0]}`} total={2} format={this.state.format} onfinsh={this.onfinsh} index={this.state.index}></GLTF_player>
+            <GLTF_player path={server_url+`/exercise/avatar_provider?exercise=${this.props.exercise.exercise}&character=${this.props.exercise.characters[0]}`} total={this.props.exercise.number_repetitions} format={this.state.format} onfinsh={this.onfinsh} index={this.state.index}></GLTF_player>
             </div>
         );
     }

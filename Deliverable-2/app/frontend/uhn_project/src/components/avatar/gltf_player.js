@@ -33,8 +33,9 @@ class GLTF_player extends Component {
     onfinsh(a){
         console.log('gltf loder total')
         console.log(this.props.total)
-        a.action.reset()
+        console.log(a)
         if(this.props.total>this.state.index+1){
+        a.action.reset()
         this.setState({['index']:this.state.index+1})
         console.log("aaa")
         }else{
@@ -91,7 +92,7 @@ update_avtar(path){
     
             clipAction.play()
             clipAction.fadeIn()
-            
+            this.action=clipAction
     
     
             this.scene.add(gltf.scene)
@@ -189,6 +190,13 @@ componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
     if (this.props.path!=prevProps.path) {
         this.update_avtar(this.props.path)
+    }
+    if(this.props.index!=prevProps.index){
+    this.setState({['index']:0})
+    if(this.action){
+    
+        this.action.reset()
+    }
     }
   }
 componentWillUnmount() {
