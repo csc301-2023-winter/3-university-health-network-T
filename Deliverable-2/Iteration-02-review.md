@@ -22,10 +22,6 @@ List **process-related** (i.e. team organization and how you work) decisions and
 * Define clear roles and responsibilities: We have four people to work on the frontend and three people to work on the server and database. Clearly define each team member's role and responsibilities so that everyone knows what is expected of them. This will help avoid confusion and ensure that tasks are completed on time.
 * Use a version control system: Git can help ensure that changes to the code are tracked, reviewed, and approved by team members before being merged into the main codebase.
 
- * 2 - 4 important decisions, processes, actions, or anything else that worked well for you, ordered from most to least important.
- * Give a supporting argument about what makes you think that way.
- * Feel free to refer/link to process artifact(s).
-
 #### Q2. What did not work well
 
 List **process-related** (i.e. team organization and how you work) decisions and actions that did not work well.
@@ -33,9 +29,6 @@ List **process-related** (i.e. team organization and how you work) decisions and
  * Lack of clear communication: there is a lack of clear communication among team members. we are not able to meet in-person due to living far from each other. This leads to misunderstandings, missed deadlines, and low morale.
  * Inadequate testing: The testing of the webiste is not very efficient due to the lack of communation bettwen the front end team and back end team. It results in bugs and errors that may impact the user experience and the success of the project.
  * Failure to document processes: This confuses other memebrs and makes it difficult for new team members to get up to speed on the project.
- * 2 - 4 important decisions, processes, actions, or anything else that did not work well for you, ordered from most to least important.
- * Give a supporting argument about what makes you think that way.
- * Feel free to refer/link to process artifact(s).
 
 
 #### Q3(a). Planned changes
@@ -48,19 +41,21 @@ List any **process-related** (i.e. team organization and/or how you work) change
 * Implement effective time management strategies: Develop strategies for effective time management, including setting realistic deadlines, breaking tasks down into smaller components, and prioritizing tasks based on importance and urgency.
 * Encourage collaboration and knowledge sharing: Encourage team members to collaborate and share their knowledge with UHN partners. This can help ensure that everyone is working towards the same goals and that the project benefits from everyone's input.
 
- * Ordered from most to least important, with supporting argument explaining a change.
-
 #### Q3(b). Integration & Next steps
 Briefly explain how you integrated the previously developed individuals components as one product (i.e. How did you be combine the code from 3 sub-repos previously created) and if/how the assignment was helpful or not helpful.
 
- * Keep this very short (1-3 lines).
+ * To integrate code from three sub-repos, we use Git to manage the code from each sub-repo. we pull the code from each sub-repo into a single repository and then merged together by Git subtree. The assignment is helpfull in the most features in the front end. 
 
 
 ## Product - Review
 
 #### Q4. How was your product demo?
- * How did you prepare your demo?
- * What did you manage to demo to your partner?
- * Did your partner accept the features? And were there change requests?
- * What were your learnings through this process? This can be either from a process and/or product perspective.
- * *This section will be marked very leniently so keep it brief and just make sure the points are addressed*
+ * In the prepration of the demo: 
+   * Define the scope and goals of the demo: Determine the purpose of the demo is to show the exercise page and meeting page. 
+   * Plan and develop the demo: Plan and develop the demo by selecting appropriate tools and technologies, designing the user interface for the exercise page and meeting page, and coding the functionality and link them to the database and deploy to the Azure cloud.
+
+we present the demo to the UHN partner with the two main function pages , and gather feedback on the features and functionality. The UHN partner satisfied with the features on the two pages. 
+
+He asked us to depoly the web page from the current Azure cloud to the UHN Azure cloud.
+
+Through the process of preparing a virtual rehabilitation website demo, there are several key learnings that can be gained. From a process perspective, the demo can help identify areas for improvement in the development process, such as gaps in communication, lack of clarity in requirements, or issues with testing and quality assurance. Thus, the demo provides valuable insights and feedback that can be used to refine and improve the virtual rehabilitation website.
