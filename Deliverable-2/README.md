@@ -20,6 +20,24 @@ This is  a responsive website for stroke and cardiovascular patients to do rehab
  * This section will be used to assess the value of the features built
 ​
 ## Instructions
+   * Login 
+
+   * Home Pop-up 
+
+   * Home/Exercise 
+
+   * Menu
+
+   * Rehab program 
+
+   * Blog 
+
+   * Settings 
+
+   * Contact Us 
+
+   * Meetings
+
  * Clear instructions for how to use the application from the end-user's perspective
  * How do you access it? For example: Are accounts pre-created or does a user register? Where do you start? etc. 
  * Provide clear steps for using each feature described in the previous section.
