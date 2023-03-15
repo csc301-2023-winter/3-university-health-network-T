@@ -54,7 +54,7 @@ class Displayer_loader extends Component{
         if(this.state.index+1<this.props.exercise.number_sets){
             this.setState({["index"]:this.state.index+1})
         }else{
-            this.props.onfinsh()
+            this.send_complete(this.props.onfinsh)
         }
     }
 
@@ -63,26 +63,43 @@ class Displayer_loader extends Component{
         const myHeaders = new Headers();
         const token = localStorage.getItem("token");
         myHeaders.append("Authorization", `Bearer ${token}`);
+        myHeaders.append('Content-Type','application/json')
         var mybody = new FormData()
         let e = this.props.exercise
+        console.log(e.exercise)
         mybody.append("exercise",""+e.exercise)
         mybody.append("character",""+e.characters[0])
         mybody.append("no_sets",""+e.number_sets)
         mybody.append("no_reps",""+e.number_repetitions)
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + (today.getSeconds()>9?today.getSeconds():'0'+today.getSeconds());
+        console.log(time)
         mybody.append("date",""+date)
         mybody.append("time",""+time)
+        for (var key of mybody.entries()) {
+            console.log(key[0] + ', ' + key[1]);
+        }
+
+        var b = JSON.stringify({
+            exercise:""+e.exercise,
+            character:""+e.characters[0],
+            number_sets:""+e.number_sets,
+            number_repetitions:""+e.number_repetitions,
+            date:""+date,
+            time:""+time
+        })
         const requestOptions = {
             method: 'POST',
             headers: myHeaders,
             redirect: 'follow',
             token:`Bearer ${token}`,
-            body:mybody
+            body:b
         };
         
-        fetch(server_url+ "/exercise/complete_exercise",requestOptions).then(call_back)
+        fetch(server_url+ "/exercise/complete_exercise",requestOptions).then((response)=>{
+            console.log(response)
+        }).then(call_back)
     }
 
     render() {
@@ -92,7 +109,7 @@ class Displayer_loader extends Component{
             <div>
                 {this.state.index}
             </div>
-            <GLTF_player path={server_url+`/exercise/avatar_provider?exercise=${this.props.exercise.exercise}&character=${this.props.exercise.characters[0]}`} total={this.props.exercise.number_repetitions} format={this.state.format} onfinsh={this.onfinsh} index={this.state.index}></GLTF_player>
+            <GLTF_player path={server_url+`/exercise/avatar_provider?exercise=${this.props.exercise.exercise}&character=${this.props.exercise.characters[0]}`} total={1} format={this.state.format} onfinsh={this.onfinsh} index={this.state.index}></GLTF_player>
             </div>
         );
     }

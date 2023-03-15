@@ -62,7 +62,7 @@ router.post('/complete_exercise', (req, res) => {
 
     const query = `INSERT INTO CompletedExercise(PatientID, Exercise, Character, Number_Sets, Number_Repetitions, Date, Time)
                 VALUES ($1, $2, $3, $4, $5, $6, $7)`;
-    pool.query(query, [pid, exercise, character, number_sets, number_repetitions, date, time], (err, result) => {
+    pool.query(query, [pid, exercise, character, number_sets, number_repetitions, date, date+' '+time], (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send("Error inserting data into CompletedExercise table.");
