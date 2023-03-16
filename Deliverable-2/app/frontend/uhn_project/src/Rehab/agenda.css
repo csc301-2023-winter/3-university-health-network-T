@@ -1,0 +1,67 @@
+/* Style for the container div */
+.display-container {
+    margin: 20px;
+  }
+  
+  /* Style for the date header */
+  .date-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the exercises list */
+  .exercises-list {
+    margin-bottom: 20px;
+    
+  }
+  
+  /* Style for the exercise item */
+  .exercise-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for the exercise name */
+  .exercise-name {
+    font-weight: bold;
+  }
+  
+  /* Style for the exercise sets and repetitions */
+  .exercise-sets-repetitions {
+    margin-top: 5px;
+  }
+  
+  /* Style for the meetings list */
+  .meetings-list {
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the meeting item */
+  .meeting-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for the meeting id */
+  .meeting-id {
+    font-weight: bold;
+  }
+  
+  /* Style for the meeting start and end time */
+  .meeting-time {
+    margin-top: 5px;
+  }
+  
+  .each-date{
+    border: 2px black solid;
+    margin-inline: 22vw;
+    margin-bottom: 5vh;
+    padding-inline: 4%;
+ 
+   border: 0.5px solid black;
+  }
