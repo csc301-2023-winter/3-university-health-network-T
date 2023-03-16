@@ -3,7 +3,7 @@ import axios from 'axios';
 import DateDisplay from './formatDate';
 import {Button} from "react-bootstrap";
 
-function HomePopUP({ token }) {
+function HomePopUP() {
   const [exerciseData, setExerciseData] = useState(null);
   const [meetingData, setMeetingData] = useState(null);
 
@@ -16,6 +16,7 @@ function HomePopUP({ token }) {
 
   const today = new Date();
   const formattedDate = formatDate(today);
+  const token = localStorage.getItem("token");
   
 
   useEffect(() => {
@@ -32,9 +33,18 @@ function HomePopUP({ token }) {
       });
   }, [token]);
 
-  if (!exerciseData || !meetingData) {
-    return <div>Loading...</div>;
+
+  const renderExercise = () => {
+    return (<ol>
+      {exerciseData?.map(exercise => (
+        <li key={exercise.exercise}>
+          {exercise.exercise}: {exercise.number_sets} sets of {exercise.number_repetitions} repetitions
+        </li>
+      ))}
+    </ol>);
   }
+
+  
 
   return (
     <div id="out-box">
@@ -42,19 +52,17 @@ function HomePopUP({ token }) {
       <p>Your prescribed exercise for today:</p><br/>
       <div id="list-exercise">
       <h5>Exercise Info</h5>
-      <ol>
-        {exerciseData.map(exercise => (
-          <li key={exercise.exercise}>
-            {exercise.exercise}: {exercise.number_sets} sets of {exercise.number_repetitions} repetitions
-          </li>
-        ))}
-      </ol>
+      {exerciseData? renderExercise(): "There is no prescribed exercise"}
+      
       <Button className='buttons'>Continue</Button>
       <Button className='buttons'>Restart</Button>
       </div>
       <div id="list-meetings"><br/>
       <h5 >Upcoming Meeting</h5>
-      {meetingData.date.slice(0, 10)},  {meetingData.starttime.slice(0,5)} - {meetingData.endtime.slice(0,5)}</div><br/>
+      {meetingData ? (meetingData.date.slice(0, 10),  meetingData.starttime.slice(0,5) - meetingData.endtime.slice(0,5)) : " -- There is no upcoming meeting"}
+
+     
+      </div><br/> 
       <Button className='buttons'>Join</Button>
 
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Calendar from "./calendar";
+import Calendar from "./Calendar";
 import axios from "axios";
 import Menu from "../Component/Menu";
 import './rehab.css';
@@ -81,7 +81,7 @@ const Rehab = () => {
         </div>
       </div>
       
-      {showmonthly ? <Calendar datesToHighlightGreen={datesToHighlightGreen} datesToHighlightRed={datesToHighlightRed} /> : <Agenda token={localStorage.token}/>}
+      {showmonthly ? <Calendar/> : <Agenda token={localStorage.token}/>}
       
     </div>
   );

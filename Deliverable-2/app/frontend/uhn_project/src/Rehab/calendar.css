@@ -1,72 +1,97 @@
-.calendar {
+/* ... rest of the CSS styles */
+
+.calendar-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
+    align-items: center;
+    max-width: 100%;
+    
+  
+  }
+  
+  .calendar {
+    margin: 1rem;
+    padding: 1rem;
     background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    width: 23vw;
+    
   }
   
-  .month-header {
+  .calendar-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background-color: #f7f7f7;
-    padding: 10px;
+    margin-bottom: 1rem;
   }
   
-  .month-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #555555;
-  }
-  
-  .days-header {
+  .calendar-navigation {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background-color: #f7f7f7;
-    padding: 5px 10px;
+    margin-bottom: 1rem;
   }
   
-  .days-header div {
-    font-weight: bold;
-    color: #555555;
-  }
-  
-  .days-grid {
+  .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 1px;
-    background-color: #f7f7f7;
+    grid-gap: 0.5rem;
   }
   
-  .day-cell {
+  .calendar-row {
+    display: contents;
+  }
+  
+  .calendar-cell {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 50px;
-    font-size: 1rem;
-    color: #555555;
+    justify-content: center;
+    height: 2.5rem;
+    width: 100%;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-radius: 0.25rem;
+    font-weight: bold;
   }
   
-  .today {
-    background-color: #e8e8e8;
+  .calendar-cell-red {
+    background-color: #FF7878;
   }
   
-  .selected {
-    background-color: #ffcc80;
+  .calendar-cell-green {
+    background-color: #8AFF80;
   }
   
-  .highlightgreen {
-    background-color: #409d54;
+  .calendar-cell-blue {
+    background-color: #80C8FF;
   }
+  
+  .calendar-cell-empty {
+    background-color: transparent;
+  }
+  
+  .calendar-cell-today {
+    border: 2px solid #d44700;
+    box-sizing: border-box;
+  }
+  
+  .day-view-container {
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+  }
+  
+  .daily-view {
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  
 
-  .highlightred {
-    background-color: #d35555;
-  }
+  
+  
+    
+  
+  
+  
+  
   
