@@ -3,6 +3,8 @@ import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, parse }
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./calendar.css";
 import Menu from "../Component/Menu";
+import {MdCalendarMonth} from "react-icons/md";
+import {IoMdToday} from "react-icons/io";
 
 
 const token = localStorage.getItem("token");
@@ -236,9 +238,13 @@ const fetchNextDaysEvents = async () => {
     return (
       <div className="calendar">
         <div className="calendar-header">
-          <button onClick={() => changeView("month")}>Month</button>
-          <button onClick={() => changeView("day")}>Day</button>
-        </div>
+        <button onClick={() => changeView("month")}>
+          <MdCalendarMonth /> 
+        </button>
+        <button onClick={() => changeView("day")}>
+          <IoMdToday /> 
+        </button>
+      </div>
         {view === "month" && (
           <>
             <div className="calendar-navigation">
