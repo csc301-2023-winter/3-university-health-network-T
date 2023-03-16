@@ -48,7 +48,7 @@ function Rectify() {
     console.log(data.code);
     if (code == data.code) {
       setLoggedIn(true);
-      navigate('/');
+      navigate('/home');
     } else {
       alert('The code you enter is uncorrect. Please check the latest email for auth code'); // or display the error message in some other way
     }

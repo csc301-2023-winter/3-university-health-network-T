@@ -104,23 +104,21 @@ There is no current product to solve this problem.
 
 Patients: 
  * User Story 1:
-    * As a patient who struggles to stay motivated, I would like to have a physical therapist monitor my progress, so that I can stick to my rehabilitation plan.
+    * As a patient who has difficulties traveling to the clinic, I would like to have a physical therapist meeting online to check my health condition.
 
  * Acceptance Criteria:
-    * As a patient, when I complete an exercise, I am able to submit my “milestone”.
+    * Given that I am a patient, when I access the online platform, I am able to attend a consultation with a physical therapist for progress updates.
  * User Story 2:
-    * As a patient with mobility issues, I would like to access physical therapy guidance remotely, so that I can manage my condition from home.
+    * As a patient with mobility issues, I would like to access the daily physical therapy exercise plan remotely. Thus, I can keep up my rehabilitation progress.
  * Acceptance Criteria:
-    * Given that I am a patient, when I access the online platform, I am able to follow the rehabilitation videos provided by a licensed physical therapist for guidance and support.
+    * Given that I am a patient, when I access the online platform, I am able to follow the rehabilitation videos provided by a avatar.
 
 
  * User Story 3:
-    * As a patient, I would like to receive customized exercise plans, so that I can focus on my specific needs and progress efficiently in my rehabilitation.
+    * As a patient who wants to know whether I am doing the exercise in the right format, I would like to record my movements during the daily exercises. 
 
  * Acceptance Criteria:
-
-    * Given that I have completed my initial assessment, when I log into the platform, I can view a personalized exercise plan based on my medical history and current condition.
-    *Given that my rehabilitation progress is being monitored, when my physical therapist updates my exercise plan, I receive notifications and can see the updated plan in my account.
+    * Given that I have completed my initial assessment, when I log into the platform, I can record my exercies video. 
 
 
  * User Story 4:

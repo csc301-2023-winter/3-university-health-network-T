@@ -53,7 +53,7 @@ function Register() {
       if (data.message === 'Signup successful') {
         // Register successful
         console.log("Register successful");
-        navigate('/login'); 
+        navigate('/'); 
       } else {
         // Register failed
         console.log(data.message);

@@ -40,16 +40,25 @@ class Avatar_player extends Component {
         }
     }
     update_avtar(path){
-
+        const myHeaders = new Headers();
+        const token = localStorage.getItem("token");
+        myHeaders.append("Authorization", `Bearer ${token}`);
         console.log("avtar updated")
         let loader = new FBXLoader();
+        console.log("format")
+        console.log(this.props.format)
         if(this.props.format=='gltf'){
             loader = new GLTFLoader();
         }
+        loader.setRequestHeader(myHeaders)
+        console.log('path')
+        console.log(path)
         loader.load(
             path,
             (object) => {
                 console.log(this.scene.children)
+                console.log('obj')
+                console.log(object)
                 this.scene.remove(this.scene.children.filter(child => child !== this.camera && child !== this.pointLight)[0]);
                 object.scale.set(0.016, 0.016, 0.016);
                 object.position.set(0, -1.5, 0);
@@ -134,7 +143,7 @@ class Avatar_player extends Component {
     }
     componentDidUpdate(prevProps) {
         // Typical usage (don't forget to compare props):
-        if (this.props.index !== prevProps.index) {
+        if (this.props.path!=prevProps.path) {
             this.update_avtar(this.props.path)
         }
       }
