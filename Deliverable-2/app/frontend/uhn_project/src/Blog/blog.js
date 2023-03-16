@@ -49,6 +49,7 @@ function Blog() {
             {/* {selectedBlog.tags.map((tag) => (
               <div key={tag} className="tag">{tag}</div>
             ))} */}
+            <div> {selectedBlog.tags}</div>
             <div className="date">{selectedBlog.date}</div>
           </div>
           <p>{selectedBlog.context}</p>
@@ -56,7 +57,7 @@ function Blog() {
         </div>
       ) : (
         <div className="blog-overview">
-          <h2>Overview</h2>
+          {/* <h2>Overview</h2> */}
           {blogs.map((blog) => (
             <div key={blog.bid} className="blog-preview" onClick={() => handleBlogClick(blog)}>
               <div className="tag-container">
@@ -64,6 +65,7 @@ function Blog() {
                   <div key={tag} className="tag">{tag}</div>
                 ))} */}
                 <div className="date">{blog.date}</div>
+                <div> {blog.tags}</div>
               </div>
               <h3>{blog.title}</h3>
               <p>{blog.context.substring(0, 50)}...</p>

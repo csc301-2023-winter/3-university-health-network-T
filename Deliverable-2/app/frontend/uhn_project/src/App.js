@@ -20,6 +20,8 @@ import SettingsPopUP from './Settings/settingsPopUp';
 import Rehab from './Rehab/rehab';
 import InternetCheck from './Settings/internetCheck';
 import { Meeting_room_with_rotter } from './components/meeting_room';
+import Calendar from './Calendar/Calendar';
+
 
 function App() {
   return (
@@ -36,8 +38,9 @@ function App() {
        <Route path="/contact" element = {<ContactC/>}> </Route>
        <Route path="/help" element = {<HelpC/>}> </Route>
        <Route path="/settings" element = {<SettingsPopUP/>}> </Route>
-       <Route path="/rehab" element = {<Rehab/>}> </Route>
-       <Route path='test_meeting' element={<Meeting_room_with_rotter/>}/>      
+       <Route path="/rehab" element = {<Calendar/>}> </Route>
+       <Route path='test_meeting' element={<Meeting_room_with_rotter/>}/> 
+       {/* <Route path='calendar' element={<Calendar/>}/>            */}
       </Routes>
     </BrowserRouter>
     </div>

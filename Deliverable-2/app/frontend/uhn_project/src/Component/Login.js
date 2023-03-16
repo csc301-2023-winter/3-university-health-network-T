@@ -41,13 +41,7 @@ function Login() {
         localStorage.setItem('email', data.email);
         navigate('/rectify');
       }
-      if (data.success) {
-        // Login successful
-        localStorage.setItem('token', data.data.token);
-        localStorage.setItem('userId', data.data.user.id);
-        localStorage.setItem('email', data.data.user.email);
-        navigate('/rectify'); 
-      } else {
+       else {
         // Login failed
         console.log(data.message);
         setErrorMessage('The email and password you entered do not match.');
