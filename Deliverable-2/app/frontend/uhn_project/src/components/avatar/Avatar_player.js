@@ -19,6 +19,7 @@ class Avatar_player extends Component {
         this.next=this.next.bind(this)
         console.log("d o w"+(new Date()).getDay())
         this.onfinsh=this.onfinsh.bind(this)
+        this.pause=false
         //this.load_data = this.load_data.bind(this)
     }
 
@@ -88,6 +89,9 @@ class Avatar_player extends Component {
     }
 
     animate = () => {
+        if(this.pause){
+            return 
+        }
         this.frameId = requestAnimationFrame(this.animate);
 
         // Update controls
@@ -151,7 +155,13 @@ class Avatar_player extends Component {
         cancelAnimationFrame(this.frameId);
         this.mount.removeChild(this.renderer.domElement);
     }
-
+    stop(){
+        this.pause=true
+    }
+    continue(){
+        this.pause=false
+        this.animate()
+    }
     render() {
         return (
             <div style={{width:"100%"}}>
@@ -159,6 +169,9 @@ class Avatar_player extends Component {
                 {this.state.index}/{this.props.total}
             </div>
             <div ref={mount => { this.mount = mount }} style={{width:"100%"}}/>
+            {this.pause?<button onClick={this.continue}>
+            continue
+            </button>:<button onClick={this.stop}> stop</button>}
             </div>
         );
     }

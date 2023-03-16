@@ -37,6 +37,7 @@ blobService.createContainerIfNotExists(jointContainerName, (err, result) => {
 });
 
 router.post('/upload/video', videoUpload.single('video'), (req, res) => {
+    console.log(req.headers)
     const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
     console.log(pid);
     if (pid < 0) {
@@ -44,7 +45,8 @@ router.post('/upload/video', videoUpload.single('video'), (req, res) => {
         return;
     }
     const video = req.file;
-    const blobName = video.originalname;
+    let d = new Date()
+    const blobName = ('video'+pid+req.body.Time+(''+(new Date()))).replaceAll(' ','-').replaceAll(':','_')//video.originalname;
     const contentType = video.mimetype;
 
     blobService.createBlockBlobFromText(videoContainerName, blobName, video.buffer, { contentType }, (err, result) => {
@@ -52,22 +54,29 @@ router.post('/upload/video', videoUpload.single('video'), (req, res) => {
             res.status(500).send(err);
             return;
         }
-
         const videoUrl = blobService.getUrl(videoContainerName, blobName);
+        pool.query('SELECT Count(*) FROM RecordedVideo',[],(err,result)=>{
+            console.log(result.rowCount)
+            console.log(Number(result.rows[0].count))
+            pool.query('INSERT INTO RecordedVideo (PatientID, VideoID, Date, Time, Format, Path) VALUES ($1, $2, $3, $4, $5, $6)', [pid, Number(result.rows[0].count)+1, req.body.Date, req.body.Time, '.MP4', videoUrl], (err, result) => {
+            
+                console.log(err)
+                console.log(videoUrl)
+                    if (err) {
+                        res.status(500).send(err);
+                        return;
+                    }
+        
+                    res.status(200).json({
+                        message: "video uploaded and stored successfully",
+                        data: {
+                            video_url: videoUrl
+                        }
+                    });
+                });
+        })
 
-        pool.query('INSERT INTO RecordedVideo (PatientID, VideoID, Date, Time, Format, Path) VALUES ($1, $2, $3, $4, $5, $6)', [pid, req.body.VideoID, req.body.Date, req.body.Time, '.MP4', videoUrl], (err, result) => {
-            if (err) {
-                res.status(500).send(err);
-                return;
-            }
-
-            res.status(200).json({
-                message: "video uploaded and stored successfully",
-                data: {
-                    video_url: videoUrl
-                }
-            });
-        });
+        
     });
 });
 

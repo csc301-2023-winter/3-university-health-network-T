@@ -20,6 +20,9 @@ class GLTF_player extends Component {
         this.next=this.next.bind(this)
         console.log("d o w"+(new Date()).getDay())
         this.onfinsh=this.onfinsh.bind(this)
+        this.pause=false
+        this.stop=this.stop.bind(this)
+        this.cont=this.cont.bind(this)
         //this.load_data = this.load_data.bind(this)
     }
 
@@ -120,6 +123,10 @@ update_avtar(path){
 
 
 componentDidMount() {
+    if(this.props.connection){
+        this.props.connection.avatar=this
+    }
+
     if(!this.scene){        // Scene
         this.scene = new THREE.Scene()
         this.scene.add(new THREE.AxesHelper(2))
@@ -171,6 +178,9 @@ componentDidMount() {
     
 }
 animate = () => {
+    if(this.pause){
+        return
+    }
     this.frameId = requestAnimationFrame(this.animate);
 
     // Update controls
@@ -203,12 +213,21 @@ componentWillUnmount() {
     cancelAnimationFrame(this.frameId);
     this.mount.removeChild(this.renderer.domElement);
 }
-
+stop(){
+    console.log('stop')
+    this.pause=true
+}
+cont(){
+    this.pause=false
+    if(this.animate){
+    this.animate()
+    }
+}
 render() {
     return (
         <div style={{width:"100%"}}>
         <div>
-            {this.state.index}/{this.props.total}
+            repation finished: {this.state.index}/{this.props.total}
         </div>
         <div ref={mount => { this.mount = mount }} style={{width:"100%"}}/>
         </div>
