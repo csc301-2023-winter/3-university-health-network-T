@@ -66,9 +66,13 @@ class Avatar_displayer extends Component {
         return (
             <div>
             <div>
-                {this.state.index}
+            exercise finished: {this.state.index}/ {this.state.all_exercise.length}
             </div>
-            {this.state.all_exercise.length>0?<Displayer_loader exercise={this.state.all_exercise[this.state.index]} onfinsh={this.onfinsh} index={this.state.index}></Displayer_loader>:<div></div>}
+            {this.state.all_exercise.length>0?<Displayer_loader exercise={this.state.all_exercise[this.state.index]}
+             onfinsh={this.onfinsh} 
+             index={this.state.index}
+             connection={this.props.connection}
+             ></Displayer_loader>:<div></div>}
             </div>
         );
     }
