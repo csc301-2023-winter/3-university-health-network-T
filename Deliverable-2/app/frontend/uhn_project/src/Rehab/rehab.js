@@ -9,25 +9,25 @@ import {RxSlash} from "react-icons/rx";
 import Agenda from "./agenda";
 
 const Rehab = () => {
-  const [datesToHighlightGreen, setDatesToHighlightGreen] = useState([]);
-  const [datesToHighlightRed, setDatesToHighlightRed] = useState([]);
+  // const [datesToHighlightGreen, setDatesToHighlightGreen] = useState([]);
+  // const [datesToHighlightRed, setDatesToHighlightRed] = useState([]);
   
   const [datesarray, setDatesArray] = useState([]);
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/calendar/year', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-      .then(response => {
-        const data = response.data.data;
-        setDatesArray(data);
-        console.log(data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get('http://localhost:5000/calendar/year', {
+  //     headers: { 'Authorization': `Bearer ${token}` }
+  //   })
+  //     .then(response => {
+  //       const data = response.data.data;
+  //       setDatesArray(data);
+  //       console.log(data);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
 
   console.log(datesarray);
@@ -50,16 +50,16 @@ const Rehab = () => {
 
   // setDatesToHighlightRed(red);
 
-  // const datesToHighlightGreen = [
-  //   new Date("2023-03-02"),
-  //   new Date("2023-04-08"),
-  //   new Date("2023-04-20"),
-  // ];
-  // const datesToHighlightRed = [
-  //   new Date("2023-03-20"),
-  //   new Date("2023-04-21"),
-  //   new Date("2023-04-25"),
-  // ];
+  const datesToHighlightGreen = [
+    new Date("2023-03-02"),
+    new Date("2023-04-08"),
+    new Date("2023-04-20"),
+  ];
+  const datesToHighlightRed = [
+    new Date("2023-03-20"),
+    new Date("2023-04-21"),
+    new Date("2023-04-25"),
+  ];
 
   const [showmonthly, setShowMonthly] = useState(true);
 
