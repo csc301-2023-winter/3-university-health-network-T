@@ -37,6 +37,18 @@ input {
   width: 100%;
 }
 
+
+input[type="email"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
 /* button {
   margin: 10px;
   padding: 10px;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Register.css';
+import styles from './Register.module.css';
 import uhn_logo from "../uhn_logo.svg";
 import { AiOutlineQuestion } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
@@ -72,18 +72,18 @@ function Register() {
   };
 
   return (
-    <div className="register-container">
-      <div className="logo-container">
-        <img src={uhn_logo} alt="Login" className="uhn-logo" />
+    <div className={styles.registerContainer}>
+      <div className={styles.logoContainer}>
+        <img src={uhn_logo} alt="Login" className={styles.uhnLogo} />
       </div>
-      <div className="help-icon">
+      <div className={styles.helpIcon}>
         <AiOutlineQuestion className="menu-button2" size={38} onClick={handleHelpClick} />
       </div>
       <form onSubmit={handleRegister}>
         <h1>Register</h1>
         <label>
           Email:
-          <input type="text" value={email} onChange={handleEmailChange} />
+          <input type="email" value={email} onChange={handleEmailChange} />
         </label>
         <label>
           Password:
@@ -94,12 +94,13 @@ function Register() {
           <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
         </label>
         <button type="submit">Register</button>
-        <button className="go-back-button" onClick={handleGoBack}>Go Back</button>
+        <button className={styles.goBackButton} onClick={handleGoBack}>Go Back</button>
       </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
     </div>
   );
 }
 
 export default Register;
+
 
