@@ -37,9 +37,9 @@ function ForgotPassword() {
 
   return (
     <div className='forgot-password-container'>
-        <div style={{ width: '500px', height: '500px' ,marginRight: '20px'}}>
+        {/* <div style={{ width: '500px', height: '500px' ,marginRight: '20px'}}>
             <img src={uhn_logo} alt="Login" style={{ width: '100%', height: '100%' }}/>
-        </div>
+        </div> */}
         <div style={{ position: 'absolute', top: '0', left: '0' }}>
             <AiOutlineQuestion className="menu-button2" size={38} onClick = {handleHelpClick}/>
         </div>
