@@ -90,6 +90,25 @@ button:hover {
   background-color: #2196f3;
 }
 
+.go-back-button {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.go-back-button:hover {
+  background-color: #666;
+}
+
+
 .error-message {
   color: red;
   margin: 10px;

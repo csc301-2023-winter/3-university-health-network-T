@@ -27,6 +27,11 @@ function Register() {
     navigate('/help');
   }
 
+  const handleGoBack = () => {
+    navigate('/');
+  };
+  
+
   const handleRegister = (event) => {
     event.preventDefault();
 
@@ -89,6 +94,7 @@ function Register() {
           <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
         </label>
         <button type="submit">Register</button>
+        <button className="go-back-button" onClick={handleGoBack}>Go Back</button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
