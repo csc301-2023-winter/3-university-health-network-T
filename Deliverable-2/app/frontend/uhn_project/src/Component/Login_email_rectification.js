@@ -65,10 +65,13 @@ function Rectify() {
 
   return (
     <div className="rectify-container">
+      <div style={{ position: 'absolute', top: '0', left: '0' }}>
+          <AiOutlineQuestion className="menu-button2" size={38} onClick={handleHelpClick} />
+      </div>
         <form className="form" onSubmit={handleSubmit}>
-            <div style={{ position: 'absolute', top: '0', left: '0' }}>
+            {/* <div style={{ position: 'absolute', top: '0', left: '0' }}>
                 <AiOutlineQuestion className="menu-button2" size={38} onClick={handleHelpClick} />
-            </div>
+            </div> */}
             <label className="label">
             Enter the 5-digit code you received in your email:
             <br></br>

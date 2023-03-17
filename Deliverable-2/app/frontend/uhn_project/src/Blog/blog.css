@@ -10,6 +10,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #333;
+  background-color: #f7f7f7;
 }
 
 /* Blog container styles */
@@ -40,6 +41,16 @@ h1 {
   margin-bottom: 20px;
   cursor: pointer;
   width: calc(50% - 10px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.blog-preview img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 15px;
 }
 
 /* Tag styles */
@@ -61,6 +72,8 @@ h1 {
 .date {
   font-weight: bold;
   font-size: 14px;
+  font-family: 'Great Vibes', cursive;
+  color: #555;
 }
 
 /* Blog content styles */
@@ -78,6 +91,8 @@ h2 {
   border: 1px solid #ccc;
   padding: 20px;
   margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 p {
@@ -99,6 +114,7 @@ button {
 button:hover {
   background-color: #666;
 }
+
 
 
   

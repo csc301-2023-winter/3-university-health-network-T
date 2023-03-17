@@ -52,6 +52,9 @@ function Menu() {
             <li>
               <a href="/contact">Contact us</a>
             </li>
+            <li>
+              <a href="/">Login</a>
+            </li>
           </ul>
           <button className="menu-close" onClick={handleCloseClick}>
             &#x2716;

@@ -39,6 +39,18 @@ function Blog() {
     setSelectedBlog(null);
   };
 
+  const formatDate = (dateString, includeTime = false) => {
+    const date = new Date(dateString);
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  
+    if (includeTime) {
+      return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+    } else {
+      return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+    }
+  };
+  
+
   return (
     <div className="blog-container">
       <h1>Blog</h1>
@@ -46,25 +58,20 @@ function Blog() {
         <div className="blog-details">
           <h2>{selectedBlog.title}</h2>
           <div className="tag-container">
-            {/* {selectedBlog.tags.map((tag) => (
-              <div key={tag} className="tag">{tag}</div>
-            ))} */}
             <div> {selectedBlog.tags}</div>
-            <div className="date">{selectedBlog.date}</div>
+            <div className="date">{formatDate(selectedBlog.date)}</div>
+
           </div>
           <p>{selectedBlog.context}</p>
           <button onClick={handleCloseClick}>Close</button>
         </div>
       ) : (
         <div className="blog-overview">
-          {/* <h2>Overview</h2> */}
           {blogs.map((blog) => (
             <div key={blog.bid} className="blog-preview" onClick={() => handleBlogClick(blog)}>
+              <img src={`https://source.unsplash.com/random/800x600?sig=${Math.floor(Math.random() * 1000)}`} alt="Random Unsplash Image" />
               <div className="tag-container">
-                {/* {blog.tags.map((tag) => (
-                  <div key={tag} className="tag">{tag}</div>
-                ))} */}
-                <div className="date">{blog.date}</div>
+                <div className="date">{formatDate(blog.date)}</div>
                 <div> {blog.tags}</div>
               </div>
               <h3>{blog.title}</h3>
@@ -78,4 +85,5 @@ function Blog() {
 }
 
 export default Blog;
+
 
