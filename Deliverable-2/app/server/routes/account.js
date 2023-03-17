@@ -57,4 +57,20 @@ router.post('/signup', (req, res) => {
     });
   });
 
+router.post('/reset', (req, res) => {
+  const { email, password } = req.body;
+  console.log(req.body);
+  if (!email || !password) {
+    return res.status(403).json({ message: 'One of your email and password is required' });
+  };
+  pool.query('UPDATE Patient SET Password = $1 WHERE Email = $2', [password, email])
+  .then((result) => {
+    console.log(result);
+    return res.status(200).json({ message: `Reset password successful with email = ${email}`, catchNum: 200 });
+  }).catch((error) => {
+    console.log(error);
+    return res.status(500).json({ message: `Error happened in reset password with email = ${email}, check whether you have register an account with this email`, catchNum: 500 });
+  });
+});
+
 module.exports = router;
