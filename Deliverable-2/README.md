@@ -98,6 +98,11 @@ This website is going to overcome the location barriers for patients that live f
  
 #### Method : Install From Source
 
+- Boostrap is the style framework
+- React js and Next js will be used to develop the front end
+- Node js on Azure is the backend
+- PostgreSQL will be the database on Azure
+
 ```bash
 $ git clone https://github.com/csc301-2023-winter/3-university-health-network-T.git
 $ cd Deliverable-2/app/server/
