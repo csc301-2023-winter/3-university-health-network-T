@@ -110,7 +110,7 @@ class Displayer_loader extends Component{
                 sets finished: {this.state.index}/{this.props.exercise.number_sets}
             </div>
             <GLTF_player path={server_url+`/exercise/avatar_provider?exercise=${this.props.exercise.exercise}&character=${this.props.exercise.characters[0]}`} 
-            total={1}
+            total={this.props.exercise.number_repetitions}
              format={this.state.format}
               onfinsh={this.onfinsh}
                index={this.state.index}
