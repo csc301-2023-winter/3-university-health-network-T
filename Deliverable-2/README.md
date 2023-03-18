@@ -3,8 +3,10 @@
 > _Note:_ This document is intended to be relatively short. Be concise and precise. Assume the reader has no prior knowledge of your application and is non-technical. 
 ​
 ## Description 
-- Context: This is  a responsive website for stroke and cardiovascular patients to do rehabilitation exercises remotely.
-- Value behind the application: This website is going to overcome the location barriers for patients that live far from the rehabilitation stations, as well as to overcome the mobility barriers for patients that contain mobility issues with their body after strokes.
+- Context:
+  This is  a responsive website for stroke and cardiovascular patients to do rehabilitation exercises remotely.
+- Value behind the application:
+  This website is going to overcome the location barriers for patients that live far from the rehabilitation stations, as well as to overcome the mobility barriers for patients that contain mobility issues with their body after strokes.
 ​
 ## Key Features
  * Patients are able to do daily rehabilitation exercises viturally. 
