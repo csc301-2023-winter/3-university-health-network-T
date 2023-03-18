@@ -47,6 +47,17 @@ This website is going to overcome the location barriers for patients that live f
  * How do you access it? For example: Are accounts pre-created or does a user register? Where do you start? etc. 
  * Provide clear steps for using each feature described in the previous section.
  * This section is critical to testing your application and must be done carefully and thoughtfully.
+
+## Instructions(Part 1 of 2 - Register part)
+- Page 1: By clicking the URL, you will see the login page.
+
+- Page 2: For new user register, click the register button. After entering the correct information, it will go to page 3 for user email verification.
+
+- Page 3: User login email verification, click "login" to access to the main web page.
+
+- page 4: User will be able to see the main page after login in.
+
+## Instructions(Part 2 of 2 - App features part)
  
  ## Development requirements
  * What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
