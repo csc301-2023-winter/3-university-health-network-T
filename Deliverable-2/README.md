@@ -118,7 +118,7 @@ $ npm run
 ​
 Describe your Git/GitHub workflow. Essentially, we want to understand how your team members share codebase, avoid conflicts and deploys the application.
 ​
-## ![page 11](./D2-demo-img/f11.jepg.png)
+## ![page 11](./D2-demo-img/f11.png)
 
 We choose to use  Model-View-Presenter (MVP) to create this virtual rehabilitation website project, we follow the following steps:
 
