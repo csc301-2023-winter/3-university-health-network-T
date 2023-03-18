@@ -58,7 +58,7 @@ This website is going to overcome the location barriers for patients that live f
 - Page 3: User login email verification, click "login" to access to the main web page.
 ## ![page 3](./D2-reg-demo-img/r3.png)
 
-- page 4: User will be able to see the main page after login in.
+- User will be able to see the main page after login in.
 
 ## Instructions(Part 2 of 2 - App features part)
  
