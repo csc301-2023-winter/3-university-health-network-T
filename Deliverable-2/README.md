@@ -78,8 +78,18 @@ This website is going to overcome the location barriers for patients that live f
 - Page 4: After checking the devices, now user can click on the "Avatar" button to start doing daily rehabilitation exercises.
 ## ![page 4](./D2-demo-img/f5.png)
 
--Page 5: User should click on the "Start recording" button to turn on camera and follow the avatar to do daily rehabilitation exercises. If user want to have a rest, user can lick on the "Stop" button to stop the avatar video and they can continue by clicking "Continue"
+- Page 5: User should click on the "Start recording" button to turn on camera and follow the avatar to do daily rehabilitation exercises. If user want to have a rest, user can lick on the "Stop" button to stop the avatar video and they can continue by clicking "Continue"
 ## ![page 6](./D2-demo-img/f6.png)
+
+- Page 6: User can click on "Rehab Program" button from "Menu". Users should be able to see the exercises they done from the calender.
+## ![page 7](./D2-demo-img/f7.png)
+## ![page 8](./D2-demo-img/f8.png)
+
+- Page 7: User can also read the blog of the web app, blogs are about about medicine and health. Users are able to click on the blog to read the detail information.
+## ![page 9](./D2-demo-img/f9.png)
+## ![page 10](./D2-demo-img/f10.png)
+
+
 
  ## Development requirements
  * What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
