@@ -132,6 +132,12 @@ Implement the features: Implement the features of the virtual rehabilitation pro
 
 By using the MVP pattern in our virtual rehabilitation website project, we achieve a clean separation of concerns and improve the maintainability, testability, and scalability of our codebase.
 
+#### Database & Azure (members:Mingyang Li)
+
+#### Backend (members:)
+
+#### Frontend (members:)
+
  * Be concise, yet precise. For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
  * If applicable, specify any naming conventions or standards you decide to adopt.
  * Describe your overall deployment process from writing code to viewing a live application
