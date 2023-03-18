@@ -215,9 +215,12 @@ componentWillUnmount() {
 }
 stop(){
     console.log('stop')
+    console.log(this.clock)
+    this.clock.running=false
     this.pause=true
 }
 cont(){
+    console.log(this.clock)
     this.pause=false
     if(this.animate){
     this.animate()
