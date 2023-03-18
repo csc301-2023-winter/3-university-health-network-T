@@ -81,7 +81,7 @@ This website is going to overcome the location barriers for patients that live f
 - Page 5: User should click on the "Start recording" button to turn on camera and follow the avatar to do daily rehabilitation exercises. If user want to have a rest, user can lick on the "Stop" button to stop the avatar video and they can continue by clicking "Continue"
 ## ![page 6](./D2-demo-img/f6.png)
 
-- Page 6: User can click on "Rehab Program" button from "Menu". Users should be able to see the exercises they done from the calender.
+- Page 6: User can click on "Rehab Program" button from "Menu". Users should be able to see the exercises they have done from the calender.
 ## ![page 7](./D2-demo-img/f7.png)
 ## ![page 8](./D2-demo-img/f8.png)
 
