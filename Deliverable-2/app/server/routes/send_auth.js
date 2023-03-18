@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     // first need to generate a random 5-digit code.
     const code = Math.floor(10000 + Math.random() * 90000);
+    console.log(code);
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {

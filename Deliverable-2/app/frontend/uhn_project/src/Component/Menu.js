@@ -38,7 +38,7 @@ function Menu() {
               <a href="/rehab">Rehab Program</a>
             </li>
             <li>
-              <a href="/video">Meeting</a>
+              <a href="/video">Avatar</a>
             </li>
             <li>
               <a href="/blog">Blog</a>
