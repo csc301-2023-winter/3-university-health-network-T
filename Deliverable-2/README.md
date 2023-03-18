@@ -61,7 +61,12 @@ This website is going to overcome the location barriers for patients that live f
 - User will be able to see the main page after login in.
 
 ## Instructions(Part 2 of 2 - App features part)
- 
+- Page 1:To test the web features, please use our fake user account. Email: zhou@gmail.com, password: 123. Click login to start testing.
+## ![page 1](./D2-demo-img/f1.png)
+
+
+
+
  ## Development requirements
  * What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
  * Briefly describe instructions for setting up and running the application. You should address this part like how one would expect a README doc of real-world deployed application would be.
