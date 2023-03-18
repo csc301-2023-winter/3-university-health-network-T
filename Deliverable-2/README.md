@@ -52,7 +52,7 @@ This website is going to overcome the location barriers for patients that live f
 - Page 1: By clicking the URL, you will see the login page.
 ## ![page 1](./D2-reg-demo-img/r1.png)
 
-- Page 2: For new user register, click the register button. After entering the correct information, it will go to page 3 for user email verification.
+- Page 2: For new user register, click the register button. After entering the correct information, it will go to page 3 for user email verification, you can enter your personal email address to receive the 5-digits vertification code.
 ## ![page 2](./D2-reg-demo-img/r2.png)
 
 - Page 3: User login email verification, click "login" to access to the main web page.
@@ -64,8 +64,22 @@ This website is going to overcome the location barriers for patients that live f
 - Page 1:To test the web features, please use our fake user account. Email: zhou@gmail.com, password: 123. Click login to start testing.
 ## ![page 1](./D2-demo-img/f1.png)
 
+- Page 2: As it is a fake user account, we don't need to enter the 5-digits vertification code, please add "/home" in the URL to access to the home page of the web app.
+## ![page 2](./D2-demo-img/f2.png)
 
+- Page 3: User will be able to go to the home page of the web app. User should be able to see the exercise informaion they have to finish this week.
+## ![page 3](./D2-demo-img/f3.png)
 
+- Page 3.1: Before user starts to do daily rehabilitation exercises, user should click on the "setting" button to check if their devices are working.
+## ![page 3.1](./D2-demo-img/f3.1.png)
+## ![page 3.2](./D2-demo-img/f3.2.png)
+## ![page 3.3](./D2-demo-img/f3.3.png)
+
+- Page 4: After checking the devices, now user can click on the "Avatar" button to start doing daily rehabilitation exercises.
+## ![page 4](./D2-demo-img/f5.png)
+
+-Page 5: User should click on the "Start recording" button to turn on camera and follow the avatar to do daily rehabilitation exercises. If user want to have a rest, user can lick on the "Stop" button to stop the avatar video and they can continue by clicking "Continue"
+## ![page 6](./D2-demo-img/f6.png)
 
  ## Development requirements
  * What are the technical requirements for a developer to set up on their machine or server (e.g. OS, libraries, etc.)?
