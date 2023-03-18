@@ -50,10 +50,13 @@ This website is going to overcome the location barriers for patients that live f
 
 ## Instructions(Part 1 of 2 - Register part)
 - Page 1: By clicking the URL, you will see the login page.
+## ![page 1](./D2-reg-demo-img/r1.png)
 
 - Page 2: For new user register, click the register button. After entering the correct information, it will go to page 3 for user email verification.
+## ![page 2](./D2-reg-demo-img/r2.png)
 
 - Page 3: User login email verification, click "login" to access to the main web page.
+## ![page 3](./D2-reg-demo-img/r3.png)
 
 - page 4: User will be able to see the main page after login in.
 
