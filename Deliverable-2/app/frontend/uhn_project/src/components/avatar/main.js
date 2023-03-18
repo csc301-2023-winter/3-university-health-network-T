@@ -5,13 +5,18 @@ import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
 import { OrbitControls } from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls'
 import { FBXLoader } from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/FBXLoader'
 import Stats from 'https://unpkg.com/three@0.126.1/examples/jsm/libs/stats.module'
+import { GLTFLoader } from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader'
 // import "./style.css"
 
 
 
+// // Scene
+// const scene = new THREE.Scene()
+// // scene.add(new THREE.AxesHelper(2))
+// scene.background = new THREE.Color(0xffffff)
 // Scene
 const scene = new THREE.Scene()
-// scene.add(new THREE.AxesHelper(2))
+scene.add(new THREE.AxesHelper(2))
 scene.background = new THREE.Color(0xffffff)
 
 
@@ -19,37 +24,72 @@ scene.background = new THREE.Color(0xffffff)
 let modelReady = false
 let mixer = THREE.AnimationMixer
 
-let animationMixer = THREE.AnimationMixer
-const fbxLoader = new FBXLoader()
+// let animationMixer = THREE.AnimationMixer
+// const fbxLoader = new FBXLoader()
+const gltfLoader = new GLTFLoader()
 
+// fbxLoader.load(
 
-fbxLoader.load(
-
-    'models/air-squat.fbx',
-    // 'models/dance.fbx',
-    // 'models/arissa.fbx',
-    //'models/mannequin.fbx',
-    // 'models/mousey.fbx',
+//     'models/air-squat.fbx',
+//     // 'models/dance.fbx',
+//     // 'models/arissa.fbx',
+//     //'models/mannequin.fbx',
+//     // 'models/mousey.fbx',
     
-    (object) => {
+//     (object) => {
 
-        // object.scale.set(0.016, 0.016, 0.016)
-        // object.scale.set(0.008, 0.008, 0.008)
-        object.scale.set(0.016, 0.016, 0.016)
+//         // object.scale.set(0.016, 0.016, 0.016)
+//         // object.scale.set(0.008, 0.008, 0.008)
+//         object.scale.set(0.016, 0.016, 0.016)
 
-        object.position.set(0, -1.5, 0)
-        object.rotation.y = Math.PI * .4
-
-
-        mixer = new THREE.AnimationMixer(object)
-        mixer.timeScale = 1
-        const action = mixer.clipAction( object.animations[0]);
-        action.play();
-
-        // console.log(object.scene.name)
+//         object.position.set(0, -1.5, 0)
+//         object.rotation.y = Math.PI * .4
 
 
-        scene.add(object)
+//         mixer = new THREE.AnimationMixer(object)
+//         mixer.timeScale = 1
+//         const action = mixer.clipAction( object.animations[0]);
+//         action.play();
+
+//         // console.log(object.scene.name)
+
+
+//         scene.add(object)
+
+//         modelReady = true
+
+//     },
+//     (xhr) => {
+//         console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+//     },
+//     (error) => {
+//         console.log(error)
+//     }
+// )
+gltfLoader.load(
+    // 'models/ali-01-xbot.gltf',
+    // 'models/ali-02-xbot.gltf',
+
+    (gltf) => {
+        console.log(gltf)
+
+
+        gltf.scene.scale.set(1.6, 1.6, 1.6)
+        gltf.scene.position.set(-4, -2, 0)
+        gltf.scene.rotation.y = Math.PI * .48
+
+        mixer = new THREE.AnimationMixer(gltf.scene)
+        const clipAction = mixer.clipAction(gltf.animations[0])
+
+
+
+        // console.log(gltf.animations[0].tracks)
+
+        clipAction.play()
+        clipAction.fadeIn()
+
+
+        scene.add(gltf.scene)
 
         modelReady = true
 
@@ -60,6 +100,7 @@ fbxLoader.load(
     (error) => {
         console.log(error)
     }
+
 )
 
 
