@@ -118,7 +118,7 @@ $ npm run
 ​
 Describe your Git/GitHub workflow. Essentially, we want to understand how your team members share codebase, avoid conflicts and deploys the application.
 ​
-
+## ![page 11](./D2-demo-img/f11.jepg)
 We choose to use  Model-View-Presenter (MVP) to create this virtual rehabilitation website project, we follow the following steps:
 
 * Model: Identify the data and business logic that the website needs to support the virtual rehabilitation program. We need to store user profiles, exercise programs, and progress reports. We create a data model that represents these entities and provides methods for accessing and updating them.
