@@ -4,9 +4,11 @@
 ​
 ## Description 
 - Context:
-  This is  a responsive website for stroke and cardiovascular patients to do rehabilitation exercises remotely.
+
+This is  a responsive website for stroke and cardiovascular patients to do rehabilitation exercises remotely. The application can arrange weekly and daily exercise programs for users, and users can turn on the camera and synchronize training with avatar exercise videos.
 - Value behind the application:
-  This website is going to overcome the location barriers for patients that live far from the rehabilitation stations, as well as to overcome the mobility barriers for patients that contain mobility issues with their body after strokes.
+
+This website is going to overcome the location barriers for patients that live far from the rehabilitation stations, as well as to overcome the mobility barriers for patients that contain mobility issues with their body after strokes.
 ​
 ## Key Features
  * Patients are able to do daily rehabilitation exercises viturally. 
