@@ -96,6 +96,19 @@ This website is going to overcome the location barriers for patients that live f
  * Briefly describe instructions for setting up and running the application. You should address this part like how one would expect a README doc of real-world deployed application would be.
  * You can see this [example](https://github.com/alichtman/shallow-backup#readme) to get started.
  
+#### Method : Install From Source
+
+```bash
+$ git clone https://github.com/csc301-2023-winter/3-university-health-network-T.git
+$ cd Deliverable-2/app/server/
+$ npm install
+$ npm run devStart
+$ cd ..
+$ cd Deliverable-2/app/frontend/uhn_project/
+$ npm install
+$ npm run
+```
+ 
  ## Deployment and Github Workflow
 ​
 Describe your Git/GitHub workflow. Essentially, we want to understand how your team members share codebase, avoid conflicts and deploys the application.
