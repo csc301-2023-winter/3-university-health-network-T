@@ -133,12 +133,12 @@ Implement the features: Implement the features of the virtual rehabilitation pro
 
 By using the MVP pattern in our virtual rehabilitation website project, we achieve a clean separation of concerns and improve the maintainability, testability, and scalability of our codebase.
 
-#### Database & Azure (members:Mingyang Li-1005976099)
-Before we start our project, I discussed with our partner about what tables we will need for the database. Then I design a reasonable database with tables and fields. Then I implemented the databse I designed with some pre-set data and push to our group's repo, and also depolyed my database in Azure. After that I talked with our back-end group about the structure of the database and what fields they will need from the tables to let back-end be able to fetch data from database.
+#### Database & Azure (members: Mingyang Li-1005976099)
+Before we start our project, I discussed with our partner about what tables we will need for the database. Then I design a reasonable database with tables and fields. Then I implemented the databse I designed with some pre-set data and push to our group's repo, and also depolyed my database in Azure. After that I talked with our back-end group about the structure of the database and what fields they will need from the tables to let back-end be able to fetch data from database. Other: adjust database info for back-end API testing, depolyed Blob on Azure for front-end video loading and recording.
 
-#### Backend (members:)
+#### Backend (members: )
 
-#### Frontend (members:)
+#### Frontend (members: )
 
  * Be concise, yet precise. For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
  * If applicable, specify any naming conventions or standards you decide to adopt.
