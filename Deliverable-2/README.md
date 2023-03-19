@@ -140,6 +140,15 @@ Before we start our project, I discussed with our partner about what tables we w
 
 #### Frontend (members: )
 
+  For the frontend, we divided our project tasks by function similarity, for example, meetings and avatar/rehab recording page have relatively similar function and are likely to use similar tools for development, so these tasks are paired up together. After dividing all tasks into groups, we assess each members' interest in them, and assign the task either to one member for normoal task or a pair of members for harder tasks. 
+  
+  After the draft development, we meet up again and discuss the difficulties we are facing and try to help each other for the occuring problems or bugs. At the same time, we also inform each other with bugs we have found on their own part that needs to be fixed. 
+  
+  On the second revision, we start to test out these functionalities that are developed, this help us to find issues that are not thought of by ourselves.
+  
+  At the end, we set all the css styling to unify the look of our webpage and deploy the website to cloud.
+
+
  * Be concise, yet precise. For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
  * If applicable, specify any naming conventions or standards you decide to adopt.
  * Describe your overall deployment process from writing code to viewing a live application
