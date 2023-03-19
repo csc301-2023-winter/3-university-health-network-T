@@ -137,7 +137,7 @@ By using the MVP pattern in our virtual rehabilitation website project, we achie
 Before we start our project, I discussed with our partner about what tables we will need for the database. Then I design a reasonable database with tables and fields. Then I implemented the databse I designed with some pre-set data and push to our group's repo, and also depolyed my database in Azure. After that I talked with our back-end group about the structure of the database and what fields they will need from the tables to let back-end be able to fetch data from database. Other: adjust database info for back-end API testing, depolyed Blob on Azure for front-end video loading and recording.
 
 #### Backend (members: Yide Ma(Tseateen) -- 1005915734 -- mayide1)
-
+   In the early stages of D2, we designed the API according to the requirements and provided it to the front-end. At the same time, we did a preliminary design of the schema for the data that might be needed and discussed it with our partner, receiving feedback. Later, Yide completed the back-end code for the popup, exercise, calendar, recording, and blog-related functions, and tested it with Nathan (a member of the DB team) and Darcy, Nicole, Canyang (members of the FE team), achieving the desired results. The additional APIs in exercise and recording were designed for future functionality expansion.
 #### Frontend (members: Hanzhi(Nicole）Zhou--1006843196-nzhou27, Canyang Wang -- 1006931652)
 
   For the frontend, we divided our project tasks by function similarity, for example, meetings and avatar/rehab recording page have relatively similar function and are likely to use similar tools for development, so these tasks are paired up together. After dividing all tasks into groups, we assess each members' interest in them, and assign the task either to one member for normoal task or a pair of members for harder tasks. Also during the development, we found some unreasonable UI design prototype and talked about them with our partner, and finally we end up with a more user friendly one. For example, the blog will automately show up different beautiful pictures to decorate each blog。
@@ -147,13 +147,6 @@ Before we start our project, I discussed with our partner about what tables we w
   On the second revision, we start to test out these functionalities that are developed, this help us to find issues that are not thought of by ourselves.
   
   At the end, we set all the css styling to unify the look of our webpage and deploy the website to cloud.
-
-
- * Be concise, yet precise. For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
- * If applicable, specify any naming conventions or standards you decide to adopt.
- * Describe your overall deployment process from writing code to viewing a live application
- * What deployment tool(s) are you using? And how?
- * Don't forget to **briefly justify why** you chose this workflow or particular aspects of it!
 ​
  ## Licenses 
  
