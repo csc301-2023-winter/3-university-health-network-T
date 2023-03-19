@@ -20,9 +20,6 @@ This website is going to overcome the location barriers for patients that live f
     * Patients can find their appointments on the calender 
     * Patients can set up their microphone, speaker and camera 
     * Patents can do the meeting with the doctor.
- * Describe the key features in the application that the user can access.
- * Provide a breakdown or detail for each feature.
- * This section will be used to assess the value of the features built
 ​
 ## Instructions
    * Login 
@@ -42,11 +39,6 @@ This website is going to overcome the location barriers for patients that live f
    * Contact Us 
 
    * Meetings
-
- * Clear instructions for how to use the application from the end-user's perspective
- * How do you access it? For example: Are accounts pre-created or does a user register? Where do you start? etc. 
- * Provide clear steps for using each feature described in the previous section.
- * This section is critical to testing your application and must be done carefully and thoughtfully.
 
 ## 👇Demo - please open the URL below in a new browser and follow the instructions below.
 Click the URL below to see how the web app works without downloading the code and setting up enviroment:
@@ -121,8 +113,6 @@ $ npm run
  
  ## Deployment and Github Workflow
 ​
-Describe your Git/GitHub workflow. Essentially, we want to understand how your team members share codebase, avoid conflicts and deploys the application.
-​
 ## ![page 11](./D2-demo-img/f11.png)
 
 We choose to use  Model-View-Presenter (MVP) to create this virtual rehabilitation website project, we follow the following steps:
@@ -145,7 +135,7 @@ Before we start our project, I discussed with our partner about what tables we w
    In the early stages of D2, we designed the API according to the requirements and provided it to the front-end. At the same time, we did a preliminary design of the schema for the data that might be needed and discussed it with our partner, receiving feedback. Later, Yide completed the back-end code for the popup, exercise, calendar, recording, and blog-related functions, and tested it with Nathan (a member of the DB team) and Darcy, Nicole, Canyang (members of the FE team), achieving the desired results. The additional APIs in exercise and recording were designed for future functionality expansion.
    
    Yiteng completed the back-end code for accounts(login, register and reset password), send auth code and primary meeting. Also he tested the code with Nathan and Canyang for the functionality. In the future deliverable, the functions in meeting will be finished and updated.
-#### Frontend (members: Hanzhi(Nicole）Zhou--1006843196-nzhou27, Canyang Wang -- 1006931652)
+#### Frontend (members: Hanzhi(Nicole）Zhou--1006843196-nzhou27, Canyang Wang -- 1006931652, chengshuo zhang -- vanessa-sissi)
 
   For the frontend, we divided our project tasks by function similarity, for example, meetings and avatar/rehab recording page have relatively similar function and are likely to use similar tools for development, so these tasks are paired up together. After dividing all tasks into groups, we assess each members' interest in them, and assign the task either to one member for normoal task or a pair of members for harder tasks. Also during the development, we found some unreasonable UI design prototype and talked about them with our partner, and finally we end up with a more user friendly one. For example, the blog will automately show up different beautiful pictures to decorate each blog。
   
