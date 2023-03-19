@@ -136,7 +136,7 @@ By using the MVP pattern in our virtual rehabilitation website project, we achie
 #### Database & Azure (members: Mingyang Li-1005976099)
 Before we start our project, I discussed with our partner about what tables we will need for the database. Then I design a reasonable database with tables and fields. Then I implemented the databse I designed with some pre-set data and push to our group's repo, and also depolyed my database in Azure. After that I talked with our back-end group about the structure of the database and what fields they will need from the tables to let back-end be able to fetch data from database. Other: adjust database info for back-end API testing, depolyed Blob on Azure for front-end video loading and recording.
 
-#### Backend (members: )
+#### Backend (members: Yide Ma(Tseateen) -- 1005915734 -- mayide1)
 
 #### Frontend (members: Hanzhi(Nicole）Zhou--1006843196-nzhou27, Canyang Wang -- 1006931652)
 
