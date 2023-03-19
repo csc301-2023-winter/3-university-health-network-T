@@ -138,7 +138,7 @@ Before we start our project, I discussed with our partner about what tables we w
 
 #### Backend (members: )
 
-#### Frontend (members: )
+#### Frontend (members: Hanzhi(Nicole）Zhou--1006843196-nzhou27)
 
   For the frontend, we divided our project tasks by function similarity, for example, meetings and avatar/rehab recording page have relatively similar function and are likely to use similar tools for development, so these tasks are paired up together. After dividing all tasks into groups, we assess each members' interest in them, and assign the task either to one member for normoal task or a pair of members for harder tasks. 
   
