@@ -48,7 +48,7 @@ This website is going to overcome the location barriers for patients that live f
  * Provide clear steps for using each feature described in the previous section.
  * This section is critical to testing your application and must be done carefully and thoughtfully.
 
-## Demo
+## 👇Demo - please open the URL below in a new browser and follow the instructions below.
 Click the URL below to see how the web app works without downloading the code and setting up enviroment:
 
 [UHN Website](https://d2-uhn-be.azurewebsites.net)
