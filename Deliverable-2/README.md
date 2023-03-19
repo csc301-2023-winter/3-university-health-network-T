@@ -156,7 +156,6 @@ Before we start our project, I discussed with our partner about what tables we w
  * Don't forget to **briefly justify why** you chose this workflow or particular aspects of it!
 ​
  ## Licenses 
-​
- Keep this section as brief as possible. You may read this [Github article](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository) for a start.
-​
-The Academic Free License v3.0 (afl-3.0) should be a good choice for our project. According to the description of this license on the webpage "https://choosealicense.com/licenses/afl-3.0/", it allows for academic and commercial use, modification, and distribution of software under certain conditions. This aligns well with the nature of our partner company and the purpose of this project, which is to facilitate better and faster recovery for more patients. Therefore, we believe that afl-3.0 is a very good choice.
+ 
+The Academic Free License v3.0 (afl-3.0) should be a good choice for our project.
+According to the description of this license on the webpage "https://choosealicense.com/licenses/afl-3.0/", it allows for academic and commercial use, modification, and distribution of software under certain conditions. This aligns well with the nature of our partner company and the purpose of this project, which is to facilitate better and faster recovery for more patients. Therefore, we believe that afl-3.0 is a very good choice.
