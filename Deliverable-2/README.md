@@ -138,11 +138,11 @@ Before we start our project, I discussed with our partner about what tables we w
 
 #### Backend (members: )
 
-#### Frontend (members: Hanzhi(Nicole）Zhou--1006843196-nzhou27)
+#### Frontend (members: Hanzhi(Nicole）Zhou--1006843196-nzhou27, Canyang Wang -- 1006931652)
 
-  For the frontend, we divided our project tasks by function similarity, for example, meetings and avatar/rehab recording page have relatively similar function and are likely to use similar tools for development, so these tasks are paired up together. After dividing all tasks into groups, we assess each members' interest in them, and assign the task either to one member for normoal task or a pair of members for harder tasks. 
+  For the frontend, we divided our project tasks by function similarity, for example, meetings and avatar/rehab recording page have relatively similar function and are likely to use similar tools for development, so these tasks are paired up together. After dividing all tasks into groups, we assess each members' interest in them, and assign the task either to one member for normoal task or a pair of members for harder tasks. Also during the development, we found some unreasonable UI design prototype and talked about them with our partner, and finally we end up with a more user friendly one. For example, the blog will automately show up different beautiful pictures to decorate each blog。
   
-  After the draft development, we meet up again and discuss the difficulties we are facing and try to help each other for the occuring problems or bugs. At the same time, we also inform each other with bugs we have found on their own part that needs to be fixed. 
+  After the draft development, we meet up again and discuss the difficulties we are facing and try to help each other for the occuring problems or bugs. At the same time, we also inform each other with bugs we have found on their own part that needs to be fixed. Also we have a meeting with backend members to talk about the fetch between frontend and backend. During the meeting, we also tested the fetch to make sure our project works well.
   
   On the second revision, we start to test out these functionalities that are developed, this help us to find issues that are not thought of by ourselves.
   
