@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "127e8c4c-9d00-4e24-9e49-48f695d81f73",
+		"name": "uhn_D2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24151025"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"123123@123.com\",\n    \"password\":\"123123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/account/signup",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"zhou@gmail.com\",\n    \"password\":\"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/account/signin",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PopUp",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjc5MjA3NjE4LCJleHAiOjE2NzkyOTQwMTh9.Cq5X7DULVdttWWGABIFkCmxMCCqh3ClwnPEKmvJMXNU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/popup",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"popup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "For exercise page to get the exercise for today to do",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjc5MjA3NjE4LCJleHAiOjE2NzkyOTQwMTh9.Cq5X7DULVdttWWGABIFkCmxMCCqh3ClwnPEKmvJMXNU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/getexes-todo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"getexes-todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get avatar by exercise and character",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjc5MjA3NjE4LCJleHAiOjE2NzkyOTQwMTh9.Cq5X7DULVdttWWGABIFkCmxMCCqh3ClwnPEKmvJMXNU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/exercise/avatar-for-exe?exercise=ali-02-xbot&character=robot",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"exercise",
+						"avatar-for-exe"
+					],
+					"query": [
+						{
+							"key": "exercise",
+							"value": "ali-02-xbot"
+						},
+						{
+							"key": "character",
+							"value": "robot"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Canlendar months view",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjc5MjA3NjE4LCJleHAiOjE2NzkyOTQwMTh9.Cq5X7DULVdttWWGABIFkCmxMCCqh3ClwnPEKmvJMXNU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/calendar/year",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"calendar",
+						"year"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Canlendar days view",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "blogs overview",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/blog/blogs/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"blog",
+						"blogs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Blog detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/blog/detail/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"blog",
+						"detail",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recording video",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjc5MjA3NjE4LCJleHAiOjE2NzkyOTQwMTh9.Cq5X7DULVdttWWGABIFkCmxMCCqh3ClwnPEKmvJMXNU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Date",
+							"value": "2023-03-19",
+							"type": "text"
+						},
+						{
+							"key": "Time",
+							"value": "2023-03-19,12:02:20",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"type": "file",
+							"src": "/Users/yds/Downloads/file_example_MP4_480_1_5MG.mp4"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/record/upload/video",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"record",
+						"upload",
+						"video"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
