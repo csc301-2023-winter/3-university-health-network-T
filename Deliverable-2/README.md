@@ -18,7 +18,8 @@ This website is going to overcome the location barriers for patients that live f
     * Patients can press the record button to do the redording.
  * Patients are able to: 
     * Patients can find their exercise history on the calender 
-    * Patients can set up their microphone, speaker and camera 
+    * Patients can set up their microphone, speaker and camera
+    * Patients can check the blog
     
 ​
 ## Instructions
