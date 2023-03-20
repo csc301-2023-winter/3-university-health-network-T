@@ -61,6 +61,59 @@
 			"response": []
 		},
 		{
+			"name": "Reset password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"yiteng.sun@mail.utoronto.ca\",\n    \"password\": \"123123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/account/reset",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send auth code",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"yiteng.sun@mail.utoronto.ca\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "PopUp",
 			"request": {
 				"auth": {
