@@ -13,13 +13,13 @@ This website is going to overcome the location barriers for patients that live f
 ## Key Features
  * Patients are able to do daily rehabilitation exercises viturally. 
     * Patients can login their account to see their assinged exercises
-    * Patients can choose the avatar gender to do the exercises.
+    
  * Patients are able to record their own exercising videos.
     * Patients can press the record button to do the redording.
  * Patients are able to do online consultation with physicians. 
-    * Patients can find their appointments on the calender 
+    * Patients can find their exercise history on the calender 
     * Patients can set up their microphone, speaker and camera 
-    * Patents can do the meeting with the doctor.
+    
 ​
 ## Instructions
    * Login 
