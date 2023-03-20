@@ -37,9 +37,6 @@ This website is going to overcome the location barriers for patients that live f
 
    * Settings 
 
-   * Contact Us 
-
-   * Meetings
 
 ## 👇Demo - please open the URL below in a new browser and follow the instructions below.
 Click the URL below to see how the web app works without downloading the code and setting up enviroment:
