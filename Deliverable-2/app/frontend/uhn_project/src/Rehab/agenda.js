@@ -3,8 +3,7 @@ import "./agenda.css";
 
 const Agenda = () =>{
   const [data, setData] = useState(null);
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjc4OTI5NzA2LCJleHAiOjE2NzkwMTYxMDZ9.Z1X8zdWOGYN5wJb0c3AMh2Wg-KTOSk0TRmNQDJAeQPs";
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(`http://localhost:5000/calendar/day`, {
