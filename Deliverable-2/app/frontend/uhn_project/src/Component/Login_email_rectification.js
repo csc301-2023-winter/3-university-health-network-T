@@ -10,7 +10,7 @@ function Rectify() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/auth', {
+    fetch('http://localhost:4000/auth', {
       method: 'POST',
         headers: {
           'Content-Type': 'application/json'

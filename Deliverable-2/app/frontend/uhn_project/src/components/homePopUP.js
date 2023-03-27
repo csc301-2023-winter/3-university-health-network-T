@@ -20,7 +20,7 @@ function HomePopUP() {
   
 
   useEffect(() => {
-    axios.get('http://localhost:5000/popup', {
+    axios.get('http://localhost:4000/popup', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(response => {
@@ -54,8 +54,8 @@ function HomePopUP() {
       <h5>Exercise Info</h5>
       {exerciseData? renderExercise(): "There is no prescribed exercise"}
       
-      <Button className='buttons'>Continue</Button>
-      <Button className='buttons'>Restart</Button>
+      <a href="/video"><Button className='buttons'>Continue</Button></a>
+      <a href="/video"><Button className='buttons'>Restart</Button></a>
       </div>
       <div id="list-meetings"><br/>
       <h5 >Upcoming Meeting</h5>
