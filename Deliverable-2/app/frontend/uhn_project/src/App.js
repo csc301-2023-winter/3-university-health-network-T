@@ -20,6 +20,7 @@ import SettingsPopUP from './Settings/settingsPopUp';
 import Rehab from './Rehab/rehab';
 import InternetCheck from './Settings/internetCheck';
 import { Meeting_room_with_rotter } from './components/meeting_room';
+import VideoMeeting from "./Meeting/meeting";
 
 
 
@@ -40,6 +41,7 @@ function App() {
        <Route path="/settings" element = {<SettingsPopUP/>}> </Route>
        <Route path="/rehab" element = {<Rehab/>}> </Route>
        <Route path='test_meeting' element={<Meeting_room_with_rotter/>}/> 
+       <Route path="/meeting" element={<VideoMeeting/>} />
        {/* <Route path='calendar' element={<Calendar/>}/>            */}
       </Routes>
     </BrowserRouter>
