@@ -37,9 +37,13 @@ function Menu() {
             <li>
               <a href="/rehab">Rehab Program</a>
             </li>
+            {/* <li>
+              <a href="/video">Meeting</a>
+            </li> */}
             <li>
-              <a href="/video">Avatar</a>
+              <a href="https://uhnmeet.azurewebsites.net" target="_blank" rel="noopener noreferrer">Meeting</a>
             </li>
+
             <li>
               <a href="/blog">Blog</a>
             </li>

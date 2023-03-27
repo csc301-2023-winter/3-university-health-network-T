@@ -19,7 +19,7 @@ function ForgotPassword() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/account/reset', {
+      const response = await fetch('http://localhost:4000/account/reset', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
