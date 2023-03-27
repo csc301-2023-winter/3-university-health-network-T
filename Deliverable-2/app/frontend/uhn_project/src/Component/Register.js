@@ -3,6 +3,7 @@ import styles from './Register.module.css';
 import uhn_logo from "../uhn_logo.svg";
 import { AiOutlineQuestion } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import Menu from './Menu';
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -77,7 +78,7 @@ function Register() {
         <img src={uhn_logo} alt="Login" className={styles.uhnLogo} />
       </div>
       <div className={styles.helpIcon}>
-        <AiOutlineQuestion className="menu-button2" size={38} onClick={handleHelpClick} />
+        <Menu/>
       </div>
       <form onSubmit={handleRegister}>
         <h1>Register</h1>

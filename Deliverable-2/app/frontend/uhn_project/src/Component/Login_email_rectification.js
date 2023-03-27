@@ -59,6 +59,10 @@ function Rectify() {
     navigate('/help');
   }
 
+  const handleGoBack = () => {
+    navigate('/');
+  };
+
   if (loggedIn) {
     return <div>You are logged in!</div>;
   }
@@ -78,6 +82,7 @@ function Rectify() {
             <input type="text" value={code} onChange={(event) => setCode(event.target.value)} />
             </label>
             <button type="submit">Login</button>
+            <button className='forgot-password-button' onClick={handleGoBack}>Go Back</button>
         </form>
     </div>
   );

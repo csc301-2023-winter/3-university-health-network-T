@@ -42,6 +42,9 @@ function ForgotPassword() {
     }
   };
   
+  const handleGoBack = () => {
+    navigate('/');
+  };
 
   if (submitted) {
     return <div>Check your email to reset your password.</div>;
@@ -63,6 +66,7 @@ function ForgotPassword() {
         </label>
         {error && <div className="error">{error}</div>}
         <button className='forgot-password-button' type="submit">Reset Password</button>
+        <button className='forgot-password-button' onClick={handleGoBack}>Go Back</button>
       </form>
     </div>
   );

@@ -65,3 +65,40 @@
  
    border: 0.5px solid black;
   }
+
+/* Small screens, such as smartphones */
+@media only screen and (max-width: 600px) {
+  .date-header {
+    font-size: 8vw;
+  }
+  .exercise-item,
+  .meeting-item,
+  .each-date {
+    margin-bottom: 5vw;
+    padding: 5vw;
+    border-width: 1vw;
+    border-radius: 2vw;
+  }
+}
+
+/* Medium screens, such as tablets */
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+  .date-header {
+    font-size: 3vw;
+  }
+  .exercise-item,
+  .meeting-item,
+  .each-date {
+    margin-bottom: 2vw;
+    padding: 2vw;
+    border-width: 0.5vw;
+    border-radius: 1vw;
+  }
+}
+
+/* Large screens, such as laptops and desktops */
+@media only screen and (min-width: 992px) {
+  .date-header {
+    font-size: 2vw;
+  }
+}

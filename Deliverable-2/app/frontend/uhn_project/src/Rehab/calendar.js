@@ -26,7 +26,7 @@ const fetchNextDaysEvents = async () => {
   const nextEndDate = new Date(nextStartDate);
   nextEndDate.setDate(nextEndDate.getDate() + 6); // Change the number here to set how many days to fetch at once
 
-  const response = await fetch("http://localhost:4000/calendar/day", {
+  const response = await fetch("http://localhost:5000/calendar/day", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const fetchNextDaysEvents = async () => {
 
 
   const fetchMonthEvents = async (date) => {
-    const response = await fetch("http://localhost:4000/calendar/year", {
+    const response = await fetch("http://localhost:5000/calendar/year", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -76,24 +76,6 @@ const fetchNextDaysEvents = async () => {
     }
   };
 
-//   const fetchDayEvents = async (date) => {
-//     const response = await fetch("http://localhost:5000/calendar/day", {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Authorization":`Bearer ${token}`
-//       },
-//     //   body: JSON.stringify({ token, date: format(date, "yyyy-MM-dd") }),
-//     });
-
-//     const data = await response.json();
-//     if (data.data) {
-//         const selectedDate = format(date, "yyyy-MM-dd");
-//         setEvents({ [selectedDate]: data.data[selectedDate] });
-//     } else {
-//       console.error(data.message);
-//     }
-//   };
 
   useEffect(() => {
     if (view === "month") {
@@ -185,52 +167,6 @@ const fetchNextDaysEvents = async () => {
     if (dailyEvents.length === 0) {
       return <p>No events for the selected days.</p>;
     }
-  
-    // return (
-    //   <div className="day-view">
-    //     <InfiniteScroll
-    //     dataLength={dailyEvents.length}
-    //     next={fetchNextDaysEvents}
-    //     hasMore={hasMore}
-    //     loader={<h4>Loading...</h4>}
-    //     endMessage={
-    //         <p style={{ textAlign: "center" }}>
-    //         <b>End of content</b>
-    //         </p>
-    //     }
-    //     >
-    //       {dailyEvents.map((dayEvent, index) => (
-    //         <div key={index} className="day-event">
-    //           <h3>{format(parse(dayEvent.date, "yyyy-MM-dd", new Date()), "EEEE, MMMM d, yyyy")}</h3>
-    //           {dayEvent.meetings.length > 0 && (
-    //             <div>
-    //               <h4>Meetings:</h4>
-    //               <ul>
-    //                 {dayEvent.meetings.map((meeting, index) => (
-    //                   <li key={index}>
-    //                     {meeting.starttime}-{meeting.endtime}
-    //                   </li>
-    //                 ))}
-    //               </ul>
-    //             </div>
-    //           )}
-    //           {dayEvent.exercises.length > 0 && (
-    //             <div>
-    //               <h4>Exercises:</h4>
-    //               <ul>
-    //                 {dayEvent.exercises.map((exercise, index) => (
-    //                   <li key={index}>
-    //                     {exercise.exercise}: {exercise.number_repetitions} repetitions
-    //                   </li>
-    //                 ))}
-    //               </ul>
-    //             </div>
-    //           )}
-    //         </div>
-    //       ))}
-    //     </InfiniteScroll>
-    //   </div>
-    // );
   };
 
   const renderCalendar = () => {
@@ -255,6 +191,43 @@ const fetchNextDaysEvents = async () => {
           </>
         )}
         {view === "day" && renderDayView()}
+
+        
+        
+      </div>
+      
+    );
+  };
+
+  const renderTage = () => {
+    return (
+      <>
+        <div className="legend-item">
+          <div className="calendar-cell calendar-cell-red"></div>
+          <span>Meetings</span>
+        
+          <div className="calendar-cell calendar-cell-green"></div>
+          <span>Exercises</span>
+        
+          <div className="calendar-cell calendar-cell-blue"></div>
+          <span>Meetings & Exercises</span>
+
+          <div className="calendar-cell calendar-cell-today"></div>
+          <span>Today</span>
+        </div>
+        {/* <div className="legend-item">
+          <div className="calendar-cell calendar-cell-green"></div>
+          <span>Exercises</span>
+        </div> */}
+      </>
+    )
+  }
+
+
+  const renderLegend = () => {
+    return (
+      <div className="legend-container">
+
       </div>
     );
   };
@@ -263,7 +236,7 @@ const fetchNextDaysEvents = async () => {
   return (
     <>
     
-    <div className="calendar-container"> {renderCalendar()}</div>
+    <div className="calendar-container"> {renderCalendar()}{renderLegend()}{renderTage()}</div>
     </>
   );
 };

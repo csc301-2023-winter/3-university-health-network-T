@@ -4,6 +4,7 @@ import uhn_logo from "../uhn_logo.svg";
 import { AiOutlineQuestion } from "react-icons/ai";
 import './Menu.css';
 import { useNavigate } from "react-router-dom";
+import Menu from './Menu';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -65,12 +66,13 @@ function Login() {
   }
 
   return (
+    
     <div className="login-container">
       <div className="logo-container">
         <img src={uhn_logo} alt="Login" />
       </div>
       <div style={{ position: 'absolute', top: '0', left: '0' }}>
-        <AiOutlineQuestion className="menu-button2" size={38} onClick={handleHelpClick}  />
+        <Menu/>
       </div>
       <form>
         <h1>Login</h1>
