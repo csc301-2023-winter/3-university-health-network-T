@@ -4,6 +4,7 @@ import {
   CallAdapter,
   createAzureCommunicationCallAdapter,
 } from '@azure/communication-react';
+import { AzureCommunicationTokenCredential } from '@azure/communication-common';
 
 const OneToOneMeeting = () => {
   const [callAdapter, setCallAdapter] = useState(null);
@@ -13,7 +14,7 @@ const OneToOneMeeting = () => {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/meeting/meeting-room', {
+      const response = await fetch('http://localhost:4000/meeting/meeting-room', {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -35,12 +36,12 @@ const OneToOneMeeting = () => {
         console.log('Creating call adapter with meetingToken:', data.meetingToken, 'and roomId:', data.roomId);
         try {
           const userId = localStorage.getItem('communicationUserId');
-          const meetiing_token = localStorage.getItem("meetingToken");
+          const meeting_token = localStorage.getItem("meetingToken");
           console.log("UserId:", userId)
           const adapter = await createAzureCommunicationCallAdapter({
             userId: { communicationUserId: userId }, // replace 'your_user_id' with a valid user ID
             displayName: 'Lalala', // replace 'your_display_name' with a valid display name
-            credential: {credential: meetiing_token},
+            credential: new AzureCommunicationTokenCredential(meeting_token),
             locator: { groupId: data.roomId },
           });
           setCallAdapter(adapter);
