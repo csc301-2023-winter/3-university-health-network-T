@@ -45,7 +45,6 @@ router.post('/upload/video', videoUpload.single('video'), (req, res) => {
         return;
     }
     const video = req.file;
-    let d = new Date()
     const blobName = ('video'+pid+req.body.Time+(''+(new Date()))).replaceAll(' ','-').replaceAll(':','_')//video.originalname;
     const contentType = video.mimetype;
 
@@ -81,6 +80,7 @@ router.post('/upload/video', videoUpload.single('video'), (req, res) => {
 });
 
 router.post('/upload/joints', jointUpload.single('joints'), (req, res) => {
+    console.log(req.headers)
     const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
     console.log(pid);
     if (pid < 0) {
@@ -88,7 +88,7 @@ router.post('/upload/joints', jointUpload.single('joints'), (req, res) => {
         return;
     }
     const joints = req.file;
-    const blobName = joints.originalname;
+    const blobName = ('joints'+pid+req.body.Time+(''+(new Date()))).replaceAll(' ','-').replaceAll(':','_')//joints.originalname;
     const contentType = joints.mimetype;
 
     blobService.createBlockBlobFromText(jointContainerName, blobName, joints.buffer, { contentType }, (err, result) => {
