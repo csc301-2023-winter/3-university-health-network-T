@@ -55,6 +55,8 @@ async function createRoom(){
   // initialize a room client.
   const user1 = await identityClient.createUserAndToken(["voip"]);
   const user2 = await identityClient.createUserAndToken(["voip"]);
+  const user1Id = user1.user.communicationUserId;
+
 
   var validFrom = new Date(Date.now());
   validFrom.setHours(validFrom.getHours() + 1);
@@ -79,7 +81,7 @@ async function createRoom(){
   
   const getRoom = await roomsClient.getRoom(roomId);
   console.log(`Retrieved Room with ID ${roomId}`);
-  const double = [getRoom, user1.token];
+  const double = [getRoom, user1.token, user1.user.communicationUserId]; // Add user1Id to the returned array
   return Promise.resolve(double);
 }
 
@@ -88,7 +90,10 @@ router.get('/meeting-room', (req, res) => {
   if (pid < 0){
     return res.status(403).send({ message: 'Invalid credentials' });
   }
-  createRoom().then(([getRoom, token]) => {
+  createRoom().then(([getRoom, token, communicationUserId]) => {
+    console.log('getRoom:', getRoom); // Debug output
+    console.log('token:', token); // Debug output
+    console.log('communicationUserId:', communicationUserId); // Debug output
     const year = getRoom.validFrom.getFullYear();
     const month = getRoom.validFrom.getMonth() + 1;
     const day = getRoom.validFrom.getDate();
@@ -100,7 +105,8 @@ router.get('/meeting-room', (req, res) => {
     const endTimeMinute = String(getRoom.validUntil.getMinutes()).padStart(2, '0');
     const endTime = `${endTimeHour}:${endTimeMinute}`;
     pool.query('INSERT INTO Meeting (PatientID, Date, StartTime, EndTime, MeetingID, MeetingPasscode) VALUES ($1, $2, $3, $4, $5, $6)', [pid, formattedDate, startTime, endTime, getRoom.id, '25001200']);
-    return res.status(200).send({ message: 'Created room successfully', roomId: getRoom.id, meetingToken : token});
+    return res.status(200).send({ message: 'Created room successfully', roomId: getRoom.id, meetingToken: token, communicationUserId: communicationUserId });
+
   }).catch((err) => {
     console.log(err);
     return res.status(403).send({ message: 'There is a error in creating room' });

@@ -5,17 +5,17 @@ const server = require('http').Server(app)
 // const io = require('socket.io')(server)
 app.use(bodyParser.json())
 app.set("view engine", 'ejs')
-const port = process.env.PROT || 4000;
+const port = process.env.PROT || 5000;
 
 const table_init = require('./table_setup');
 table_init.table_init();
 
-// const meetingRouter = require('./routes/meeting')
-// app.use("/meeting", meetingRouter)
 const cors = require('cors')
 app.use(cors({
   origin: "*"
 }))
+const meetingRouter = require('./routes/meeting')
+app.use("/meeting", meetingRouter)
 const accountRouter = require('./routes/account')
 app.use("/account", accountRouter)
 const authRouter = require('./routes/send_auth')

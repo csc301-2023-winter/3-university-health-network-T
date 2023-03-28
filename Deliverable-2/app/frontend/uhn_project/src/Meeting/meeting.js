@@ -1,64 +1,81 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { CallClient, CallAgent, LocalVideoStream } from '@azure/communication-calling';
-import { AzureCommunicationTokenCredential } from '@azure/communication-common';
-import { VideoGallery, GridLayout } from '@azure/communication-react';
+import React, { useEffect, useState } from 'react';
+import {
+  CallComposite,
+  CallAdapter,
+  createAzureCommunicationCallAdapter,
+} from '@azure/communication-react';
 
-const VideoMeeting = () => {
-  const [callAgent, setCallAgent] = useState(null);
-  const [call, setCall] = useState(null);
-  const [localVideoStream, setLocalVideoStream] = useState(null);
-
-  const userToken = 'YOUR_USER_ACCESS_TOKEN'; // Replace with your user access token
-  const groupId = 'YOUR_GROUP_ID'; // Replace with your group ID
-
-  const callClient = useRef(new CallClient());
+const OneToOneMeeting = () => {
+  const [callAdapter, setCallAdapter] = useState(null);
+  const [roomId, setRoomId] = useState(null);
+  const [meetingToken, setMeetingToken] = useState(null);
 
   useEffect(() => {
-    async function initCallAgent() {
-      const tokenCredential = new AzureCommunicationTokenCredential(userToken);
-      const callAgent = await callClient.current.createCallAgent(tokenCredential);
-      setCallAgent(callAgent);
-    }
-
-    initCallAgent();
-  }, []);
-
-  useEffect(() => {
-    if (callAgent) {
-      async function startCall() {
-        const localVideoStream = new LocalVideoStream();
-        setLocalVideoStream(localVideoStream);
-
-        const call = callAgent.join({ groupId }, { videoOptions: { localVideoStreams: [localVideoStream] } });
-        setCall(call);
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:5000/meeting/meeting-room', {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      console.log('Response data:', data);
+      setRoomId(data.roomId);
+      setMeetingToken(data.meetingToken);
+      localStorage.setItem('communicationUserId', data.communicationUserId); // Store communicationUserId in local storage
+      localStorage.setItem("meetingToken", data.meetingToken);
+      console.log('Response Meeting1:', data.communicationUserId);
+      return data;
+    };
+  
+    const initAdapter = async (data) => {
+      if (data.meetingToken) {
+        console.log('Creating call adapter with meetingToken:', data.meetingToken, 'and roomId:', data.roomId);
+        try {
+          const userId = localStorage.getItem('communicationUserId');
+          const meetiing_token = localStorage.getItem("meetingToken");
+          console.log("UserId:", userId)
+          const adapter = await createAzureCommunicationCallAdapter({
+            userId: { communicationUserId: userId }, // replace 'your_user_id' with a valid user ID
+            displayName: 'Lalala', // replace 'your_display_name' with a valid display name
+            credential: {credential: meetiing_token},
+            locator: { groupId: data.roomId },
+          });
+          setCallAdapter(adapter);
+        } catch (error) {
+          console.error('Failed to create call adapter', error);
+        }
       }
+    };
+  
+    fetchData()
+      .then(data => initAdapter(data))
+      .catch(error => console.error('Error fetching data', error));
+  
+  }, []);
+  
+  
 
-      startCall();
-    }
-  }, [callAgent]);
+  
+
 
   return (
     <div>
-      <h1>Video Meeting</h1>
-      {call && (
-        <GridLayout
-          localParticipant={{
-            userId: callAgent.communicationUserId,
-            displayName: 'You',
-            videoStream: localVideoStream
-          }}
-          remoteParticipants={call.remoteParticipants}
-          onRenderRemoteParticipant={(participant) => (
-            <VideoGallery
-              key={participant.userId}
-              participant={participant}
-            />
-          )}
-        />
+      {callAdapter ? (
+        <CallComposite adapter={callAdapter} />
+      ) : (
+        <div>Loading...</div>
       )}
     </div>
   );
 };
 
-export default VideoMeeting;
+export default OneToOneMeeting;
+
+
+
+
+
 
