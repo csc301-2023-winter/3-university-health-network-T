@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './Menu.css';
+import React, { useState } from "react";
+import "./Menu.css";
 import { AiOutlineQuestion } from "react-icons/ai";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Menu() {
   const [showMenu, setShowMenu] = useState(false);
@@ -16,8 +16,8 @@ function Menu() {
   };
 
   const handleHelpClick = () => {
-    navigate('/help');
-  }
+    navigate("/help");
+  };
 
   return (
     <div className="menu">
@@ -25,9 +25,13 @@ function Menu() {
         <button className="menu-button" onClick={handleMenuClick}>
           Menu
         </button>
-        <AiOutlineQuestion className="menu-button2" size={38} onClick = {handleHelpClick}/>
+        <AiOutlineQuestion
+          className="menu-button2"
+          size={38}
+          onClick={handleHelpClick}
+        />
       </div>
-      
+
       {showMenu && (
         <div className="menu-overlay">
           <ul className="menu-list">
@@ -41,7 +45,13 @@ function Menu() {
               <a href="/video">Meeting</a>
             </li> */}
             <li>
-              <a href="https://uhnmeet.azurewebsites.net" target="_blank" rel="noopener noreferrer">Meeting</a>
+              <a
+                href="https://uhnmeet.azurewebsites.net"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Meeting
+              </a>
             </li>
 
             <li>
@@ -70,6 +80,3 @@ function Menu() {
 }
 
 export default Menu;
-
-
-

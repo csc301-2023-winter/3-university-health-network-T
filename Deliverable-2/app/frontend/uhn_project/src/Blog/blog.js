@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import './blog.css';
+import React, { useState, useEffect } from "react";
+import "./blog.css";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -7,7 +7,7 @@ function Blog() {
 
   const fetchBlogs = async (page) => {
     const response = await fetch(`http://localhost:4000/blog/blogs/${page}`, {
-      method: 'GET',
+      method: "GET",
     });
 
     if (response.ok) {
@@ -18,7 +18,7 @@ function Blog() {
 
   const fetchBlogDetails = async (bid) => {
     const response = await fetch(`http://localhost:4000/blog/detail/${bid}`, {
-      method: 'GET',
+      method: "GET",
     });
 
     if (response.ok) {
@@ -41,15 +41,31 @@ function Blog() {
 
   const formatDate = (dateString, includeTime = false) => {
     const date = new Date(dateString);
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
     if (includeTime) {
-      return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+      return `${date.getDate()} ${
+        monthNames[date.getMonth()]
+      } ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
     } else {
-      return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+      return `${date.getDate()} ${
+        monthNames[date.getMonth()]
+      } ${date.getFullYear()}`;
     }
   };
-  
 
   return (
     <div className="blog-container">
@@ -60,7 +76,6 @@ function Blog() {
           <div className="tag-container">
             <div> {selectedBlog.tags}</div>
             <div className="date">{formatDate(selectedBlog.date)}</div>
-
           </div>
           <p>{selectedBlog.context}</p>
           <button onClick={handleCloseClick}>Close</button>
@@ -68,8 +83,17 @@ function Blog() {
       ) : (
         <div className="blog-overview">
           {blogs.map((blog) => (
-            <div key={blog.bid} className="blog-preview" onClick={() => handleBlogClick(blog)}>
-              <img src={`https://source.unsplash.com/random/800x600?sig=${Math.floor(Math.random() * 1000)}`} alt="Random Unsplash Image" />
+            <div
+              key={blog.bid}
+              className="blog-preview"
+              onClick={() => handleBlogClick(blog)}
+            >
+              <img
+                src={`https://source.unsplash.com/random/800x600?sig=${Math.floor(
+                  Math.random() * 1000
+                )}`}
+                alt="Random Unsplash Image"
+              />
               <div className="tag-container">
                 <div className="date">{formatDate(blog.date)}</div>
                 <div> {blog.tags}</div>
@@ -85,5 +109,3 @@ function Blog() {
 }
 
 export default Blog;
-
-

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import DateDisplay from './formatDate';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DateDisplay from "./formatDate";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function HomePopUP() {
   const [exerciseData, setExerciseData] = useState(null);
@@ -10,18 +10,18 @@ function HomePopUP() {
 
   function formatDate(date) {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
 
   const today = new Date();
   const formattedDate = formatDate(today);
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/popup', {
+      .get("http://localhost:4000/popup", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -39,7 +39,8 @@ function HomePopUP() {
       <ol>
         {exerciseData?.map((exercise) => (
           <li key={exercise.exercise}>
-            {exercise.exercise}: {exercise.number_sets} sets of {exercise.number_repetitions} repetitions
+            {exercise.exercise}: {exercise.number_sets} sets of{" "}
+            {exercise.number_repetitions} repetitions
           </li>
         ))}
       </ol>
@@ -48,22 +49,22 @@ function HomePopUP() {
 
   const renderMeeting = () => {
     if (meetingData) {
-      localStorage.setItem('meetingid', meetingData.meetingid);
+      localStorage.setItem("meetingid", meetingData.meetingid);
       return (
         <>
-          {meetingData.date.slice(0, 10)} {meetingData.starttime.slice(0, 5)} -{' '}
+          {meetingData.date.slice(0, 10)} {meetingData.starttime.slice(0, 5)} -{" "}
           {meetingData.endtime.slice(0, 5)}
         </>
       );
     } else {
-      return ' -- There is no upcoming meeting';
+      return " -- There is no upcoming meeting";
     }
   };
 
   const handleJoinClick = () => {
-    const groupId = localStorage.getItem('meetingid');
+    const groupId = localStorage.getItem("meetingid");
     const url = `https://uhnmeet.azurewebsites.net/?groupId=${groupId}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -73,7 +74,7 @@ function HomePopUP() {
       <br />
       <div id="list-exercise">
         <h5>Exercise Info</h5>
-        {exerciseData ? renderExercise() : 'There is no prescribed exercise'}
+        {exerciseData ? renderExercise() : "There is no prescribed exercise"}
 
         <a href="/video">
           <Button className="buttons">Continue</Button>
@@ -91,11 +92,8 @@ function HomePopUP() {
       <Button className="buttons" onClick={handleJoinClick}>
         Join
       </Button>
-
-
     </div>
   );
 }
 
 export default HomePopUP;
-
