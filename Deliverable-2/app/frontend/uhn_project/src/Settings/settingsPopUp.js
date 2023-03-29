@@ -42,7 +42,7 @@ const SettingsPopUP = () => {
   return (
     <>
     <Menu/>
-      <div class="vertical-menu">
+      <div className="vertical-menu">
 
     {isOpen && camera && <Popup content={<CameraChecker/>} handleClose={()=>{togglePopup(); toggleCamera();}}/>}
     {isOpen && microphone && <Popup content={<MicrophoneChecker/>} handleClose={()=>{togglePopup(); toggleMicrophone();}}/>}
