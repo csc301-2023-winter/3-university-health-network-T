@@ -1,57 +1,49 @@
-import React, { useState } from "react";
-import "./contact.css";
+import React, { useState } from 'react';
+import './contact.css';
 
 function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
 
     try {
-      const response = await fetch("/host/contact", {
-        method: "POST",
+      const response = await fetch('http://localhost:4000/contact', {
+        method: 'POST',
         headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId, name, email, message }),
+        body: JSON.stringify({name, email, message }),
       });
 
       if (response.ok) {
-        alert("Your message has been sent!");
-        setName("");
-        setEmail("");
-        setMessage("");
+        alert('Your message has been sent!');
+        setName('');
+        setEmail('');
+        setMessage('');
       } else {
-        alert("Something went wrong. Please try again later.");
+        alert('Something went wrong. Please try again later.');
       }
     } catch (err) {
-      alert("Something went wrong. Please try again later.");
+      alert('Something went wrong. Please try again later.');
     }
   };
 
   return (
     <div className="contact-container">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-      </head>
+        <head>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+        </head>
       <div className="contact-left">
         <h2>Contact</h2>
         <div className="contact-item">
           <i className="fas fa-map-marker-alt"></i>
           <div className="contact-info">
             <div className="contact-label">My Address</div>
-            <div className="contact-value">
-              88 West 21th Street, Suite 721 New York NY 10016
-            </div>
+            <div className="contact-value">88 West 21th Street, Suite 721 New York NY 10016</div>
           </div>
         </div>
         <div className="contact-item">
