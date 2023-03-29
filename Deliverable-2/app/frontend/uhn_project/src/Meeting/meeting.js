@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-  CallComposite,
-  CallAdapter,
-  createAzureCommunicationCallAdapter,
-} from '@azure/communication-react';
+//import {
+  //CallComposite,
+  //CallAdapter,
+  //createAzureCommunicationCallAdapter,
+//} from '@azure/communication-react';
 import { AzureCommunicationTokenCredential } from '@azure/communication-common';
 
 const OneToOneMeeting = () => {
@@ -14,7 +14,7 @@ const OneToOneMeeting = () => {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:4000/meeting/meeting-room', {
+      const response = await fetch('http://localhost:5000/meeting/meeting-room', {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -38,12 +38,12 @@ const OneToOneMeeting = () => {
           const userId = localStorage.getItem('communicationUserId');
           const meeting_token = localStorage.getItem("meetingToken");
           console.log("UserId:", userId)
-          const adapter = await createAzureCommunicationCallAdapter({
-            userId: { communicationUserId: userId }, // replace 'your_user_id' with a valid user ID
-            displayName: 'Lalala', // replace 'your_display_name' with a valid display name
-            credential: new AzureCommunicationTokenCredential(meeting_token),
-            locator: { groupId: data.roomId },
-          });
+          const adapter =NaN//= await createAzureCommunicationCallAdapter({
+            //userId: { communicationUserId: userId }, // replace 'your_user_id' with a valid user ID
+            //displayName: 'Lalala', // replace 'your_display_name' with a valid display name
+            //credential: new AzureCommunicationTokenCredential(meeting_token),
+            //locator: { groupId: data.roomId },
+          //});
           setCallAdapter(adapter);
         } catch (error) {
           console.error('Failed to create call adapter', error);
@@ -64,8 +64,12 @@ const OneToOneMeeting = () => {
 
   return (
     <div>
+      {//<CallComposite adapter={callAdapter} />
+        }
       {callAdapter ? (
-        <CallComposite adapter={callAdapter} />
+        
+        <div> aaa</div>
+
       ) : (
         <div>Loading...</div>
       )}
