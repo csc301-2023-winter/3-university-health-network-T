@@ -5,7 +5,7 @@ const server = require('http').Server(app)
 // const io = require('socket.io')(server)
 app.use(bodyParser.json())
 app.set("view engine", 'ejs')
-const port = process.env.PROT || 5000;
+const port = process.env.PORT || 5000;
 
 const table_init = require('./table_setup');
 table_init.table_init();
