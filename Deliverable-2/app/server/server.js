@@ -30,7 +30,10 @@ const calendarRouter = require("./routes/calendar")
 app.use("/calendar", calendarRouter)
 const popRouter = require('./routes/pop_up')
 app.use("/", popRouter)
-
+const helpRouter = require('./routes/help')
+app.use("/help", helpRouter)
+const contactRouter = require('./routes/contact')
+app.use("/contact", contactRouter)
 
 
 server.listen(port,  () => {
