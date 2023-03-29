@@ -4,9 +4,10 @@ const { pool } = require('../dbConfig');
 const ver_tools = require('../tools/verifiers');
 const { RoomsClient }= require('@azure/communication-rooms');
 const { CommunicationIdentityClient } = require("@azure/communication-identity");
-const connectionString = "endpoint=https://meeting-service.communication.azure.com/;accesskey=sIb5y7vrxfo8M6fdkE03yCb5GGcj0BkUnDMv5VwoAsZXze3jY5iO3hNMkVPEI3XDBFshp9sHF9plE+2DiTgzgA==";
+const connectionString = "endpoint=https://d2-test2.communication.azure.com/;accesskey=F7dNPDSMnHEHpXzLcAFTgxuMbyAvT4tx+NXsu2xLC1+qMvzrnpCunof/l91kyAz2Gqb4rfB9j4iVtbNAdMcc7Q==";
 const roomsClient = new RoomsClient(connectionString);
 const identityClient = new CommunicationIdentityClient(connectionString);
+const { v4: uuidv4 } = require('uuid');
 
 router.get('/get-all-meetings', (req, res) => {
   const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
@@ -113,4 +114,40 @@ router.get('/meeting-room', (req, res) => {
   });
 });
 
+
+async function createUserToken(){
+  let identityResponse = await identityClient.createUser();
+  console.log(`\nCreated an identity with ID: ${identityResponse.communicationUserId}`);
+  // Issue an access token with a validity of 24 hours and the "voip" scope for an identity
+  let tokenResponse = await identityClient.getToken(identityResponse, ["voip"]);
+
+  // Get the token and its expiration date from the response
+  const { token, expiresOn } = tokenResponse;
+  console.log(`\nIssued an access token with 'voip' scope that expires at ${expiresOn}:`);
+  console.log(token);
+  return token;
+}
+
+router.get('/meeting-user-token', (req, res) => {
+  const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+  if (pid < 0){
+    return res.status(403).send({ message: 'Invalid credentials' });
+  }
+  createUserToken().then(([token]) => {
+    console.log(token);
+    return res.status(200).send({ message: "successfully", token: token });
+  });
+});
+
+router.get('/create-group', (req, res) => {
+  const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+  if (pid < 0){
+    return res.status(403).send({ message: 'Invalid credentials' });
+  }
+  const { date, startTime, endTime } = req.body;
+  const groupId = uuidv4();
+  pool.query('INSERT INTO Meeting (PatientID, Date, StartTime, EndTime, MeetingID, MeetingPasscode) VALUES ($1, $2, $3, $4, $5, $6)', [pid, date, startTime, endTime, groupId, '25001200']);
+  res.status(200).send({ message: `Create room successfully, Meeting will start at ${date}, ${startTime} - ${endTime}`, groupId: groupId });
+})
 module.exports = router;
+
