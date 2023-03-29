@@ -82,16 +82,16 @@ function HomePopUP() {
         {renderMeeting()}
       </div>
       <br />
-      <Button className="buttons">
+      
         <a
           className="join-link"
           href={`https://uhnmeet.azurewebsites.net/?groupId=${localStorage.getItem('meetingid')}`}
           target="_blank"
           rel="noreferrer"
-        >
-          Join
+        ><Button className="buttons" >
+          Join</Button>
         </a>
-      </Button>
+      
 
 
     </div>
