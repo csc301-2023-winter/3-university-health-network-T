@@ -161,18 +161,18 @@ formData.append('VideoID','1')
 formData.append('Date',date)
 formData.append('Time',date+' '+time)
 // Make a POST request to the server
-//fetch(server_url+'/record/upload/video', {
-  //method: 'POST',
-  //body: formData,
-  //headers:myHeaders 
-//})
-//.then(response => {
-  // Handle the response from the server
-  //console.log(response.json())
-//})
-//.catch(error => {
-  // Handle any errors that occurred during the request
-//});
+fetch(server_url+'/record/upload/video', {
+  method: 'POST',
+  body: formData,
+  headers:myHeaders 
+})
+.then(response => {
+   //Handle the response from the server
+  console.log(response.json())
+})
+.catch(error => {
+   //Handle any errors that occurred during the request
+});
 
   
 };
