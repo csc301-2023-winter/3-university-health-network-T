@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DateDisplay from './formatDate';
-import {Button} from "react-bootstrap";
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function HomePopUP() {
   const [exerciseData, setExerciseData] = useState(null);
@@ -16,60 +17,86 @@ function HomePopUP() {
 
   const today = new Date();
   const formattedDate = formatDate(today);
-  const token = localStorage.getItem("token");
-  
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    axios.get('http://localhost:4000/popup', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-      .then(response => {
+    axios
+      .get('http://localhost:4000/popup', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
         const data = response.data.data;
         setExerciseData(data.exercises);
         setMeetingData(data.upcoming_m);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, [token]);
 
-
   const renderExercise = () => {
-    return (<ol>
-      {exerciseData?.map(exercise => (
-        <li key={exercise.exercise}>
-          {exercise.exercise}: {exercise.number_sets} sets of {exercise.number_repetitions} repetitions
-        </li>
-      ))}
-    </ol>);
-  }
+    return (
+      <ol>
+        {exerciseData?.map((exercise) => (
+          <li key={exercise.exercise}>
+            {exercise.exercise}: {exercise.number_sets} sets of {exercise.number_repetitions} repetitions
+          </li>
+        ))}
+      </ol>
+    );
+  };
 
-  
+  const renderMeeting = () => {
+    if (meetingData) {
+      localStorage.setItem('meetingid', meetingData.meetingid);
+      return (
+        <>
+          {meetingData.date.slice(0, 10)} {meetingData.starttime.slice(0, 5)} -{' '}
+          {meetingData.endtime.slice(0, 5)}
+        </>
+      );
+    } else {
+      return ' -- There is no upcoming meeting';
+    }
+  };
 
   return (
     <div id="out-box">
       <DateDisplay date={formattedDate} />
-      <p>Your prescribed exercise for today:</p><br/>
+      <p>Your prescribed exercise for today:</p>
+      <br />
       <div id="list-exercise">
-      <h5>Exercise Info</h5>
-      {exerciseData? renderExercise(): "There is no prescribed exercise"}
-      
-      <a href="/video"><Button className='buttons'>Continue</Button></a>
-      <a href="/video"><Button className='buttons'>Restart</Button></a>
-      </div>
-      <div id="list-meetings"><br/>
-      <h5 >Upcoming Meeting</h5>
-      {meetingData ? (meetingData.date.slice(0, 10),  meetingData.starttime.slice(0,5) - meetingData.endtime.slice(0,5)) : " -- There is no upcoming meeting"}
+        <h5>Exercise Info</h5>
+        {exerciseData ? renderExercise() : 'There is no prescribed exercise'}
 
-     
-      </div><br/> 
-      <Button className='buttons'>Join</Button>
+        <a href="/video">
+          <Button className="buttons">Continue</Button>
+        </a>
+        <a href="/video">
+          <Button className="buttons">Restart</Button>
+        </a>
+      </div>
+      <div id="list-meetings">
+        <br />
+        <h5>Upcoming Meeting</h5>
+        {renderMeeting()}
+      </div>
+      <br />
+      <Button className="buttons">
+        <a
+          className="join-link"
+          href={`https://uhnmeet.azurewebsites.net/?groupId=${localStorage.getItem('meetingid')}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Join
+        </a>
+      </Button>
+
 
     </div>
   );
 }
 
-
-
-
 export default HomePopUP;
+

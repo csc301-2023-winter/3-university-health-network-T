@@ -6,7 +6,8 @@
     margin-right: 35%;
     margin-top: 5%;
     border: 0.5px solid black;
-    height: 70vh;
+    width: 30vw;
+    height: 65vh;
     padding-top: 4%;
     border-radius: 5%;
     padding-left: 5vw;
@@ -59,4 +60,32 @@
 
 .menu-buttons{
     display:flex; flex-direction:row;
+}
+
+
+@media only screen and (max-height:677px), screen and (max-width: 1300px){
+    #out-box{
+       height: 70vh;
+        width: 50%;
+        margin-top: 5%;
+        border: 0.5px solid black;
+         
+        padding-top: 4%;
+        padding-bottom: 4%;
+        border-radius: 5%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+      
+    }
+
+    .buttons{
+       margin-left: 0;
+       margin-right:5%;
+        margin-bottom: 10px;
+        
+        background-color: #333 !important;
+        border: #333 !important;
+    }
+
+
 }

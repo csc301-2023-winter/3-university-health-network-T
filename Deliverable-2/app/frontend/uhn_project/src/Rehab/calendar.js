@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, parse } from "date-fns";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay} from "date-fns";
+// import InfiniteScroll from "react-infinite-scroll-component";
 import "./calendar.css";
-import Menu from "../Component/Menu";
+// import Menu from "../Component/Menu";
 
 
 
@@ -233,9 +233,7 @@ const fetchNextDaysEvents = async () => {
   };
   
 
-  return (
-    <>
-    
+  return (<>
     <div className="calendar-container"> {renderCalendar()}{renderLegend()}{renderTage()}</div>
     </>
   );

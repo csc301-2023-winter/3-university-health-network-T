@@ -114,7 +114,7 @@ module.exports = {
       Date date NOT NULL,
       StartTime time NOT NULL,
       EndTime time NOT NULL,
-      MeetingID serial PRIMARY KEY,
+      MeetingID varchar(255) PRIMARY KEY,
       MeetingPasscode varchar(255) NOT NULL
     );
     `, (err, res) => {
