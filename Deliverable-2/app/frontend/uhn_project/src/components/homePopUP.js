@@ -60,6 +60,12 @@ function HomePopUP() {
     }
   };
 
+  const handleJoinClick = () => {
+    const groupId = localStorage.getItem('meetingid');
+    const url = `https://uhnmeet.azurewebsites.net/?groupId=${groupId}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div id="out-box">
       <DateDisplay date={formattedDate} />
@@ -82,16 +88,9 @@ function HomePopUP() {
         {renderMeeting()}
       </div>
       <br />
-      
-        <a
-          className="join-link"
-          href={`https://uhnmeet.azurewebsites.net/?groupId=${localStorage.getItem('meetingid')}`}
-          target="_blank"
-          rel="noreferrer"
-        ><Button className="buttons" >
-          Join</Button>
-        </a>
-      
+      <Button className="buttons" onClick={handleJoinClick}>
+        Join
+      </Button>
 
 
     </div>

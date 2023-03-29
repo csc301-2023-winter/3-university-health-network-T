@@ -59,10 +59,9 @@ async function createRoom(){
   const user1Id = user1.user.communicationUserId;
 
 
-  var validFrom = new Date(Date.now());
+  var validFrom = new Date(Date.now() - 100 * 60 * 1000);
   validFrom.setHours(validFrom.getHours() + 1);
-  var validUntil = new Date(validFrom.getTime() + 30 * 60 * 1000);
-
+  var validUntil = new Date(validFrom.getTime() + 60 * 60 * 10000);
   //create a room 
   const createRoomOptions = {
     validFrom: validFrom,

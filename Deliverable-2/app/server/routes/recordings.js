@@ -37,9 +37,9 @@ blobService.createContainerIfNotExists(jointContainerName, (err, result) => {
 });
 
 router.post('/upload/video', videoUpload.single('video'), (req, res) => {
-    console.log(req.headers)
+    //console.log(req.headers)
     const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
-    console.log(pid);
+    //console.log(pid);
     if (pid < 0) {
         res.sendStatus(403);
         return;
@@ -80,26 +80,34 @@ router.post('/upload/video', videoUpload.single('video'), (req, res) => {
 });
 
 router.post('/upload/joints', jointUpload.single('joints'), (req, res) => {
-    console.log(req.headers)
+    //console.log(req.headers)
+    console.log('joints')
     const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
-    console.log(pid);
+    console.log('pid'+pid);
     if (pid < 0) {
         res.sendStatus(403);
         return;
     }
     const joints = req.file;
-    const blobName = ('joints'+pid+req.body.Time+(''+(new Date()))).replaceAll(' ','-').replaceAll(':','_')//joints.originalname;
+    console.log('j'+joints)
+    const blobName = ('joints'+pid+req.body.Time+(''+(new Date()))).replaceAll(' ','-').replaceAll(':','_')+'body_joints'//joints.originalname;
+    console.log('b'+blobName)
     const contentType = joints.mimetype;
 
     blobService.createBlockBlobFromText(jointContainerName, blobName, joints.buffer, { contentType }, (err, result) => {
+        console.log('a')
         if (err) {
+            console.log('e'+err)
             res.status(500).send(err);
             return;
         }
-
+        console.log('b')
         const jointsUrl = blobService.getUrl(jointContainerName, blobName);
-
-        pool.query('INSERT INTO RecordedBodyJoints (PatientID, BodyJointsID, Date, Time, Format, Path) VALUES ($1, $2, $3, $4, $5, $6)', [pid, req.body.BodyJointsID, req.body.Date, req.body.Time, '.JSON', jointsUrl], (err, result) => {
+        console.log('ju'+jointsUrl)
+        pool.query('SELECT Count(*) FROM RecordedBodyJoints',[],(err,result)=>{
+            console.log(result.rowCount)
+            console.log(Number(result.rows[0].count))
+        pool.query('INSERT INTO RecordedBodyJoints (PatientID, BodyJointsID, Date, Time, Format, Path) VALUES ($1, $2, $3, $4, $5, $6)', [pid, Number(result.rows[0].count)+1, req.body.Date, req.body.Time, '.JSON', jointsUrl], (err, result) => {
             if (err) {
                 res.status(500).send(err);
                 return;
@@ -112,6 +120,7 @@ router.post('/upload/joints', jointUpload.single('joints'), (req, res) => {
                 }
             });
         });
+    })
     });
 });
 
