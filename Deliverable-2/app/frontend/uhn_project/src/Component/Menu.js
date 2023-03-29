@@ -69,6 +69,9 @@ function Menu() {
             <li>
               <a href="/">Login</a>
             </li>
+            <li>
+              <a href="/video">Avatar</a>
+            </li>
           </ul>
           <button className="menu-close" onClick={handleCloseClick}>
             &#x2716;

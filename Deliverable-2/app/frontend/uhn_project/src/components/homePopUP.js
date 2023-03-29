@@ -3,11 +3,15 @@ import axios from "axios";
 import DateDisplay from "./formatDate";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+
 
 function HomePopUP(props) {
   const [exerciseData, setExerciseData] = useState(null);
   const [meetingData, setMeetingData] = useState(null);
-  const [showing, setShowing] = useState(false)
+  const [showing, setShowing] = useState(false);
+  const location = useLocation();
+
 
   function formatDate(date) {
     const year = date.getFullYear();
@@ -90,8 +94,8 @@ function HomePopUP(props) {
   return (
     
       <div>
-      {showing?
-        <div style={{position:'absolute', top:'0px',width:'100%',height:'100%', backgroundColor:'rgba(0, 0, 0, 0.5)'}}>
+      {(!props.cont)||showing?
+        <div style={props.cont?{position:'absolute', top:'0px',width:'100%',height:'100%', backgroundColor:'rgba(0, 0, 0, 0.5)'}:{}}>
     <div id="out-box" style={{backgroundColor:'#ffffff'}}>
       <DateDisplay date={formattedDate} />
       <p>Your prescribed exercise for today:</p>

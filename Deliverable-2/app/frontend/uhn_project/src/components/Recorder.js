@@ -265,10 +265,10 @@ setTimeout(async()=>await draw(),500)
       <div>
         <button onClick={startMirror}>Start Recording</button>
         <button onClick={stopMirror}>Stop Recording</button>
-        <button onClick={testfunction}>test</button>
+        
       </div>
       {//<video src={url} autoPlay />
-        url?<button><link download={'video.mp4'} href={url}></link></button>:"b"
+        url?<button><link download={'video.mp4'} href={url}></link></button>:""
       }
     </div>
   );
