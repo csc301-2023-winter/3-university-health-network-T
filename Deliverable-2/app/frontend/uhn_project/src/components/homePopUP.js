@@ -4,9 +4,10 @@ import DateDisplay from "./formatDate";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function HomePopUP() {
+function HomePopUP(props) {
   const [exerciseData, setExerciseData] = useState(null);
   const [meetingData, setMeetingData] = useState(null);
+  const [showing, setShowing] = useState(false)
 
   function formatDate(date) {
     const year = date.getFullYear();
@@ -66,9 +67,32 @@ function HomePopUP() {
     const url = `https://uhnmeet.azurewebsites.net/?groupId=${groupId}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
-
+  const continue_extrice=()=>{
+    if(props&&props.cont){
+      props.cont()
+    }else{
+      console.log('???')
+    }
+  }
+  let pause = function(){
+    console.log('hp')
+    setShowing(true);};
+  let cont = function(){
+    console.log('hc')
+    setShowing(false);}
+  if(props.connection){
+    props.connection.homepop=
+    {
+      stop:pause,
+      cont: cont
+  }
+  }
   return (
-    <div id="out-box">
+    
+      <div>
+      {showing?
+        <div style={{position:'absolute', top:'0px',width:'100%',height:'100%', backgroundColor:'rgba(0, 0, 0, 0.5)'}}>
+    <div id="out-box" style={{backgroundColor:'#ffffff'}}>
       <DateDisplay date={formattedDate} />
       <p>Your prescribed exercise for today:</p>
       <br />
@@ -76,9 +100,9 @@ function HomePopUP() {
         <h5>Exercise Info</h5>
         {exerciseData ? renderExercise() : "There is no prescribed exercise"}
 
-        <a href="/video">
-          <Button className="buttons">Continue</Button>
-        </a>
+        
+          <button className="buttons" onClick={continue_extrice}>Continue</button>
+
         <a href="/video">
           <Button className="buttons">Restart</Button>
         </a>
@@ -92,6 +116,9 @@ function HomePopUP() {
       <Button className="buttons" onClick={handleJoinClick}>
         Join
       </Button>
+    </div>
+    </div>
+    :<div>  </div>}
     </div>
   );
 }

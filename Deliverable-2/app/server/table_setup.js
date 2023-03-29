@@ -140,7 +140,36 @@ module.exports = {
       } else {
         console.log("Error creating table:", err);
       }
-});
+    });
+
+    pool.query(`
+    CREATE TABLE IF NOT EXISTS Contact (
+      cid serial PRIMARY KEY,
+      name varchar(100) NOT NULL,
+      email varchar(100) NOT NULL,
+      message varchar(255) NOT NULL
+    );
+    `, (err, res) => {
+      if (!err) {
+        console.log("Table 'Contact' created successfully.");
+      } else {
+        console.log("Error creating table:", err);
+      }
+    });
+
+    pool.query(`
+    CREATE TABLE IF NOT EXISTS Help (
+      hid serial PRIMARY KEY,
+      question varchar(255) NOT NULL,
+      answer varchar(255) NOT NULL
+    );
+    `, (err, res) => {
+      if (!err) {
+        console.log("Table 'Help' created successfully.");
+      } else {
+        console.log("Error creating table:", err);
+      }
+    });
     
   }
 }
