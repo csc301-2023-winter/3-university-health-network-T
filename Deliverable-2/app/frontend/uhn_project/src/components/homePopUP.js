@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DateDisplay from './formatDate';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function HomePopUP() {
   const [exerciseData, setExerciseData] = useState(null);
@@ -20,7 +21,7 @@ function HomePopUP() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/popup', {
+      .get('http://localhost:4000/popup', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -47,6 +48,7 @@ function HomePopUP() {
 
   const renderMeeting = () => {
     if (meetingData) {
+      localStorage.setItem('meetingid', meetingData.meetingid);
       return (
         <>
           {meetingData.date.slice(0, 10)} {meetingData.starttime.slice(0, 5)} -{' '}
@@ -80,7 +82,18 @@ function HomePopUP() {
         {renderMeeting()}
       </div>
       <br />
-      <Button className="buttons">Join</Button>
+      <Button className="buttons">
+        <a
+          className="join-link"
+          href={`https://uhnmeet.azurewebsites.net/?groupId=${localStorage.getItem('meetingid')}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Join
+        </a>
+      </Button>
+
+
     </div>
   );
 }
