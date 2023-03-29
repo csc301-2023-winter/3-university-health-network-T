@@ -83,8 +83,17 @@ function HomePopUP() {
       </div>
       <br />
       <Button className="buttons">
-        <Link to={`https://uhnmeet.azurewebsites.net/?groupId=${localStorage.getItem('meetingid')}`}>Join</Link>
+        <a
+          className="join-link"
+          href={`https://uhnmeet.azurewebsites.net/?groupId=${localStorage.getItem('meetingid')}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Join
+        </a>
       </Button>
+
+
     </div>
   );
 }
