@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import uhn_logo from "../uhn_logo.svg";
+import uhn_logo from "../uhn_logo.png";
 import { AiOutlineQuestion } from "react-icons/ai";
 import './Menu.css';
 import { useNavigate } from "react-router-dom";
@@ -54,6 +54,8 @@ function Login() {
   };
 
   const handleRegister = () => {
+  
+    navigate("/register");
     console.log('Registering with email:', email, 'and password:', password);
   };
 
@@ -66,15 +68,19 @@ function Login() {
   }
 
   return (
-    
-    <div className="login-container">
-      <div className="logo-container">
+    <div id='large_container'>
+       <Menu/>
+      <div className="login-container">
+      
+      
+      
+       
+      <form>
+        
+        <div className="logo-container">
         <img src={uhn_logo} alt="Login" />
       </div>
-      <div style={{ position: 'absolute', top: '0', left: '0' }}>
-        <Menu/>
-      </div>
-      <form>
+      
         <h1>Login</h1>
         <label>
           Email:
@@ -86,14 +92,16 @@ function Login() {
           <input type="password" value={password} onChange={handlePasswordChange} />
         </label>
         <br />
-        <button type="button" onClick={handleLogin}>Login</button>
-        <a href="/register">
-            <button type="button" onClick={handleRegister}>Register</button>
-        </a>
+        <button className="buttons" type="button" onClick={handleLogin}>Login</button>
+       
+            <button className="buttons" type="button" onClick={handleRegister}>Register</button>
+        
         <a href="/reset" onClick={handleForgotPassword}>Forgot Password?</a>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-    </div>
+    </div></div>
+    
+    
   );
 }
 
