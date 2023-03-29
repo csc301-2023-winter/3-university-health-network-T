@@ -60,6 +60,12 @@ function HomePopUP(props) {
       return ' -- There is no upcoming meeting';
     }
   };
+
+  const handleJoinClick = () => {
+    const groupId = localStorage.getItem('meetingid');
+    const url = `https://uhnmeet.azurewebsites.net/?groupId=${groupId}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
   const continue_extrice=()=>{
     if(props&&props.cont){
       props.cont()
@@ -106,15 +112,8 @@ function HomePopUP(props) {
         {renderMeeting()}
       </div>
       <br />
-      <Button className="buttons">
-        <a
-          className="join-link"
-          href={`https://uhnmeet.azurewebsites.net/?groupId=${localStorage.getItem('meetingid')}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Join
-        </a>
+      <Button className="buttons" onClick={handleJoinClick}>
+        Join
       </Button>
 
 

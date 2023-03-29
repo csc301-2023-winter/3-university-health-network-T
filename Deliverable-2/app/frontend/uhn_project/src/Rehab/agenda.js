@@ -6,7 +6,7 @@ const Agenda = () =>{
   const token = localStorage.getItem("token");
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`http://localhost:5000/calendar/day`, {
+      const response = await fetch(`http://localhost:4000/calendar/day`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const responseData = await response.json();

@@ -72,7 +72,7 @@ function Contact() {
         </div>
       </div>
       <div className="contact-right">
-        <h3>Suggestion</h3>
+        <h2>Suggestion</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <input

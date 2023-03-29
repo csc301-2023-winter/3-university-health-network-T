@@ -6,7 +6,7 @@ function Blog() {
   const [selectedBlog, setSelectedBlog] = useState(null);
 
   const fetchBlogs = async (page) => {
-    const response = await fetch(`http://localhost:5000/blog/blogs/${page}`, {
+    const response = await fetch(`http://localhost:4000/blog/blogs/${page}`, {
       method: 'GET',
     });
 
@@ -17,7 +17,7 @@ function Blog() {
   };
 
   const fetchBlogDetails = async (bid) => {
-    const response = await fetch(`http://localhost:5000/blog/detail/${bid}`, {
+    const response = await fetch(`http://localhost:4000/blog/detail/${bid}`, {
       method: 'GET',
     });
 
