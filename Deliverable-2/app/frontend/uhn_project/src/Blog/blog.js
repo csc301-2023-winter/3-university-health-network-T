@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './blog.css';
+import { server_url } from '../global';
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState(null);
 
   const fetchBlogs = async (page) => {
-    const response = await fetch(`http://localhost:4000/blog/blogs/${page}`, {
+    const response = await fetch(server_url+`/blog/blogs/${page}`, {
       method: 'GET',
     });
 

@@ -90,7 +90,7 @@ function HomePopUP(props) {
     
       <div>
       {showing?
-        <div style={{position:'absolute', top:'0px',width:'100%',height:'100%', backgroundColor:'rgba(0, 0, 0, 0.5)'}}>
+        <div style={!props?{position:'absolute', top:'0px',width:'100%',height:'100%', backgroundColor:'rgba(0, 0, 0, 0.5)'}:{}}>
     <div id="out-box" style={{backgroundColor:'#ffffff'}}>
       <DateDisplay date={formattedDate} />
       <p>Your prescribed exercise for today:</p>

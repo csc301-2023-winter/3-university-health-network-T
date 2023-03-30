@@ -36,7 +36,7 @@ function Recording_page(){
             <div>
             <div className="container">
             <Avatar_displayer className="child" id="avatar" connection={connection}/>
-            <Recorder className="child" connection={connection}/>
+            <Recorder className="child" connection={connection} />
             </div>
             <button onClick={stop}>stop</button>
             <button onClick={cont}>continue</button>
