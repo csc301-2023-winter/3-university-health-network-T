@@ -10,7 +10,8 @@ const port = process.env.PORT || 4000;
 const table_init = require('./table_setup');
 table_init.table_init();
 
-const cors = require('cors')
+const cors = require('cors');
+app.use(express.static('client'))
 app.use(cors({
   origin: "*"
 }))
@@ -35,6 +36,9 @@ app.use("/help", helpRouter)
 const contactRouter = require('./routes/contact')
 app.use("/contact", contactRouter)
 
+app.use(function(req, res) {
+  res.sendFile(path.resolve(__dirname, './client/index.html'))
+})
 
 server.listen(port,  () => {
   console.log(`Server listening at http://localhost:${port}`);

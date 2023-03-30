@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay} from "date-fns";
 // import InfiniteScroll from "react-infinite-scroll-component";
 import "./calendar.css";
+import { server_url } from "../global";
 // import Menu from "../Component/Menu";
 
 /**
@@ -55,7 +56,7 @@ const fetchNextDaysEvents = async () => {
   const nextEndDate = new Date(nextStartDate);
   nextEndDate.setDate(nextEndDate.getDate() + 6); // Change the number here to set how many days to fetch at once
 
-  const response = await fetch("http://localhost:4000/calendar/day", {
+  const response = await fetch(`${server_url}/calendar/day`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -88,7 +89,7 @@ const fetchNextDaysEvents = async () => {
 
 
   const fetchMonthEvents = async (date) => {
-    const response = await fetch("http://localhost:4000/calendar/year", {
+    const response = await fetch(`${server_url}/calendar/year`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

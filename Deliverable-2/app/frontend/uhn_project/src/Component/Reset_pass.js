@@ -3,6 +3,7 @@ import "./reset_password.css";
 import uhn_logo from "../uhn_logo.svg";
 import { AiOutlineQuestion } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+import { server_url } from '../global';
 
 function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ function ForgotPassword() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:4000/account/reset', {
+      const response = await fetch(`${server_url}/account/reset`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

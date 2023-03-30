@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./blog.css";
+import { server_url } from '../global';
 
 /**
  * This component displays a list of blog posts and their details when clicked.
@@ -28,7 +29,7 @@ function Blog() {
   const [selectedBlog, setSelectedBlog] = useState(null);
 
   const fetchBlogs = async (page) => {
-    const response = await fetch(`http://localhost:4000/blog/blogs/${page}`, {
+    const response = await fetch(`${server_url}/blog/blogs/${page}`, {
       method: "GET",
     });
 
@@ -39,7 +40,7 @@ function Blog() {
   };
 
   const fetchBlogDetails = async (bid) => {
-    const response = await fetch(`http://localhost:4000/blog/detail/${bid}`, {
+    const response = await fetch(`${server_url}/blog/detail/${bid}`, {
       method: "GET",
     });
 
