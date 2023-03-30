@@ -5,6 +5,7 @@ import { AiOutlineQuestion } from "react-icons/ai";
 import "./Menu.css";
 import { useNavigate } from "react-router-dom";
 import Menu from "./Menu";
+import { server_url } from '../global';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ function Login() {
       return;
     }
 
-    fetch("http://localhost:4000/account/signin", {
+    fetch(`${server_url}/account/signin`, {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: {

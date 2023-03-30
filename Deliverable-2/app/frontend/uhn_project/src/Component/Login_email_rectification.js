@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineQuestion } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { server_url } from '../global';
 import "./rectify.css";
 
 function Rectify() {
@@ -10,7 +11,7 @@ function Rectify() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:4000/auth', {
+    fetch(`${server_url}/auth`, {
       method: 'POST',
         headers: {
           'Content-Type': 'application/json'

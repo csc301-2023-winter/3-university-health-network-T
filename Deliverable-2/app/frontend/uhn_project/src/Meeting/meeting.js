@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { server_url } from '../global';
 //import {
   //CallComposite,
   //CallAdapter,
@@ -37,7 +38,7 @@ const OneToOneMeeting = () => {
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/meeting/meeting-room', {
+      const response = await fetch(`${server_url}/meeting/meeting-room`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",

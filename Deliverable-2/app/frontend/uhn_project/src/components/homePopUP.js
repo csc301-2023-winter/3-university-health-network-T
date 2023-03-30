@@ -4,6 +4,7 @@ import DateDisplay from "./formatDate";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+import { server_url } from '../global';
 
 /**
  * A React functional component that displays a pop-up window with information about a user's prescribed exercise
@@ -44,7 +45,7 @@ function HomePopUP(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/popup", {
+      .get(`${server_url}/popup`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
