@@ -249,10 +249,27 @@
 		{
 			"name": "Canlendar days view",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY4MDEyOTgxNSwiZXhwIjoxNjgwMjE2MjE1fQ.VBakQD8ZA5VHFjz3bIaaGdOS0FASKgLom-QGE6incgA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "{{base_url}}/calendar/day",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"calendar",
+						"day"
+					]
 				}
 			},
 			"response": []
