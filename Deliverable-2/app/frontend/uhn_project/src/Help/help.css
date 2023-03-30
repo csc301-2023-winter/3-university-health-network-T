@@ -18,6 +18,7 @@ body {
 }
 
 /* Search bar */
+/* Search bar */
 .search-bar {
   display: flex;
   align-items: center;
@@ -27,23 +28,34 @@ body {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
-  margin-left: 500px;
+  margin-left: auto;
+  margin-right: auto;
   width: 30%;
+  /* position: relative; */
 }
 
-.search-bar input[type='text'] {
+.search-input {
   flex: 1;
-  border: none;
+  border: none; /* Remove the border */
   outline: none;
   font-size: 16px;
-  padding: 10px;
+  padding: 10px 10px 10px 40px; /* Add space on the left for the icon */
+  border-radius: 5px;
+  background-color: #f1f1f1; /* Add background color */
 }
 
-.search-bar i.fa {
+.search-icon {
+  
+  /* position: absolute; */
+  left: 10px; /* Adjust icon position */
+  top: 50%;
+  transform: translateY(-50%); /* Center the icon vertically */
   font-size: 20px;
   color: #999;
-  margin-left: 10px;
+  pointer-events: none; /* Prevents the icon from receiving click events */
 }
+
+
 
 /* FAQ section */
 .faq-section {
@@ -54,15 +66,22 @@ body {
 }
 
 .faq-section h3 {
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .faq-section p {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   margin-bottom: 20px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 4px;
+  color: #555;
 }
+
 
 /* Media queries for responsiveness */
 @media screen and (max-width: 1200px) {

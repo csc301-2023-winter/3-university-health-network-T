@@ -30,15 +30,18 @@ function HelpPage() {
     <div>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-      <div className="search-bar">
-        <i className="fa fa-search"></i>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
+            <div className="search-bar">
+             <i className="fa fa-search search-icon"></i>
+    <input 
+      style={{left:'15%'}}
+      type="text"
+      className="search-input"
+      placeholder="Search..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+  </div>
+
       <div className="faq-section">
           {filteredFaqs.map((faq, index) => (
             <div key={index}>
