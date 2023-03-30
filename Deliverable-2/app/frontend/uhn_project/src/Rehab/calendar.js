@@ -4,6 +4,35 @@ import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay} from "d
 import "./calendar.css";
 // import Menu from "../Component/Menu";
 
+/**
+ * This is a React component for a calendar application.
+ * It displays a monthly or daily view of events fetched from an API.
+ *
+ * State variables:
+ * - view: string - the current view type ("month" or "day")
+ * - date: Date - the current date
+ * - events: object - the events for the calendar, with keys "meetings", "exercises", and "both"
+ * - dailyEvents: array - the events for the current day and the next six days
+ * - endDate: Date - the end date of the currently fetched events
+ * - hasMore: boolean - whether there are more events to fetch
+ * - isFirstLoad: boolean - whether it's the first time loading the day view
+ *
+ * Functions:
+ * - fetchNextDaysEvents: fetches the next seven days of events from the API
+ * - fetchMonthEvents: fetches the events for the current month from the API
+ * - changeView: changes the view type
+ * - prev: moves to the previous month
+ * - next: moves to the next month
+ * - getCellClassName: gets the class name for a calendar cell based on its events
+ * - renderMonthView: renders the monthly view of the calendar
+ * - renderDayView: renders the daily view of the calendar
+ * - renderCalendar: renders the calendar component
+ * - renderTage: renders the tags to distinguish between different types of events
+ * - renderLegend: renders the legend for the calendar
+ *
+ * Usage: <Calendar />
+ */
+
 
 
 const token = localStorage.getItem("token");
