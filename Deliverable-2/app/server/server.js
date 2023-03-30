@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const server = require('http').Server(app)
+const path = require("path");
 // const io = require('socket.io')(server)
 app.use(bodyParser.json())
 app.set("view engine", 'ejs')
