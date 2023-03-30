@@ -105,7 +105,7 @@ function HomePopUP(props) {
         {exerciseData ? renderExercise() : "There is no prescribed exercise"}
 
         
-          <button className="buttons" onClick={continue_extrice}>Continue</button>
+          {props.cont?<button className="buttons" onClick={continue_extrice}>Continue</button>: ""}
 
         <a href="/video">
           <Button className="buttons">Restart</Button>
