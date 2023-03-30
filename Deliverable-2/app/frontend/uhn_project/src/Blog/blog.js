@@ -1,6 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "./blog.css";
 
+/**
+ * This component displays a list of blog posts and their details when clicked.
+ * 
+ * State variables:
+ * - blogs: an array of blog posts fetched from the server
+ * - selectedBlog: the currently selected blog post, or null if no blog post is selected
+ * 
+ * Functions:
+ * - fetchBlogs: fetches the list of blogs from the server and updates the blogs state
+ * - fetchBlogDetails: fetches the details of a specific blog post from the server and updates the selectedBlog state
+ * - handleBlogClick: event handler for clicking on a blog post preview; calls fetchBlogDetails to fetch the details of the clicked blog post
+ * - handleCloseClick: event handler for clicking on the "Close" button in the blog details view; sets selectedBlog to null to return to the list view
+ * - formatDate: formats a date string as "DD MMM YYYY" or "DD MMM YYYY HH:MM" depending on the includeTime parameter
+ * 
+ * Rendering:
+ * - If selectedBlog is not null, displays the details of the selected blog post
+ * - Otherwise, displays a list of blog post previews
+ * 
+ * Props: None
+ */
+
+
 function Blog() {
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState(null);
