@@ -3,6 +3,32 @@ import Avatar_player from './Avatar_player';
 import { server_url } from '../../global';
 import GLTF_player from './gltf_player';
 
+/**
+ * React component that loads and displays an avatar for a given exercise.
+ * 
+ * Props:
+ *  - exercise: object with information about the exercise being performed, including exercise name, characters, and number of sets and repetitions
+ *  - connection: WebSocket connection used to send data to the server
+ *  - onfinsh: function to be called when the exercise is completed
+ * 
+ * State:
+ *  - index: integer representing the current set being performed
+ *  - path: string representing the URL of the avatar file
+ *  - no_sets: integer representing the number of sets for the exercise
+ *  - no_repetitions: integer representing the number of repetitions for the exercise
+ *  - format: string representing the format of the avatar file ("gltf")
+ * 
+ * Methods:
+ *  - componentDidUpdate(prevProps): lifecycle method that is triggered when the "exercise" prop changes. Calls "load_avator" to load the avatar for the new exercise.
+ *  - load_avator(): sends a GET request to the server to get the URL of the avatar file for the specified exercise and character. Once the URL is received, updates the "path" and "index" state properties.
+ *  - onfinsh(): called when a set is finished. Updates the "index" state property to move on to the next set, or sends a POST request to the server to mark the exercise as completed if all sets and repetitions have been completed.
+ *  - send_complete(call_back): sends a POST request to the server to mark the exercise as completed once all sets and repetitions have been completed. Takes a callback function to be called once the request is complete.
+ * 
+ * Renders:
+ *  - a div that displays the number of sets finished and the "GLTF_player" component that displays the avatar.
+ */
+
+
 class Displayer_loader extends Component{
     constructor(props){
         super(props)

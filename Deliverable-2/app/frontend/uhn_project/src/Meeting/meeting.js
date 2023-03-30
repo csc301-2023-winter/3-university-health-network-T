@@ -6,6 +6,29 @@ import React, { useEffect, useState } from 'react';
 //} from '@azure/communication-react';
 import { AzureCommunicationTokenCredential } from '@azure/communication-common';
 
+/**
+ * OneToOneMeeting is a React functional component that sets up a one-to-one meeting using Azure Communication Services.
+ * 
+ * It initializes the state variables 'callAdapter', 'roomId', and 'meetingToken' using the useState hook. The 'callAdapter' 
+ * state variable holds an AzureCommunicationCallAdapter object that is used to connect to the meeting. The 'roomId' and 'meetingToken' 
+ * state variables hold the room ID and meeting token fetched from the server.
+ * 
+ * The useEffect hook is used to fetch the meeting information from the backend server using an HTTP GET request to 
+ * 'http://localhost:5000/meeting/meeting-room'. The request requires a JWT token in the Authorization header. When the data 
+ * is fetched, it is stored in the 'roomId' and 'meetingToken' state variables.
+ * 
+ * The 'initAdapter' function is called to initialize the 'callAdapter' state variable. It checks if a meeting token is available 
+ * and creates an AzureCommunicationCallAdapter object using the createAzureCommunicationCallAdapter function from the Azure 
+ * Communication Services library. The createAzureCommunicationCallAdapter function takes the user ID, display name, credential, 
+ * and locator as parameters. The user ID and display name are obtained from the localStorage object. The credential is an instance 
+ * of AzureCommunicationTokenCredential initialized with the meeting token obtained earlier. The locator is an object that specifies 
+ * the 'roomId'.
+ * 
+ * The component returns a div element that conditionally renders either the CallComposite component, if the callAdapter is not null, 
+ * or a "Loading..." message otherwise.
+ */
+
+
 const OneToOneMeeting = () => {
   const [callAdapter, setCallAdapter] = useState(null);
   const [roomId, setRoomId] = useState(null);

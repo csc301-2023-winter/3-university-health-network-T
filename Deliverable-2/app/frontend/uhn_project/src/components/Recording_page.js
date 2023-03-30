@@ -39,7 +39,7 @@ function Recording_page(){
             <Recorder className="child" connection={connection} />
             </div>
             <button onClick={stop}>stop</button>
-            <button onClick={cont}>continue</button>
+            
             </div>
             <HomePopUP cont = {cont} connection={connection}></HomePopUP>
         </div>

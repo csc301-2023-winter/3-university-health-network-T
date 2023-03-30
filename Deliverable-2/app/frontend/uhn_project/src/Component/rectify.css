@@ -21,7 +21,6 @@
   width: 80%;
   position: relative;
   top: -20%;
- 
 }
 
 .label {
@@ -75,6 +74,3 @@ input::placeholder {
     font-size: 14px;
   }
 }
-
-  
-  

@@ -6,6 +6,29 @@ import model from "./models/air-squat.fbx"
 import Displayer_loader from './displayer_loader';
 import { server_url } from '../../global';
 
+/**
+ * A React component that displays a 3D avatar model and its associated exercise data.
+ *
+ * This component fetches exercise data from a server and updates its state to display the data.
+ * It uses the Three.js library to display the 3D avatar model and allows for interaction with the OrbitControls component.
+ *
+ * Props:
+ * - connection: A WebSocket connection object for real-time communication with a server.
+ *
+ * State:
+ * - all_exercise: An array of exercise data objects.
+ * - index: The index of the currently displayed exercise data object in the `all_exercise` array.
+ *
+ * Methods:
+ * - onfinsh: Updates the state to indicate that an exercise has been finished.
+ * - load_data: Fetches exercise data from a server and updates the state with the retrieved data.
+ *
+ * Usage:
+ * ```
+ * <Avatar_displayer connection={connection} />
+ * ```
+ */
+
 class Avatar_displayer extends Component {
 
     constructor(props){

@@ -4,6 +4,29 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader} from 'three/examples/jsm/loaders/FBXLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+/**
+ * A React component that displays a 3D avatar player using Three.js library.
+ * The component loads 3D models in FBX or GLTF format from a provided path and animates them using animation clips.
+ *
+ * @props
+ * @prop {string} path - The path to the 3D model.
+ * @prop {string} format - The format of the 3D model ('fbx' or 'gltf').
+ * @prop {number} total - The total number of animation clips to play.
+ * @prop {function} onfinsh - A function to call when all animation clips have finished playing.
+ *
+ * @example
+ *
+ * import Avatar_player from './Avatar_player';
+ *
+ * function App() {
+ *   return (
+ *     <Avatar_player path="path/to/model.fbx" format="fbx" total={3} onfinsh={() => console.log('All animations have finished playing!')} />
+ *   );
+ * }
+ *
+ */
+
+
 class Avatar_player extends Component {
 
     constructor(props){

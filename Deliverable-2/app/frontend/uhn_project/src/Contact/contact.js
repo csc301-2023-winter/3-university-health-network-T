@@ -8,17 +8,14 @@ function Contact() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
 
     try {
-      const response = await fetch('/host/contact', {
+      const response = await fetch('http://localhost:4000/contact', {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId, name, email, message }),
+        body: JSON.stringify({name, email, message }),
       });
 
       if (response.ok) {

@@ -5,6 +5,24 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader} from 'three/examples/jsm/loaders/FBXLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+/**
+ * A component for rendering 3D models in a web browser using Three.js library.
+ * 
+ * @class GLTF_player
+ * @extends Component
+ * 
+ * @param {Object} props - The component's properties.
+ * @param {string} props.path - The path to the 3D model file.
+ * @param {number} props.index - The index of the current animation clip to play.
+ * @param {number} props.total - The total number of animation clips in the 3D model file.
+ * @param {Object} props.connection - The connection object for communicating with a server.
+ * @param {string} props.format - The format of the 3D model file (e.g. GLTF, FBX, OBJ, etc.).
+ * @param {function} props.onfinsh - The callback function to call when all animations have finished playing.
+ * 
+ * @returns {JSX.Element} A div element containing the rendered 3D model.
+ */
+
+
 class GLTF_player extends Component {
 
     constructor(props){

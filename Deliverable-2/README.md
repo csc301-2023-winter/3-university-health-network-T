@@ -106,7 +106,7 @@ $ npm run devStart
 $ cd ..
 $ cd Deliverable-2/app/frontend/uhn_project/
 $ npm install
-$ npm run
+$ npm run start
 ```
  
  ## Deployment and Github Workflow

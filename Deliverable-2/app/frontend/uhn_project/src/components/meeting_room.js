@@ -69,7 +69,7 @@ class Meeting_room extends Component{
         <div>
             <video ref={ref => this.localVideoStreamElement = ref} autoPlay={true} muted={true} />
             <div ref={ref => this.remoteParticipantsContainerElement = ref}></div>
-            <button onClick={() => this.joinMeeting('https://uhn-meeting.azurewebsites.net/?groupId=4289f430-c113-11ed-b3d9-fb127a76869c')}>Join Meeting</button>
+            <button onClick={() => this.joinMeeting('https://uhnmeet.azurewebsites.net/?groupId=588611e0-ce8f-11ed-9b51-4f0dc62f4b82')}>Join Meeting</button>
         </div>
           );
       }
