@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "127e8c4c-9d00-4e24-9e49-48f695d81f73",
+		"_postman_id": "67d75475-de63-4fd1-8323-2654f29cfb12",
 		"name": "uhn_D2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24151025"
+		"_exporter_id": "24119208"
 	},
 	"item": [
 		{
@@ -250,7 +250,10 @@
 			"name": "Canlendar days view",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		},
@@ -340,6 +343,105 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get help message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY4MDEyOTgxNSwiZXhwIjoxNjgwMjE2MjE1fQ.VBakQD8ZA5VHFjz3bIaaGdOS0FASKgLom-QGE6incgA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/help",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"help"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post suggestion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"LeBron James\",\n    \"email\": \"lebronjames@gmail.com\",\n    \"message\": \"asdajnfinsafdasdasf.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/contact",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create meeting room",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjgwMDUyOTM5LCJleHAiOjE2ODAxMzkzMzl9.0NIOBPWwrhdU659o9383JF5WYiD1aMimMtBEDkaSu34",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2023-4-1\",\n    \"startTime\": \"15:00\",\n    \"endTime\": \"16:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/meeting/create-group",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"meeting",
+						"create-group"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:4000"
 		}
 	]
 }

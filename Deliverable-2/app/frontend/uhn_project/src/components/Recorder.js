@@ -255,12 +255,12 @@ setTimeout(async()=>await draw(),500)
     })
   }
   return (
-    <div style={{position:'absolute', top:'0px',width:'100%',height:'100%'}}>
+    <div>
       
       <div>
         
         <canvas id='displayer' ref={canvasRef} scaleY={-1}></canvas>
-        <video ref={sourceVideoRef} autoPlay id='revorded_output' style={{width:'100%'}}/>
+        <video ref={sourceVideoRef} autoPlay id='revorded_output' style={{width:'0px'}}/>
       </div>
       <div>
         <button onClick={startMirror}>Start Recording</button>
