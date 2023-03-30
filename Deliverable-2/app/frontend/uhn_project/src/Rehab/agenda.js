@@ -1,6 +1,20 @@
 import { useState, useEffect } from "react";
 import "./agenda.css";
 
+/**
+ * React functional component that displays a list of dates, with exercises and meetings for each date.
+ * 
+ * The component sends an HTTP request to the server to fetch the data from the endpoint http://localhost:4000/calendar/day.
+ * The Authorization header is set with the token retrieved from the localStorage.
+ * 
+ * @returns JSX element that contains a div with a class of display-container that holds the list of dates.
+ * Each date is represented by a div element with a class of each-date.
+ * If there are any exercises or meetings for that date, they are rendered in a separate div element with a class of exercises-list or meetings-list, respectively.
+ * Each list contains a h5 element that displays the title of the list and a ul element that contains a list of li elements with a class of exercise-item or meeting-item.
+ * The li elements contain p elements that display the name and details of the exercise or meeting.
+ */
+
+
 const Agenda = () => {
   const [data, setData] = useState(null);
   const token = localStorage.getItem("token");
