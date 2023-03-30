@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import "./help.css"
 import Menu from "../Component/Menu"
+import { server_url } from '../global';
+
 function HelpPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [faqs, setFaqs] = useState([]);
@@ -8,7 +10,7 @@ function HelpPage() {
 
   useEffect(() => {
     async function fetchFaqs() {
-      const response = await fetch("http://localhost:4000/help", {
+      const response = await fetch(`${server_url}/help`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

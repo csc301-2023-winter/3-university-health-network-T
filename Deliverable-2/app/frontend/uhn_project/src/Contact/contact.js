@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './contact.css';
+import { server_url } from '../global';
 
 function Contact() {
   const [name, setName] = useState('');
@@ -10,7 +11,7 @@ function Contact() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4000/contact', {
+      const response = await fetch(`${server_url}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
