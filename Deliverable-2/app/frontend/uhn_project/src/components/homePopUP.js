@@ -5,6 +5,24 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
+/**
+ * A React functional component that displays a pop-up window with information about a user's prescribed exercise
+ * and upcoming meeting. The component fetches data from a server using a GET request and uses the react-bootstrap
+ * and react-router-dom libraries to display buttons and navigate to a different route. The component receives props
+ * that control whether or not the pop-up window is displayed and whether or not a "Continue" button is displayed.
+ * 
+ * @param {Object} props - The props object that contains the component's properties and functions.
+ * @param {boolean} props.cont - A boolean value that controls whether or not the "Continue" button is displayed.
+ * @param {Object} props.connection - An object that contains functions to pause and continue the pop-up window.
+ * @param {boolean} props.connection.homepop.stop - A function that pauses the pop-up window.
+ * @param {boolean} props.connection.homepop.cont - A function that continues the pop-up window.
+ * @param {boolean} props.connection.homepop - An object that contains the stop and cont functions.
+ * @param {boolean} props.showing - A boolean value that controls whether or not the pop-up window is displayed.
+ * @param {boolean} props.connection - A boolean value that controls whether or not the component is connected to a server.
+ * @returns {JSX.Element} - A pop-up window with information about a user's prescribed exercise and upcoming meeting.
+ */
+
+
 
 function HomePopUP(props) {
   const [exerciseData, setExerciseData] = useState(null);
