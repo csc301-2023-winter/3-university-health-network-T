@@ -112,6 +112,7 @@ function HomePopUP(props) {
   }
   return (
     
+    
       <div>
       {(!props.cont)||showing?
         <div style={props.cont?{position:'absolute', top:'0px',width:'100%',height:'100%', backgroundColor:'rgba(0, 0, 0, 0.5)'}:{}}>

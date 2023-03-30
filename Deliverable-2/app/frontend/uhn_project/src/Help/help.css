@@ -7,7 +7,7 @@
 
 /* Global styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   background-color: #f9f9f9;
 }
 
@@ -18,13 +18,10 @@ body {
 }
 
 /* Search bar */
-/* Search bar */
 .search-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -32,30 +29,23 @@ body {
   margin-right: auto;
   width: 30%;
   /* position: relative; */
+  top: 10%;
 }
 
-.search-input {
+.search-bar input[type='text'] {
   flex: 1;
-  border: none; /* Remove the border */
+  border: none;
   outline: none;
   font-size: 16px;
-  padding: 10px 10px 10px 40px; /* Add space on the left for the icon */
-  border-radius: 5px;
-  background-color: #f1f1f1; /* Add background color */
+  padding: 10px;
+  top: 30%;
 }
 
-.search-icon {
-  
-  /* position: absolute; */
-  left: 10px; /* Adjust icon position */
-  top: 50%;
-  transform: translateY(-50%); /* Center the icon vertically */
+.search-bar i.fa {
   font-size: 20px;
   color: #999;
-  pointer-events: none; /* Prevents the icon from receiving click events */
+  margin-left: 10px;
 }
-
-
 
 /* FAQ section */
 .faq-section {
@@ -64,50 +54,79 @@ body {
   border-radius: 5px;
   padding: 20px;
 }
-
-.faq-section h3 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-}
-
 .faq-section p {
   font-size: 18px;
   line-height: 1.5;
   margin-bottom: 20px;
-  background-color: #f1f1f1;
+  background-color: #e0f2f1; /* Change this value to your desired color */
   padding: 10px;
   border-radius: 4px;
   color: #555;
 }
 
 
+.faq-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.faq-item h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.faq-item p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-top: 10px;
+  color: #555;
+  text-align: justify;
+  font-weight: 400;
+}
+
+.help-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.help-search-input::placeholder {
+  color: #777;
+}
+
+
 /* Media queries for responsiveness */
 @media screen and (max-width: 1200px) {
   .search-bar {
-      margin-left: 15%;
       width: 70%;
   }
 }
 
 @media screen and (max-width: 992px) {
   .search-bar {
-      margin-left: 10%;
       width: 80%;
   }
 }
 
 @media screen and (max-width: 768px) {
   .search-bar {
-      margin-left: 5%;
       width: 90%;
   }
 }
 
 @media screen and (max-width: 576px) {
   .search-bar {
-      margin-left: 2%;
       width: 96%;
   }
 }

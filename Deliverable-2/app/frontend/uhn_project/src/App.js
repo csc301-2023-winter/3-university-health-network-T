@@ -21,7 +21,7 @@ import Rehab from './Rehab/rehab';
 import InternetCheck from './Settings/internetCheck';
 import { Meeting_room_with_rotter } from './components/meeting_room';
 import OneToOneMeeting from "./Meeting/meeting";
-
+import HelpPage from "./Help/help"
 
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
        <Route path="/reset" element = {<ForgotPassword/>}> </Route>
        <Route path="/blog" element = {<BlogC/>}> </Route>
        <Route path="/contact" element = {<ContactC/>}> </Route>
-       <Route path="/help" element = {<HelpC/>}> </Route>
+       <Route path="/help" element = {<HelpPage/>}> </Route>
        <Route path="/settings" element = {<SettingsPopUP/>}> </Route>
        <Route path="/rehab" element = {<Rehab/>}> </Route>
        <Route path='test_meeting' element={<Meeting_room_with_rotter/>}/> 
