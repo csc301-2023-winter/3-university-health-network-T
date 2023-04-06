@@ -188,10 +188,10 @@ componentDidMount() {
     this.scene.add(this.pointLight);
     }
     this.update_avtar(this.props.path)
-    this.pause()
-    if(this.props.connection&&this.props.connection.ready){
-        this.props.connection.ready()
-    }
+    //this.pause()
+    //if(this.props.connection&&this.props.connection.ready){
+      //  this.props.connection.ready()
+    //}
     // Load FBX model
     //this.load_data()
     

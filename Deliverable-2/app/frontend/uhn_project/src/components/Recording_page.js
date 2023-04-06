@@ -6,7 +6,7 @@ import "./record_page.css"
 import HomePopUP from "./homePopUP"
 function Recording_page(){
     const toggleref = useRef(null)
-    const connection ={showing_avatar:true, ready:all_ready}
+    
     const all_ready=()=>{
         if(connection.avatar&&connection.avatar.ready&&!connection.avatar.ready()){
             return
@@ -20,6 +20,7 @@ function Recording_page(){
         console.log('every thing is ready')
         cont()
     }
+    const connection ={showing_avatar:true}
     const stop=function(){
         if(connection.avatar&&connection.avatar.stop){
             connection.avatar.stop()
