@@ -95,7 +95,7 @@ update_avtar(path){
 
 
             gltf.scene.scale.set(1.6, 1.6, 1.6)
-            gltf.scene.position.set(-4, -2, 0)
+            gltf.scene.position.set(0, -1.5, 0)
             gltf.scene.rotation.y = Math.PI * .48
     
             this.mixer = new THREE.AnimationMixer(gltf.scene)
@@ -156,7 +156,7 @@ componentDidMount() {
         //camera.position.y = 1
         //camera.position.z = 1
     // Camera
-    this.camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight);
+    this.camera = new THREE.PerspectiveCamera(40, record_page_setting.avatar_ratio);
     this.camera.position.set(5, 1, 1);
     this.scene.add(this.camera);
     }
@@ -167,7 +167,8 @@ componentDidMount() {
 //renderer.setPixelRatio(2)
 //renderer.render(scene, camera)
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+    let [width,hight] = largest_inside(window.innerWidth/2, window.innerHeight/2,record_page_setting.avatar_ratio)
+    this.renderer.setSize(width,hight);
     this.renderer.setPixelRatio(2);
     this.mount.appendChild(this.renderer.domElement);
     if(!this.controls){
@@ -214,18 +215,25 @@ animate = () => {
     let factor = 1
     if(!this.props.connection.showing_avatar){
     factor = record_page_setting.factor
+    console.log(factor+'f')
     this.containerRef.current.style.position='absolute'
     this.containerRef.current.style.right=record_page_setting.from_right+'%'
     this.containerRef.current.style.zIndex = '1'
+    this.containerRef.current.style.marginLeft=''
     }else{
         this.containerRef.current.style.position='relative'
         this.containerRef.current.style.zIndex = '0'
         this.containerRef.current.style.right=''
+        //document.getElementById('o').style.marginLeft
+        this.containerRef.current.style.marginLeft='40%'
         }
-    this.renderer.setSize(window.innerWidth*factor, window.innerHeight*factor);
-    this.camera.aspect = (window.innerWidth / window.innerHeight);
-    this.containerRef.current.style.width=factor*100+'%'
-    this.containerRef.current.style.hight=factor*100+'%'
+    let [width,hight] = largest_inside(window.innerWidth*factor, window.innerHeight*factor,record_page_setting.avatar_ratio)
+    console.log(width+','+hight+','+factor+','+window.innerWidth)
+    this.renderer.setSize(width,hight);
+    //this.renderer.setSize(window.innerWidth*factor, window.innerHeight*factor);
+    this.camera.aspect = (width/hight);
+    this.containerRef.current.style.width=width+'px'
+    this.containerRef.current.style.hight=hight+'px'
     // Render
     this.renderer.render(this.scene, this.camera);
 }
