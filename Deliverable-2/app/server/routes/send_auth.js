@@ -12,12 +12,12 @@ router.post('/', async (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'syt921905095@gmail.com', //maybe next time in process.env
-            pass: 'isbcptuaevqacnfg' //maybe next time in process.env
+            user: 'uhnemailauthentication@gmail.com', //maybe next time in process.env
+            pass: 'jqeycrzxtioxdigb' //maybe next time in process.env
         }
     });
     const mailOptions = {
-        from: 'syt921905095@gmail.com',
+        from: 'uhnemailauthentication@gmail.com',
         to: req.body.email,
         subject: 'Verification Code',
         text: `Your verification code is ${code}`
