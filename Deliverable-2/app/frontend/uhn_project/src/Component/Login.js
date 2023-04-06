@@ -38,7 +38,7 @@ function Login() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        if (data.token) {
+        if (data) {
           localStorage.setItem("token", data.token);
           localStorage.setItem("email", data.email);
           navigate("/rectify");
