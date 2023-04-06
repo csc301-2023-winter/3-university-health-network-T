@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader} from 'three/examples/jsm/loaders/FBXLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import {record_page_setting, largest_inside} from '../../global'
 
 /**
  * A component for rendering 3D models in a web browser using Three.js library.
@@ -41,6 +42,8 @@ class GLTF_player extends Component {
         this.pause=false
         this.stop=this.stop.bind(this)
         this.cont=this.cont.bind(this)
+
+        this.containerRef = React.createRef()
         //this.load_data = this.load_data.bind(this)
     }
 
@@ -87,12 +90,6 @@ update_avtar(path){
     loader.load(
         path,
         (gltf) => {
-
-
-
-
-
-
             console.log(gltf)
             this.scene.remove(this.scene.children.filter(child => child !== this.camera && child !== this.pointLight)[0]);
 
@@ -191,6 +188,10 @@ componentDidMount() {
     this.scene.add(this.pointLight);
     }
     this.update_avtar(this.props.path)
+    this.pause()
+    if(this.props.connection&&this.props.connection.ready){
+        this.props.connection.ready()
+    }
     // Load FBX model
     //this.load_data()
     
@@ -210,7 +211,21 @@ animate = () => {
         this.mixer.update(delta);
         
     }
-
+    let factor = 1
+    if(!this.props.connection.showing_avatar){
+    factor = record_page_setting.factor
+    this.containerRef.current.style.position='absolute'
+    this.containerRef.current.style.right=record_page_setting.from_right+'%'
+    this.containerRef.current.style.zIndex = '1'
+    }else{
+        this.containerRef.current.style.position='relative'
+        this.containerRef.current.style.zIndex = '0'
+        this.containerRef.current.style.right=''
+        }
+    this.renderer.setSize(window.innerWidth*factor, window.innerHeight*factor);
+    this.camera.aspect = (window.innerWidth / window.innerHeight);
+    this.containerRef.current.style.width=factor*100+'%'
+    this.containerRef.current.style.hight=factor*100+'%'
     // Render
     this.renderer.render(this.scene, this.camera);
 }
@@ -250,7 +265,9 @@ render() {
         <div>
             repation finished: {this.state.index}/{this.props.total}
         </div>
+        <div ref={this.containerRef}  onClick={()=>{this.props.connection.showing_avatar=true}}>
         <div ref={mount => { this.mount = mount }} style={{width:"100%"}}/>
+        </div>
         </div>
     );
 }

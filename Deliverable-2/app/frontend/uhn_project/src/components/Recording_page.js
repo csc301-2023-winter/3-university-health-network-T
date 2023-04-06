@@ -6,7 +6,20 @@ import "./record_page.css"
 import HomePopUP from "./homePopUP"
 function Recording_page(){
     const toggleref = useRef(null)
-    const connection ={}
+    const connection ={showing_avatar:true, ready:all_ready}
+    const all_ready=()=>{
+        if(connection.avatar&&connection.avatar.ready&&!connection.avatar.ready()){
+            return
+        }
+        if(connection.recorder&&connection.recorder.ready&&!connection.recorder.ready()){
+            return
+        }
+        if(connection.homepop&&connection.homepop.ready&&!connection.homepop.ready()){
+            return
+        }
+        console.log('every thing is ready')
+        cont()
+    }
     const stop=function(){
         if(connection.avatar&&connection.avatar.stop){
             connection.avatar.stop()
@@ -34,9 +47,9 @@ function Recording_page(){
         <div>
             <Menu/>
             <div>
-            <div className="container">
-            <Avatar_displayer className="child" id="avatar" connection={connection}/>
-            <Recorder className="child" connection={connection} />
+            <div >
+            <Avatar_displayer id="avatar" connection={connection}/>
+            <Recorder connection={connection} style={{position:'absolute', top:'0px'}}/>
             </div>
             <button onClick={stop}>pause</button>
             

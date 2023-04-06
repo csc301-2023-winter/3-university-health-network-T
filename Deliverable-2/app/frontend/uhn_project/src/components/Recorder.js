@@ -18,10 +18,10 @@ function Recorder(props) {
   let mediaRecorder = null;
   let videoBlob = null
   var body_joints=null
-
   poseRef.current = new Pose({locateFile: (file) => {
     return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
-  }});
+  }})
+  poseRef.current.initialize();
   poseRef.current.setOptions({
     modelComplexity: 1,
     smoothLandmarks: true,
@@ -31,15 +31,26 @@ function Recorder(props) {
     minTrackingConfidence: 0.5
   });
   poseRef.current.onResults(async (result)=>{
-    const canvas = canvasRef.current;
+  const canvas = canvasRef.current;
   canvas.width = sourceVideoRef.current.videoWidth;
   canvas.height = sourceVideoRef.current.videoHeight;
   var context = canvas.getContext('2d')
-  //context.scale(-1, 1);
   context.drawImage(result.image, 0, 0);
   drawConnectors(context, result.poseLandmarks, POSE_CONNECTIONS, { color: '#00FF00', lineWidth: 5 });
+  var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  createImageBitmap(imageData).then((imageBitmap)=>{
+  rescale(imageBitmap,canvas,!props.connection.showing_avatar)
+  //console.log(imageBitmap)
+  //canvas.width = window.innerWidth//sourceVideoRef.current.videoWidth*2;
+  //canvas.height = window.innerHeight//sourceVideoRef.current.videoHeight;
+  //context.scale(-1, 1);
+  //console.log(imageBitmap, window.innerWidth/2,window.innerHeight/2,window.innerWidth/2,window.innerHeight/2)
+  //context.drawImage(imageBitmap, -window.innerWidth,0,window.innerWidth,window.innerHeight);
+  //context.setTransform(1, 0, 0, 1, 0, 0)
+  //context.scale(window.innerWidth/sourceVideoRef.current.videoWidth, window.innerHeight/sourceVideoRef.current.videoHeight);
   //console.log(context)
   body_joints.push(result.poseLandmarks)
+  })
   await draw()
 
   //drawLandmarks(canvasRef.current.getContext('2d'), result.poseLandmarks, {
@@ -208,6 +219,7 @@ setTimeout(async()=>await draw(),500)
       track.stop();
     });
   };
+  /** 
   const initPostConnection=()=>{
     const poseDetectionPipeline = new poseDetection.Pose();
     poseDetectionPipeline.setOptions({upperBodyOnly: false})
@@ -226,6 +238,7 @@ setTimeout(async()=>await draw(),500)
       }
     };
   }, []);
+  */
   const testfunction=async ()=>{
     //if(sourceVideoRef.current){
       //console.log(sourceVideoRef.current.srcObject.clone()==sourceVideoRef.current.srcObject.clone())
@@ -242,7 +255,8 @@ setTimeout(async()=>await draw(),500)
   if(!!(sourceVideoRef.current.currentTime > 0 && !sourceVideoRef.current.paused && !sourceVideoRef.current.ended && sourceVideoRef.current.readyState > 2)){
     
     await timmer(100).then((a)=>{
-      
+      var c = sourceVideoRef.current
+      //console.log(c)
       poseRef.current.send({image:sourceVideoRef.current })   
     })
   }
@@ -254,12 +268,13 @@ setTimeout(async()=>await draw(),500)
       },time)
     })
   }
+  
   return (
     <div>
       
-      <div>
+      <div >
         
-        <canvas id='displayer' ref={canvasRef} scaleY={-1}></canvas>
+        <canvas id='displayer' ref={canvasRef} style={{position:'relative'}}  onClick={()=>{props.connection.showing_avatar=false}}></canvas>
         <video ref={sourceVideoRef} autoPlay id='revorded_output' style={{width:'0px'}}/>
       </div>
       <div>
@@ -275,4 +290,29 @@ setTimeout(async()=>await draw(),500)
 }
 
 
+const rescale=(imageBitmap,canvas,showing)=>{
+  //console.log(canvas.style)
+  var context = canvas.getContext('2d')
+  let w = window.innerWidth//sourceVideoRef.current.videoWidth*2;
+  let h = window.innerHeight//sourceVideoRef.current.videoHeight;
+  if(!showing){
+    
+  canvas.style.position='absolute'
+  canvas.style.right='0px'
+  canvas.style.bottom='0px'
+    w = w/4
+    h = h/4
+  }else{
+    
+  canvas.style.position='relative'
+  
+  canvas.style.right=''
+  }
+  canvas.width = w//sourceVideoRef.current.videoWidth*2;
+canvas.height = h//sourceVideoRef.current.videoHeight;
+context.scale(-1, 1);
+//console.log(imageBitmap, window.innerWidth/2,window.innerHeight/2,window.innerWidth/2,window.innerHeight/2)
+context.drawImage(imageBitmap, -w,0,w,h);
+//context.setTransform(1, 0, 0, 1, 0, 0)
+}
 export default Recorder
