@@ -41,6 +41,8 @@ app.use(function(req, res) {
   res.sendFile(path.resolve(__dirname, './client/index.html'))
 })
 
-server.listen(port,  () => {
+const runningserver = server.listen(port,  () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
+
+module.exports = runningserver;
