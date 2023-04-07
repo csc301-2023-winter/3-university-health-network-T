@@ -105,7 +105,7 @@ router.post('/upload/joints', jointUpload.single('joints'), (req, res) => {
         const jointsUrl = blobService.getUrl(jointContainerName, blobName);
         console.log('ju'+jointsUrl)
         pool.query('SELECT Count(*) FROM RecordedBodyJoints',[],(err,result)=>{
-            console.log(result.rowCount)
+            console.log('eehvnv'+result.rowCount)
             console.log(Number(result.rows[0].count))
         pool.query('INSERT INTO RecordedBodyJoints (PatientID, BodyJointsID, Date, Time, Format, Path) VALUES ($1, $2, $3, $4, $5, $6)', [pid, Number(result.rows[0].count)+1, req.body.Date, req.body.Time, '.JSON', jointsUrl], (err, result) => {
             if (err) {

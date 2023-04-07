@@ -7,7 +7,8 @@ export const record_page_setting = {
     from_right:0,
     from_bottom:0,
     //the ratio of width/hight of avatar
-    avatar_ratio:0.4
+    avatar_ratio:0.4,
+    avatar_factor:0.4
 }
 //the width and hight of the largest retangle that can fit into a width x hight retangle with width/hight = ratial 
 export const largest_inside=(width, hight, ratial)=>{

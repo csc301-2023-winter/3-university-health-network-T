@@ -103,7 +103,7 @@ function Recorder(props) {
       videoBlob = new Blob([event.data], {type: 'video/mp4'});
      let u = URL.createObjectURL(videoBlob)
   // Save the video blob to a file or upload it to a server
-      saveAs(videoBlob, 'recording.mp4');
+      //saveAs(videoBlob, 'recording.mp4');
 // const UploadRecordingExerciseVideo = () => {
 //   const [file, setFile] = useState(videoBlob);
 //   const [token, setToken] = useState('');
@@ -126,7 +126,7 @@ var time = today.getHours() + ":" + today.getMinutes() + ":" + (today.getSeconds
 
 const body_joints_form_data = new FormData()
 const jsonBlob = new Blob([JSON.stringify(body_joints)], { type: 'application/json' });
-saveAs(jsonBlob, 'joints.json');
+//saveAs(jsonBlob, 'joints.json');
 body_joints_form_data.append('joints', jsonBlob, 'joints');
 u = URL.createObjectURL(jsonBlob)
 body_joints_form_data.append('Date',date)
@@ -148,7 +148,7 @@ fetch(server_url+'/record/upload/joints', {
 });
 
 
- updateUrl(u);
+ //updateUrl(u);
  console.log(jsonBlob)
 
 
@@ -283,7 +283,7 @@ setTimeout(async()=>await draw(),500)
         
       </div>
       {//<video src={url} autoPlay />
-        url?<button><link download={'video.mp4'} href={url}></link></button>:""
+        //url?<button><link download={'video.mp4'} href={url}></link></button>:""
       }
     </div>
   );

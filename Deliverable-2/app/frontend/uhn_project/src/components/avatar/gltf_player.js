@@ -212,23 +212,25 @@ animate = () => {
         this.mixer.update(delta);
         
     }
-    let factor = 1
+    //let factor = 1
+    let [width,hight] = [0,0]
     if(!this.props.connection.showing_avatar){
-    factor = record_page_setting.factor
-    console.log(factor+'f')
+    //factor = record_page_setting.factor
+    [width,hight] = largest_inside(window.innerWidth*record_page_setting.avatar_factor, window.innerHeight*record_page_setting.avatar_factor,record_page_setting.avatar_ratio)
+    //console.log(factor+'f')
     this.containerRef.current.style.position='absolute'
     this.containerRef.current.style.right=record_page_setting.from_right+'%'
     this.containerRef.current.style.zIndex = '1'
-    this.containerRef.current.style.marginLeft=''
+    this.containerRef.current.style.marginLeft='0px'
     }else{
+        [width,hight] = largest_inside(window.innerWidth, window.innerHeight,record_page_setting.avatar_ratio)
         this.containerRef.current.style.position='relative'
         this.containerRef.current.style.zIndex = '0'
         this.containerRef.current.style.right=''
         //document.getElementById('o').style.marginLeft
-        this.containerRef.current.style.marginLeft='40%'
+        this.containerRef.current.style.marginLeft=((window.innerWidth-width)/2.0)+'px'
         }
-    let [width,hight] = largest_inside(window.innerWidth*factor, window.innerHeight*factor,record_page_setting.avatar_ratio)
-    console.log(width+','+hight+','+factor+','+window.innerWidth)
+    //console.log(width+','+hight+','+factor+','+window.innerWidth)
     this.renderer.setSize(width,hight);
     //this.renderer.setSize(window.innerWidth*factor, window.innerHeight*factor);
     this.camera.aspect = (width/hight);

@@ -46,7 +46,7 @@ function Recording_page(){
     }
     return(
         <div>
-            <Menu/>
+            <Menu style={{zIndex:'2'}}/>
             <div>
             <div >
             <Avatar_displayer id="avatar" connection={connection}/>
