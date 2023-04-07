@@ -34,7 +34,7 @@ router.get('/popup', (req, res) => {
         try {
             const query = `SELECT Date, StartTime, EndTime, MeetingID, MeetingPasscode
                         FROM Meeting
-                        WHERE PatientID = $1 AND Date + StartTime > NOW()
+                        WHERE PatientID = $1 AND Date + EndTime > NOW()
                         ORDER BY Date + StartTime
                         LIMIT 1`;
             pool.query(query, [pid], (error, result) => {
