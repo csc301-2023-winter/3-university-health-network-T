@@ -29,7 +29,7 @@ function HomePopUP(props) {
   const [exerciseData, setExerciseData] = useState(null);
   const [meetingData, setMeetingData] = useState(null);
   const [showing, setShowing] = useState(false);
-  const location = useLocation();
+  // const location = useLocation();
 
 
   function formatDate(date) {
