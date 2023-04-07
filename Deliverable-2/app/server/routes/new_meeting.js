@@ -11,6 +11,12 @@ const { v4: uuidv4 } = require('uuid');
 
 const URLheader = "https://uhnmeet.azurewebsites.net/?groupId=";
 
+function uuidToBigInt(uuid) {
+  const hexString = uuid.replace(/-/g, ''); // Remove dashes from UUID
+  return BigInt(`0x${hexString}`); // Convert hex string to BigInt
+}
+
+
 router.post('/createMeeting', async (req, res) => {
   const { patientid, date, starttime, endtime } = req.body;
   const meetingId = uuidv4();
@@ -35,7 +41,7 @@ router.post('/createMeeting', async (req, res) => {
       await pool.query(`
           INSERT INTO Meeting (PatientID, Date, StartTime, EndTime, MeetingID, MeetingPasscode)
           VALUES ($1, $2, $3::time, $4::time, $5, $6)
-      `, [patientid, date, starttime, endtime, meetingId, meetingUrl]);
+      `, [patientid, date, starttime, endtime, uuidToBigInt(meetingId), meetingUrl]);
 
       res.status(201).json({ meetingUrl });
 
@@ -85,4 +91,5 @@ router.get('/:meetingid', async (req, res) => {
 
 
 module.exports = router;
+
 
