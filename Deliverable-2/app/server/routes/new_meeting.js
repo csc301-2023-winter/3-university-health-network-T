@@ -9,64 +9,80 @@ const roomsClient = new RoomsClient(connectionString);
 const identityClient = new CommunicationIdentityClient(connectionString);
 const { v4: uuidv4 } = require('uuid');
 
-const schedule = require('node-schedule');
-const port = process.env.PORT || 4000;
-const yourDomain = "localhost:${port}";
+const URLheader = "https://uhnmeet.azurewebsites.net/?groupId=";
 
-// Function to create a new meeting room
-async function createMeetingRoom(patientId, startTime) {
-    // Create a new user identity
-    const user = await identityClient.createUser();
-    
-    // Create a new meeting room
-    const meeting = await roomsClient.create({
-        displayName: `Meeting for patient ${patientId}`,
-        participants: [
-            {
-                identity: user
-            }
-        ]
-    });
-
-    // Generate the URL for the meeting room
-    const meetingUrl = `https://${yourDomain}/rooms/${meeting.id}`;
-
-    return {
-        meetingId: meeting.id,
-        meetingUrl: meetingUrl
-    };
-}
-
-// Endpoint to create and schedule a meeting room
 router.post('/createMeeting', async (req, res) => {
-    const { patientId, startTime } = req.body;
+  const { patientid, date, starttime, endtime } = req.body;
+  const meetingId = uuidv4();
+  const meetingUrl = `${URLheader}${meetingId}`;
 
-    try {
-        // Query the database to get the meeting's information
-        const meetingInfo = await pool.query(`SELECT * FROM meeting WHERE "PatinetID"=$1 AND "StartTime"=$2`, [patientId, startTime]);
-        
-        // Check if a meeting already exists at the specified start time
-        if (meetingInfo.rowCount > 0) {
-            return res.status(400).json({ message: 'A meeting already exists at the specified start time.' });
-        }
+  try {
+      // Verify patientid in the patient database
+      const patientInfo = await pool.query(`SELECT * FROM Patient WHERE PatientID=$1`, [patientid]);
 
-        // Create a new meeting room and get its URL
-        const { meetingId, meetingUrl } = await createMeetingRoom(patientId, startTime);
+      if (patientInfo.rowCount === 0) {
+          return res.status(400).json({ message: 'Patient not found.' });
+      }
 
-        // Schedule the room to start at the specified start time
-        const scheduledJob = schedule.scheduleJob(startTime, async () => {
-            await roomsClient.start(meetingId);
-        });
+      // Verify if a meeting already exists with the same starttime for the patient
+      const meetingInfo = await pool.query(`SELECT * FROM Meeting WHERE PatientID=$1 AND Date=$2 AND StartTime=$3::time`, [patientid, date, starttime]);
 
-        // Save the new meeting information to the database
-        await pool.query(`INSERT INTO meeting ("PatinetID", "Date", "StartTime", "EndTime", "MeetingID", "MeetingPasscode") VALUES ($1, $2, $3, $4, $5, $6)`, [patientId, new Date(startTime), startTime, endTime, meetingId, uuidv4()]);
+      if (meetingInfo.rowCount > 0) {
+          return res.status(400).json({ message: 'A meeting already exists at the specified start time.' });
+      }
 
-        res.status(201).json({ meetingUrl });
+      // Insert the new meeting into the Meeting database
+      await pool.query(`
+          INSERT INTO Meeting (PatientID, Date, StartTime, EndTime, MeetingID, MeetingPasscode)
+          VALUES ($1, $2, $3::time, $4::time, $5, $6)
+      `, [patientid, date, starttime, endtime, meetingId, meetingUrl]);
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'An error occurred while creating the meeting room.' });
-    }
+      res.status(201).json({ meetingUrl });
+
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while creating the meeting.' });
+  }
 });
 
+router.get('/:meetingid', async (req, res) => {
+  const pid = ver_tools.login_ver(req.headers.authorization.split(' ')[1]);
+  console.log(pid);
+
+  // If the patient ID is invalid, return a 403 Forbidden status
+  if (pid < 0) {
+      res.sendStatus(403);
+      return;
+  }
+
+  const meetingid = req.params.meetingid;
+
+  try {
+      // Get the meeting information from the database
+      const meetingInfo = await pool.query(`SELECT * FROM Meeting WHERE MeetingID=$1`, [meetingid]);
+
+      if (meetingInfo.rowCount === 0) {
+          return res.status(404).json({ message: 'Meeting not found.' });
+      }
+
+      const meeting = meetingInfo.rows[0];
+      const currentTime = new Date();
+      const startTime = new Date(meeting.date + 'T' + meeting.starttime);
+      const endTime = new Date(meeting.date + 'T' + meeting.endtime);
+
+      // Check if the current time is within the start and end times of the meeting
+      if (currentTime >= startTime && currentTime <= endTime) {
+          const meetingUrl = meeting.meetingpasscode;
+          res.status(200).json({ meetingUrl });
+      } else {
+          res.status(204).json({ message: `Start time will be ${startTime}` });
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while retrieving the meeting.' });
+  }
+});
+
+
 module.exports = router;
+
