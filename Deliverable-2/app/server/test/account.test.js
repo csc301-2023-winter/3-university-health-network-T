@@ -68,4 +68,27 @@ describe('Account', () => {
     });
   });
 
+  describe('POST /reset', () => {
+    it('should return an error message for required field', (done) => {
+      chai.request(app)
+      .post('/account/reset')
+      .send({ email: 'zhou@gmail.com' })
+      .end((err, res) => {
+        expect(res.status).to.equal(403);
+        expect(res.body.message).to.equal('One of your email and password is required');
+        done();
+      });
+    });
+
+    it('should successfully reset the password', (done) => {
+      chai.request(app)
+      .post('/account/reset')
+      .send({ email: 'zhou@gmail.com', password: '123' })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Reset password successful with email = zhou@gmail.com');
+        done();
+      });
+    });
+  });
 });
