@@ -29,6 +29,7 @@ function HomePopUP(props) {
   const [exerciseData, setExerciseData] = useState(null);
   const [meetingData, setMeetingData] = useState(null);
   const [showing, setShowing] = useState(false);
+  const [meeting, setmeetings] = useState([])
   // const location = useLocation();
 
 
@@ -49,6 +50,7 @@ function HomePopUP(props) {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        console.log(response.data)
         const data = response.data.data;
         setExerciseData(data.exercises);
         setMeetingData(data.upcoming_m);
@@ -57,7 +59,35 @@ function HomePopUP(props) {
         console.error(error);
       });
   }, [token]);
-
+  useEffect(()=>{
+    fetch(`${server_url}/calendar/day`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      
+    }).then(async (result)=>{
+      console.log({'2023-04-01':1}['2023-04-01'])
+      return await result.json()}).then((object1)=>{
+        console.log(object1)
+        let d=[]
+        for (const [key, value] of Object.entries(object1.data)) {
+          let meetings = value.meetings
+          if(meetings){
+            
+            meetings.forEach((data)=>{console.log(data); d.push(data)})
+            
+          }
+        //console.log(`${key.toString()}: ${value.meetings}`);
+        }
+        console.log('dd')
+        console.log(d)
+        setmeetings(d)
+      });
+  },
+[token]
+  )
   const renderExercise = () => {
     return (
       <ol>
@@ -73,13 +103,16 @@ function HomePopUP(props) {
 
   const renderMeeting = () => {
     if (meetingData) {
-      localStorage.setItem("meetingid", meetingData.meetingid);
+      //localStorage.setItem("meetingid", meetingData.meetingid);
+      console.log(meetingData)
       return (
-        <>
-          {meetingData.date.slice(0, 10)} {meetingData.starttime.slice(0, 5)} -{" "}
-          {meetingData.endtime.slice(0, 5)}
-        </>
-      );
+        meetingData.map((d)=>
+        <button onClick={()=>try_connect(d.meetingid)}>
+              {d.date.slice(0, 10)} {d.starttime.slice(0, 5)} -{" "}
+          {d.endtime.slice(0, 5)}
+            </button>
+       
+      ));
     } else {
       return " -- There is no upcoming meeting";
     }
@@ -109,6 +142,24 @@ function HomePopUP(props) {
       stop:pause,
       cont: cont
   }
+  }
+  const try_connect=(id)=>{
+    console.log(id)
+    fetch(`${server_url}/meeting/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then(
+      
+      async (data)=>{
+        if(data.status==204){
+        alert('not the right time')
+        }else{
+        //const groupId = localStorage.getItem("meetingid");
+    let u  =(await data.json()).meetingUrl
+    const url = `https://uhnmeet.azurewebsites.net/?groupId=${u}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+    console.log(url)}
+        }
+    )
   }
   return (
     

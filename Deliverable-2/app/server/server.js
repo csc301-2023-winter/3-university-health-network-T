@@ -16,7 +16,7 @@ app.use(express.static('client'))
 app.use(cors({
   origin: "*"
 }))
-const meetingRouter = require('./routes/meeting')
+const meetingRouter = require('./routes/new_meeting')
 app.use("/meeting", meetingRouter)
 const accountRouter = require('./routes/account')
 app.use("/account", accountRouter)

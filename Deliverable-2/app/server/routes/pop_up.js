@@ -35,8 +35,7 @@ router.get('/popup', (req, res) => {
             const query = `SELECT Date, StartTime, EndTime, MeetingID, MeetingPasscode
                         FROM Meeting
                         WHERE PatientID = $1 AND Date + EndTime > NOW()
-                        ORDER BY Date + StartTime
-                        LIMIT 1`;
+                        ORDER BY Date + StartTime`;
             pool.query(query, [pid], (error, result) => {
                 // If there is a database error, log the error and return a 500 Internal Server Error status
                 if (error) {
@@ -46,7 +45,7 @@ router.get('/popup', (req, res) => {
                 }
                 
                 // Extract the meeting information and return it along with the exercise to-do list
-                const meeting = result.rows[0];
+                const meeting = result.rows;
                 res.status(200).json({
                     message: "Get Info Successfully",
                     data: {
