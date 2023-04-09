@@ -44,4 +44,4 @@ According to the description of this license on the webpage "https://choosealice
 ## The offer of a brief virtual meeting or phone call to ensure the partner is comfortable with the information and can take over your project
 
 ## Any other details or steps pertinent to taking over the project
-[Presentation slides on March 30]([https://virtualrehabilitationcs.azurewebsites.net](https://docs.google.com/presentation/d/1fnz0nvbl-uW0WusXs9Fl6p0om0zxnza8Rmo6h19UglM/edit?usp=sharing))
+[Presentation slides on March 30](https://docs.google.com/presentation/d/1fnz0nvbl-uW0WusXs9Fl6p0om0zxnza8Rmo6h19UglM/edit?usp=sharing)
