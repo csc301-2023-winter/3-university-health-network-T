@@ -29,7 +29,7 @@
 - Page 2: we will transfer these two repos to our partner with githubid "abedicodes", the readme.md and demo instruction also included in the repo
 ## ![page 2](./D4-img/d2.jpg)
 
-- Page 3: remember to change the source path in Azure after accepting the transfer repos, you should change it in Azure deployment center
+- Page 3: remember to change the source path in Azure after accepting the transfer repos(in the img this is my current deploy path, you need to change it as your repo path), you should change it in Azure deployment center
 ## ![page 3](./D4-img/d3.jpg)
 
 ## Development requirements
