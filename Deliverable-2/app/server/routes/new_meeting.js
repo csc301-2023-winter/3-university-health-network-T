@@ -19,9 +19,10 @@ function uuidToBigInt(uuid) {
 
 router.post('/createMeeting', async (req, res) => {
   const { patientid, date, starttime, endtime } = req.body;
+  console.log(req.body)
   const meetingId = uuidv4();
   const meetingUrl = `${URLheader}${meetingId}`;
-
+console.log(patientid)
   try {
       // Verify patientid in the patient database
       const patientInfo = await pool.query(`SELECT * FROM Patient WHERE PatientID=$1`, [patientid]);
@@ -73,9 +74,15 @@ router.get('/:meetingid', async (req, res) => {
 
       const meeting = meetingInfo.rows[0];
       const currentTime = new Date();
-      const startTime = new Date(meeting.date + 'T' + meeting.starttime);
-      const endTime = new Date(meeting.date + 'T' + meeting.endtime);
-
+      const startTime = new Date(meeting.date);
+      const endTime = new Date(meeting.date);
+      const startPart = meeting.starttime.split(':').map(Number);
+      const endPart = meeting.endtime.split(':').map(Number);
+      startTime.setHours(startPart[0], startPart[1], startPart[2]);
+      endTime.setHours(endPart[0], endPart[1], endPart[2]);
+      console.log(startTime)
+    console.log(endTime)
+    console.log(currentTime)
       // Check if the current time is within the start and end times of the meeting
       if (currentTime >= startTime && currentTime <= endTime) {
           const meetingUrl = meeting.meetingpasscode;

@@ -29,7 +29,6 @@ function HomePopUP(props) {
   const [exerciseData, setExerciseData] = useState(null);
   const [meetingData, setMeetingData] = useState(null);
   const [showing, setShowing] = useState(false);
-  const [meeting, setmeetings] = useState([])
   // const location = useLocation();
 
 
@@ -59,35 +58,7 @@ function HomePopUP(props) {
         console.error(error);
       });
   }, [token]);
-  useEffect(()=>{
-    fetch(`${server_url}/calendar/day`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      
-    }).then(async (result)=>{
-      console.log({'2023-04-01':1}['2023-04-01'])
-      return await result.json()}).then((object1)=>{
-        console.log(object1)
-        let d=[]
-        for (const [key, value] of Object.entries(object1.data)) {
-          let meetings = value.meetings
-          if(meetings){
-            
-            meetings.forEach((data)=>{console.log(data); d.push(data)})
-            
-          }
-        //console.log(`${key.toString()}: ${value.meetings}`);
-        }
-        console.log('dd')
-        console.log(d)
-        setmeetings(d)
-      });
-  },
-[token]
-  )
+
   const renderExercise = () => {
     return (
       <ol>
@@ -155,12 +126,15 @@ function HomePopUP(props) {
         }else{
         //const groupId = localStorage.getItem("meetingid");
     let u  =(await data.json()).meetingUrl
-    const url = `https://uhnmeet.azurewebsites.net/?groupId=${u}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-    console.log(url)}
+    //const url = `https://uhnmeet.azurewebsites.net/?groupId=${u}`;
+    window.open(u);
+    //console.log(url)
+  }
+    console.log(new Date())
         }
     )
   }
+  
   return (
     
     

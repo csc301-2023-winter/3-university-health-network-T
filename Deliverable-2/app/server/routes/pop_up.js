@@ -34,9 +34,9 @@ router.get('/popup', (req, res) => {
         try {
             const query = `SELECT Date, StartTime, EndTime, MeetingID, MeetingPasscode
                         FROM Meeting
-                        WHERE PatientID = $1 AND Date + EndTime > NOW()
+                        WHERE PatientID = $1 AND Date + EndTime > $2
                         ORDER BY Date + StartTime`;
-            pool.query(query, [pid], (error, result) => {
+            pool.query(query, [pid, new Date()], (error, result) => {
                 // If there is a database error, log the error and return a 500 Internal Server Error status
                 if (error) {
                     console.error(error);
