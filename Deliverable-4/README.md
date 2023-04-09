@@ -2,7 +2,7 @@
 
 ## A link to demo video
 
-[Video link](https://youtu.be/W6pYnZxRZOU)
+[Video link](https://youtu.be/o4jcZ69uL8A)
 
 ## Description 
 - What we have completed for the project:
