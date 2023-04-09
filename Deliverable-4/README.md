@@ -2,7 +2,7 @@
 
 ## A link to demo video
 
-[Video link](https://virtualrehabilitationcs.azurewebsites.net)
+[Video link](https://youtu.be/W6pYnZxRZOU)
 
 ## Description 
 - What we have completed for the project:
