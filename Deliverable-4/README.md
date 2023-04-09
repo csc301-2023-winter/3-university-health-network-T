@@ -32,6 +32,39 @@
 - Page 3: remember to change the source path in Azure after accepting the transfer repos, you should change it in Azure deployment center
 ## ![page 3](./D4-img/d3.jpg)
 
+## Development requirements
+ 
+#### Method : how to run the project locally
+
+- Boostrap is the style framework
+- React js and Next js will be used to develop the front end
+- Node js on Azure is the backend
+- PostgreSQL will be the database on Azure
+
+```bash
+$ cd desktop
+$ git clone <this repo's url>
+$ cd <the location in your pc>/server/
+$ npm install
+$ npm run devStart
+$ cd ..
+$ cd <the location in your pc>/frontend/uhn_project/
+$ npm install
+$ npm run start
+```
+
+#### Method : how to deploy the project into Azure
+```bash
+1. After finish coding locally, under the /frontend/uhn_project/, run
+
+$ npm run build
+
+2. You will get a folder named "build", then, put the "build" folder under "server/" and rename "build" as "client"
+
+4. copy all files in the server folder
+
+3. with your copy, cover all files in the "UHN-Azure-Deploy" repo, push the new changes, the github "Action" will automatically deploy the project
+```
 
 ## A set of links, assets and credentials (shared via a secure method and not in an email) to any systems you used (e.g. Github, deployment tools, URLs for deployed products, documentation, etc.)
 - Link of the UHN-Web-App:
